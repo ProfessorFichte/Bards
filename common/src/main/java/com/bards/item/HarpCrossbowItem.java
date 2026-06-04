@@ -73,7 +73,6 @@ public class HarpCrossbowItem extends CustomCrossbow {
         Vec3d eyePos = shooter.getEyePos();
         float[] offsets = isLightning ? new float[]{-1.75f, -0.75f, 0.75f, 1.75f} : new float[]{-0.75f, 0.75f};
 
-        final boolean creativeMode = shooter instanceof PlayerEntity player && player.getAbilities().creativeMode;
         final ItemStack fireworkStackFinal = fireworkStack;
 
         for (float offset : offsets) {
@@ -88,9 +87,7 @@ public class HarpCrossbowItem extends CustomCrossbow {
                         Items.ARROW.getDefaultStack(), stack);
                 arrow.setOwner(shooter);
                 arrow.setVelocity(look.x * speed, look.y * speed, look.z * speed);
-                if (creativeMode) {
-                    arrow.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;
-                }
+                arrow.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
                 world.spawnEntity(arrow);
                 if (shooter instanceof PlayerEntity player) {
                     SpellTriggers.onArrowShot((ArrowExtension)(Object) arrow, player, false);
