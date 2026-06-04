@@ -97,7 +97,7 @@
         "particle_id": "more_rpg_classes:star",
         "origin": "FEET",
         "shape": "SPHERE",
-        "count": 3.0,
+        "count": 0.1,
         "min_speed": 0.1,
         "max_speed": 0.2,
         "color_rgba": 4293623807,
@@ -120,7 +120,7 @@
         "origin": "LAUNCH_POINT",
         "shape": "CIRCLE",
         "rotation": "LOOK",
-        "count": 2.0,
+        "count": 0.2,
         "min_speed": 0.28,
         "max_speed": 0.3,
         "color_rgba": 4293623807,
@@ -130,7 +130,7 @@
     "override_render": {
       "model_id": "bards_rpg:spell_projectile/star_arrow",
       "light_emission": "RADIATE",
-      "scale": 1.5
+      "scale": 1.2
     }
   },
   "cost": {

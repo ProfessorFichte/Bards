@@ -217,7 +217,8 @@ public class BardsSpells {
     private static Entry troubadours_minuet() {
         var id = Identifier.of(MOD_ID, "troubadours_minuet");
         var title = "Troubadour's Minuet";
-        var description = "Minuet that deals {damage} damage to enemies, heals allies by {heal} and reduces incoming damage by {bonus}. Can be stacked {amplifier_cap} times.";
+        var description = "Minuet that deals {damage} damage to enemies, heals allies by {heal} and reduces incoming damage by {bonus}. " +
+                "Can be stacked {effect_amplifier_cap} times.";
         var buffEffect = BardsEffects.TROUBADOURS_MINUET;
         var stringEffect = buffEffect.id.toString();
         SpellTooltip.DescriptionMutator mutator = (args) -> {
@@ -226,7 +227,7 @@ public class BardsSpells {
             return args.description()
                     .replace("{bonus}", bonus);
         };
-        var spellColor = BardSongColors.troubadours_minuet.toRGBA();
+        var spellColor = BardSkillColors.troubadours_minuet.toRGBA();
         var bardSong = BardsSounds.troubadours_minuet.id();
 
         var spell = bardSongSkill(spellColor,bardSong);
@@ -244,17 +245,21 @@ public class BardsSpells {
     private static Entry wanderers_minuet() {
         var id = Identifier.of(MOD_ID, "wanderers_minuet");
         var title = "Wanderer's Minuet";
-        var description = "Minuet that deals {damage} damage to enemies and increases critical chance by {bonus} for allies. Can be stacked {amplifier_cap} times.";
+        var description = "Minuet that deals {damage} damage to enemies and increases critical chance by {bonus} and critical damage by {bonus2} for allies. " +
+                "Can be stacked {effect_amplifier_cap} times.";
         var buffEffect = BardsEffects.WANDERERS_MINUET;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = buffEffect.config().firstModifier();
+            var modifier = buffEffect.config().attributes().get(1);
+            var modifier2 = buffEffect.config().attributes().get(0);
             var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            var bonus2 = SpellTooltip.bonus(modifier2.value, modifier2.operation);
             return args.description()
-                    .replace("{bonus}", bonus);
+                    .replace("{bonus}", bonus)
+                    .replace("{bonus2}", bonus2);
         };
         ///CHANGE COLOR & SOUND
         var stringEffect = buffEffect.id.toString();
-        var spellColor = BardSongColors.wanderers_minuet.toRGBA();
+        var spellColor = BardSkillColors.wanderers_minuet.toRGBA();
         var bardSong = BardsSounds.troubadours_minuet.id();
         var spell = bardSongSkill(spellColor,bardSong);
         var damage = bardSongDamageImpact(spellColor,songWithoutHealDmg);
@@ -323,7 +328,8 @@ public class BardsSpells {
     private static Entry natures_minne() {
         var id = Identifier.of(MOD_ID, "natures_minne");
         var title = "Natures Minne";
-        var description = "Soothing song that deals {damage} damage to enemies, heals allies by {heal} and increases healing taken by {bonus}. Can be stacked {amplifier_cap} times.";
+        var description = "Soothing song that deals {damage} damage to enemies, heals allies by {heal} and increases healing taken by {bonus}. " +
+                "Can be stacked {effect_amplifier_cap} times.";
         var buffEffect = BardsEffects.NATURES_MINNE;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = buffEffect.config().firstModifier();
@@ -333,7 +339,7 @@ public class BardsSpells {
         };
         ///CHANGE SOUND
         var stringEffect = buffEffect.id.toString();
-        var spellColor = BardSongColors.natures_minne.toRGBA();
+        var spellColor = BardSkillColors.natures_minne.toRGBA();
         var bardSong = BardsSounds.troubadours_minuet.id();
         var spell = bardSongSkill(spellColor,bardSong);
         var damage = bardSongDamageImpact(spellColor,songWithHealDmg);
@@ -350,7 +356,8 @@ public class BardsSpells {
     private static Entry song_of_celerity() {
         var id = Identifier.of(MOD_ID, "song_of_celerity");
         var title = "Song of Celerity";
-        var description = "Lively song that deals {damage} damage to enemies and increases movement speed by {bonus} for allies. Can be stacked {amplifier_cap} times.";
+        var description = "Lively song that deals {damage} damage to enemies and increases movement speed by {bonus} for allies. " +
+                "Can be stacked {effect_amplifier_cap} times.";
         var buffEffect = BardsEffects.SONG_OF_CELERITY;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = buffEffect.config().firstModifier();
@@ -360,7 +367,7 @@ public class BardsSpells {
         };
         ///CHANGE SOUND
         var stringEffect = buffEffect.id.toString();
-        var spellColor = BardSongColors.song_of_celerity.toRGBA();
+        var spellColor = BardSkillColors.song_of_celerity.toRGBA();
         var bardSong = BardsSounds.troubadours_minuet.id();
         var spell = bardSongSkill(spellColor,bardSong);
         var damage = bardSongDamageImpact(spellColor,songWithoutHealDmg);
@@ -376,7 +383,7 @@ public class BardsSpells {
     private static Entry discordant_note() {
         var id = Identifier.of(MOD_ID, "discordant_note");
         var title = "Discordant Note";
-        var description = "A Discordant Note that deals {damage} damage to enemies and reduces their offensive stats by {bonus}. Can be stacked {effect_amplifier_cap} time.";
+        var description = "A Discordant Note that deals {damage} damage to enemies and reduces their offensive stats by {bonus}. Can be stacked {effect_amplifier_cap} times.";
         var buffEffect = BardsEffects.DISCORDANT_NOTE;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = buffEffect.config().firstModifier();
@@ -386,7 +393,7 @@ public class BardsSpells {
         };
         ///CHANGE SOUND
         var stringEffect = buffEffect.id.toString();
-        var spellColor = BardSongColors.discordant_note.toRGBA();
+        var spellColor = BardSkillColors.discordant_note.toRGBA();
         var bardSong = BardsSounds.troubadours_minuet.id();
         var spell = bardSongSkill(spellColor,bardSong);
         var damage = bardSongDamageImpact(spellColor,songWithoutHealDmg);
@@ -402,7 +409,7 @@ public class BardsSpells {
     private static Entry tale_of_the_dragonslayer() {
         var id = Identifier.of(MOD_ID, "tale_of_the_dragonslayer");
         var title = "Tale of the Dragon Slayer";
-        var description = "Tale that deals {damage} damage to enemies. Increases offensive stats for allies by {bonus}, also allies deal additional magic damage with arrows & melee hits. Can be stacked {amplifier_cap} time.";
+        var description = "Tale that deals {damage} damage to enemies. Increases offensive stats for allies by {bonus}, also allies deal additional magic damage with arrows & melee hits. Can be stacked {effect_amplifier_cap} time.";
         var buffEffect = BardsEffects.TALE_OF_THE_DRAGON_SLAYER;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = buffEffect.config().firstModifier();
@@ -412,7 +419,7 @@ public class BardsSpells {
         };
         ///CHANGE SOUND
         var stringEffect = buffEffect.id.toString();
-        var spellColor = BardSongColors.tale_of_the_dragonslayer.toRGBA();
+        var spellColor = BardSkillColors.tale_of_the_dragonslayer.toRGBA();
         var bardSong = BardsSounds.troubadours_minuet.id();
         var spell = bardSongSkill(spellColor,bardSong);
         var damage = bardSongDamageImpact(spellColor,songWithoutHealDmg);
@@ -429,7 +436,8 @@ public class BardsSpells {
         var buffEffect = BardsEffects.HYMN_OF_THE_GOLDEN_LIGHT;
         var id = Identifier.of(MOD_ID, "hymn_of_the_golden_light");
         var title = buffEffect.title;
-        var description = "Soothing song that deals {damage} damage to enemies, heals allies by {heal}. Adds {bonus} absorption hearts, that refresh every 2 seconds. Can be stacked {amplifier_cap} times.";
+        var description = "Soothing song that deals {damage} damage to enemies, heals allies by {heal}. Adds {bonus} absorption hearts, that refresh every 2 seconds. " +
+                "Can be stacked {effect_amplifier_cap} times.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = buffEffect.config().firstModifier();
             var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
@@ -438,7 +446,7 @@ public class BardsSpells {
         };
         ///CHANGE SOUND
         var stringEffect = buffEffect.id.toString();
-        var spellColor = BardSongColors.hymn_of_the_golden_light.toRGBA();
+        var spellColor = BardSkillColors.hymn_of_the_golden_light.toRGBA();
         var bardSong = BardsSounds.troubadours_minuet.id();
         var spell = bardSongSkill(spellColor,bardSong);
         var damage = bardSongDamageImpact(spellColor,songWithHealDmg);
@@ -465,7 +473,7 @@ public class BardsSpells {
         };
         ///CHANGE SOUND
         var stringEffect = buffEffect.id.toString();
-        var spellColor = BardSongColors.song_of_the_turning_sky.toRGBA();
+        var spellColor = BardSkillColors.song_of_the_turning_sky.toRGBA();
         var bardSong = BardsSounds.troubadours_minuet.id();
         var spell = bardSongSkill(spellColor,bardSong);
         var damage = bardSongDamageImpact(spellColor,songWithHealDmg);
@@ -500,7 +508,7 @@ public class BardsSpells {
 
         ///CHANGE SOUND
         var stringEffect = buffEffect.id.toString();
-        var spellColor = BardSongColors.canticle_of_the_tides.toRGBA();
+        var spellColor = BardSkillColors.canticle_of_the_tides.toRGBA();
         var bardSong = BardsSounds.troubadours_minuet.id();
         var spell = bardSongSkill(spellColor,bardSong);
         var damage = bardSongDamageImpact(spellColor,songWithHealDmg);
@@ -532,7 +540,7 @@ public class BardsSpells {
         spell.range = 20;
         spell.tier = 2;
         spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
-        var spellColor = Color.ARCANE.toRGBA();
+        var spellColor = BardSkillColors.magical_ballad.toRGBA();
 
         spell.learn = new Spell.Learn();
 
@@ -641,7 +649,7 @@ public class BardsSpells {
         spell.tier = 2;
         spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
         spell.learn = new Spell.Learn();
-        var spellColor = Color.RAGE.toRGBA();
+        var spellColor = BardSkillColors.vicious_mockery.toRGBA();
 
 
 
@@ -693,7 +701,7 @@ public class BardsSpells {
         spell.tier = 3;
         spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
         spell.learn = new Spell.Learn();
-        var spellColor = Color.ARCANE.toRGBA();
+        var spellColor = BardSkillColors.wardens_paean.toRGBA();
 
         spell.target.type = Spell.Target.Type.AIM;
         spell.target.aim = new Spell.Target.Aim();
@@ -737,7 +745,7 @@ public class BardsSpells {
         spell.range = 12;
         spell.tier = 3;
         spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
-        var spellColor = SpellBuilderHelper.CYAN.toRGBA();
+        var spellColor = BardSkillColors.encore.toRGBA();
 
         spell.learn = new Spell.Learn();
 
@@ -802,7 +810,7 @@ public class BardsSpells {
         spell.range = 5;
         spell.tier = 4;
         spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
-        var spellColor = SpellBuilderHelper.GOLD.toRGBA();
+        var spellColor = BardSkillColors.armys_paeon.toRGBA();
 
         spell.release.animation = bardReleaseAnimation();
         spell.release.particles = new ParticleBatch[]{
@@ -852,7 +860,7 @@ public class BardsSpells {
         var id = Identifier.of(MOD_ID, "crescendo");
         var title = "Crescendo";
         var debuffEffect = BardsEffects.CRESCENDO;
-        var description = "Strikes an irresistible chord, stunning any enemy it passes through, dealing {damage} damage." +
+        var description = "Strikes an irresistible chord, stunning any enemy it passes through, dealing {damage} damage. " +
                 "Also increases incoming damage by {bonus} per stack.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = debuffEffect.config().firstModifier();
@@ -866,7 +874,7 @@ public class BardsSpells {
         spell.range = 30;
         spell.tier = 4;
         spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
-        var spellColor = SpellBuilderHelper.GOLD.toRGBA();
+        var spellColor = BardSkillColors.crescendo.toRGBA();
 
         spell.learn = new Spell.Learn();
 
@@ -1297,7 +1305,7 @@ public class BardsSpells {
         spell.arrow_perks.bypass_iframes = true;
         spell.arrow_perks.override_render = new Spell.ProjectileModel();
         spell.arrow_perks.override_render.model_id = "bards_rpg:spell_projectile/star_arrow";
-        spell.arrow_perks.override_render.scale = 1.5F;
+        spell.arrow_perks.override_render.scale = 1.2F;
         spell.arrow_perks.override_render.light_emission = LightEmission.RADIATE;
         spell.arrow_perks.launch_particles = new ParticleBatch[]{
                 new ParticleBatch(
@@ -1310,14 +1318,14 @@ public class BardsSpells {
                 new ParticleBatch(
                         "more_rpg_classes:star",
                         ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.LAUNCH_POINT,
-                        ParticleBatch.Rotation.LOOK, 2,0.28F,0.3F, 0)
+                        ParticleBatch.Rotation.LOOK, 0.2F,0.28F,0.3F, 0)
                         .color(STARSHOT_COLOR.toRGBA()).scale(0.3F)
         };
         spell.arrow_perks.travel_particles = new ParticleBatch[]{
                 new ParticleBatch(
                         "more_rpg_classes:star",
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
-                        3, 0.1F, 0.2F)
+                        0.1F, 0.1F, 0.2F)
                         .color(STARSHOT_COLOR.toRGBA()).scale(0.3F)
         };
         //CHANGE SOUND

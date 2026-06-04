@@ -4,7 +4,7 @@
     "bind": {
       "conditions": {
         "complete": true,
-        "spell_pool": "#bards_rpg:spell_book/bard"
+        "spell_pool": "bards_rpg:spell_book/bard"
       },
       "trigger": "spell_engine:spell_binding"
     }

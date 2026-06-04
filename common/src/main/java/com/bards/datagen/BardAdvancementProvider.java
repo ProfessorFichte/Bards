@@ -66,13 +66,13 @@ public class BardAdvancementProvider implements DataProvider {
         addEntry(new Entry(
                 id("path_choose_bard"),
                 "Path of the Bard",
-                "Bard's Stories",
+                "Create the Bard's Stories",
                 Identifier.of("more_rpg_content", "root"),
                 MOD_ID + ":item/spell_scroll/bard",
                 AdvancementFrame.TASK,
                 true, true, false, null,
                 SpellEngineCriteriaType.SPELL_BOOK_CREATION,
-                MOD_ID + "::spell_book/bard"
+                MOD_ID + ":spell_book/bard"
         ));
         addEntry(new Entry(
                 id("spell_cast_bard_book"),
@@ -94,7 +94,7 @@ public class BardAdvancementProvider implements DataProvider {
                 AdvancementFrame.TASK,
                 true, true, false, null,
                 SpellEngineCriteriaType.ONE_SPELL_BOUND,
-                "#" + MOD_ID + ":spell_book/bard"
+                 MOD_ID + ":spell_book/bard"
         ));
         addEntry(new Entry(
                 id("spell_master_bard"),
@@ -105,7 +105,7 @@ public class BardAdvancementProvider implements DataProvider {
                 AdvancementFrame.GOAL,
                 true, true, false, null,
                 SpellEngineCriteriaType.ALL_SPELLS_BOUND,
-                "#" + MOD_ID + ":spell_book/bard"
+                MOD_ID + ":spell_book/bard"
         ));
 
     }

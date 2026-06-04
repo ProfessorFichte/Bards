@@ -1,7 +1,7 @@
 {
   "advancements.bards_rpg.equipment.entertainer_armor_set.description": "Obtain the full Entertainer's Garb!",
   "advancements.bards_rpg.equipment.entertainer_armor_set.title": "Master of Entertainment.",
-  "advancements.bards_rpg.path_choose_bard.description": "Bard's Stories",
+  "advancements.bards_rpg.path_choose_bard.description": "Create the Bard's Stories",
   "advancements.bards_rpg.path_choose_bard.title": "Path of the Bard",
   "advancements.bards_rpg.spell_cast_bard_book.description": "Use a Skill from the Bard's Stories Book",
   "advancements.bards_rpg.spell_cast_bard_book.title": "Songwriter",
@@ -41,7 +41,7 @@
   "effect.bards_rpg.vicious_mockery": "Vicious Mockery",
   "effect.bards_rpg.vicious_mockery.description": "Decreases Attack Damage, Ranged Damage & Spell Power.",
   "effect.bards_rpg.wanderers_minuet": "Wanderer's Minuet",
-  "effect.bards_rpg.wanderers_minuet.description": "Increases Critical Chance.",
+  "effect.bards_rpg.wanderers_minuet.description": "Increases Critical Chance and Critical Damage.",
   "effect.bards_rpg.wardens_paean_beneficial": "Warden's Paean",
   "effect.bards_rpg.wardens_paean_beneficial.description": "Removes a harmful status effect when applied, if none is present, the next harmful status effect wont get applied.",
   "effect.bards_rpg.wardens_paean_harmful": "Warden's Paean",
@@ -148,7 +148,7 @@
   "spell.bards_rpg.troubadours_minuet.name": "Troubadour's Minuet",
   "spell.bards_rpg.vicious_mockery.description": "Throw a string of insults at a target, taunting it, damaging it by {damage} and decreasing it's offensive power and increasing incoming damage by {bonus} per stack. Stacking up to {effect_amplifier_cap} times.",
   "spell.bards_rpg.vicious_mockery.name": "Vicious Mockery",
-  "spell.bards_rpg.wanderers_minuet.description": "Minuet that deals {damage} damage to enemies and increases critical chance by {bonus} for allies. Can be stacked {effect_amplifier_cap} times.",
+  "spell.bards_rpg.wanderers_minuet.description": "Minuet that deals {damage} damage to enemies and increases critical chance by {bonus} and critical damage by {bonus2} for allies. Can be stacked {effect_amplifier_cap} times.",
   "spell.bards_rpg.wanderers_minuet.name": "Wanderer's Minuet",
   "spell.bards_rpg.wardens_paean.description": "The next applied status effects (up to {effect_amplifier_cap_1}), for {effect_duration_1} seconds get removed. Beneficial Effects from Enemies, Harmful Effects from allies.",
   "spell.bards_rpg.wardens_paean.name": "Warden's Paean"

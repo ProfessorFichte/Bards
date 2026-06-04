@@ -97,7 +97,7 @@ public class BardsDataGenerator implements DataGeneratorEntrypoint {
                     translationBuilder.add(entry.item().getTranslationKey(), entry.translatedName())
             );
             translationBuilder.add(com.bards.item.HarpCrossbowItem.TOOLTIP_KEY,
-                    "Half Musical Instrument and fully deadly weapon, the Harp Crossbow shoots multiple arrows");
+                    "§7Half Musical Instrument and fully deadly weapon, the Harp Crossbow shoots multiple arrows");
             BardsSpells.entries.stream().filter(entry -> !entry.id().getPath().startsWith("helper/")).forEach(entry -> {
                 var id = entry.id();
                 translationBuilder.add("spell." + id.getNamespace() + "." + id.getPath() + ".name" , entry.title());

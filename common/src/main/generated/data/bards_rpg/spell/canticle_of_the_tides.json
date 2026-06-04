@@ -46,7 +46,7 @@
           "min_speed": 0.4,
           "max_speed": 0.5,
           "extent": 2.0,
-          "color_rgba": 2213865215
+          "color_rgba": 16777215
         }
       ]
     }
@@ -74,7 +74,7 @@
           "count": 10.0,
           "min_speed": 0.5,
           "max_speed": 0.5,
-          "color_rgba": 2213865215
+          "color_rgba": 16777215
         }
       ],
       "sound": {
@@ -104,7 +104,7 @@
           "min_speed": 0.6,
           "max_speed": 0.8,
           "extent": 0.5,
-          "color_rgba": 2213865215
+          "color_rgba": 16777215
         }
       ]
     }

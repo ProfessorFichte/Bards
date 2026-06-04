@@ -12,7 +12,7 @@
         "shape": "SPHERE",
         "count": 1.0,
         "max_speed": 0.0,
-        "color_rgba": 2213865215,
+        "color_rgba": 16777215,
         "scale": 0.5,
         "follow_entity": true
       }

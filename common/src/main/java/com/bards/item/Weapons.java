@@ -150,7 +150,7 @@ public class Weapons {
     private static final float VELOCITY_HARP_CROSSBOW = 0F;
     // ~20% damage penalty vs Rapid Crossbow per tier (extra 2 arrows + spell power compensate)
     public static float penaltyMultiplier = 0.8F;
-    private static final float[] RAPID_CROSSBOW_DAMAGE = { 7.5F, 8.0F, 9.5F, 10.5F, 10.5F };
+    private static final float[] RAPID_CROSSBOW_DAMAGE = { 7.5F, 8.0F, 9.5F, 10.5F, 11.25F, 11.25F};
     private static float rangedDamage(int tier) {
         float base = RAPID_CROSSBOW_DAMAGE[Math.min(tier, RAPID_CROSSBOW_DAMAGE.length - 1)];
         return Math.round(base * penaltyMultiplier * 10) / 10.0F;
@@ -158,7 +158,7 @@ public class Weapons {
 
     private static RangedWeapon.Entry harpCrossbow(String name, Equipment.Tier tier, Supplier<Ingredient> repairIngredientSupplier) {
         var entry = new RangedWeapon.Entry(Identifier.of(MOD_ID, name), tier, HarpCrossbowItem::new,
-                new RangedConfig(rangedDamage(Equipment.Tier.values().length), PULL_TIME_HARP_CROSSBOW, VELOCITY_HARP_CROSSBOW)
+                new RangedConfig(rangedDamage(tier.getNumber()), PULL_TIME_HARP_CROSSBOW, VELOCITY_HARP_CROSSBOW)
                         .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, spellPower(tier.getNumber(), Instrument.HARP, true))
                         .withAttribute(SpellSchools.HEALING.id, EntityAttributeModifier.Operation.ADD_VALUE, spellPower(tier.getNumber(), Instrument.HARP, false))
 
