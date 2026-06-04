@@ -1,0 +1,10 @@
+{
+  "parent": "bards_rpg:item/harp_crossbow_model",
+  "display": {
+    "gui": {
+      "rotation": [ 0, 0, 0 ],
+      "translation": [ -1.6, 1.5, 0 ],
+      "scale":[ 1.7, 1.7, 1 ]
+    }
+  }
+}

@@ -138,7 +138,9 @@ public class ModModelProvider extends FabricModelProvider {
         Identifier modelId = Identifier.of(itemId.getNamespace(), "item/" + name);
 
         JsonObject json = new JsonObject();
-        if(name.contains("harp_crossbow")){
+        if(name.contains("unique_harp_crossbow_1")){
+            json.addProperty("parent", "bards_rpg:item/harp_crossbow_big");
+        } else {
             json.addProperty("parent", "bards_rpg:item/harp_crossbow_model");
         }
 
