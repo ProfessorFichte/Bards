@@ -63,10 +63,11 @@ public class BardsEffects {
                     )
             )
     ));
-    public static float critChanceIncrease = 0.005F;
+    public static float critChanceIncrease = 0.01F;
+    public static float critDamageIncrease = 0.03F;
     public static Effects.Entry WANDERERS_MINUET = add(new Effects.Entry(Identifier.of(MOD_ID, "wanderers_minuet"),
             "Wanderer's Minuet",
-            "Increases Critical Chance.",
+            "Increases Critical Chance and Critical Damage.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
@@ -78,6 +79,16 @@ public class BardsEffects {
                             new AttributeModifier(
                                     "critical_strike:chance",
                                     critChanceIncrease,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellPowerMechanics.CRITICAL_DAMAGE.id,
+                                    critDamageIncrease,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    "critical_strike:damage",
+                                    critDamageIncrease,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )
@@ -123,7 +134,7 @@ public class BardsEffects {
                     List.of(
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    0.025F,
+                                    0.03F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )

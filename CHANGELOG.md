@@ -1,3 +1,9 @@
+# 0.1.3 - 1.21.1
+- Wanderers Minuet now also buffs crit damage, crit chance was slightly buffed
+- Song of Celerity Movement Speed was slightly buffed
+- Fixed some Advancements not working
+- Fixed some typos and grammar mistakes in spell descriptions
+
 # 0.1.2 - 1.21.1
 - attempt to fix Server Crash on Neoforge
 - Improve the Luthier Villager's behaviour
