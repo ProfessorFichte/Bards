@@ -9,7 +9,7 @@
   ],
   "type": "minecraft:smithing_transform",
   "addition": {
-    "item": "more_rpg_classes:ascetic_upgrade_crystal"
+    "item": "more_rpg_classes:virtuoso_upgrade_crystal"
   },
   "base": {
     "item": "bards_rpg:netherite_troubadour_garb_chest"

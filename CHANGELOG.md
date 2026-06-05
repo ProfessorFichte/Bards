@@ -1,3 +1,7 @@
+# 1.0.0 - 1.21.1
+- **BARD RELEASE VERSION**
+- Fixed wrong Upgrade Crystal for the Storyteller Armor Set
+
 # 0.1.3 - 1.21.1
 - Wanderers Minuet now also buffs crit damage, crit chance was slightly buffed
 - Song of Celerity Movement Speed was slightly buffed

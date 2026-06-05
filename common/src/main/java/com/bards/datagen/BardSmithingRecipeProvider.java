@@ -118,8 +118,7 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
         // ====================
         if (Armors.storytellerArmorSet != null) {
             // From Netherite Troubadour to Storyteller
-            /// CHANGE TO NEW CRYSTAL
-            Identifier upgradeCrystal = Identifier.of("more_rpg_classes", "ascetic_upgrade_crystal");
+            Identifier upgradeCrystal = Identifier.of("more_rpg_classes", "virtuoso_upgrade_crystal");
             createSmithingTransformRecipe(
                     "smithing_storyteller_head_netherite_troubadour_head",
                     (Item) Armors.netheriteTroubadourArmorSet.armorSet().head,
