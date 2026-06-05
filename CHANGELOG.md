@@ -3,6 +3,13 @@
 - Song of Celerity Movement Speed was slightly buffed
 - Fixed some Advancements not working
 - Fixed some typos and grammar mistakes in spell descriptions
+- Extra Shot Arrows by Harp Crossbows cant be picked up
+- Music Stand Block -> Fixed the hitbox not rotating
+- Improved the Inventory GUI Model of the Harp Crossbows
+- Fixed the issue, that you could not re-bind weapon skills for some T5 Bard-Weapons
+- The Bard Songs (Weapon Skills) are now cast 10 seconds instead of 5 sec
+- Added a lot of Sound Effects for the Songs (Created by KaktusDoesMusic <3)
+- Fixed Entertainers Garb Hat Clipping
 
 # 0.1.2 - 1.21.1
 - attempt to fix Server Crash on Neoforge
