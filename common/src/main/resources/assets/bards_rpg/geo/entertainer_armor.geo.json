@@ -94,17 +94,17 @@
 				},
 				{
 					"name": "bipedHead",
-					"pivot": [0, 23, 0]
+					"pivot": [0, 24, 0]
 				},
 				{
 					"name": "armorHead",
 					"parent": "bipedHead",
-					"pivot": [0, 23, 0]
+					"pivot": [0, 24, 0]
 				},
 				{
 					"name": "hat",
 					"parent": "armorHead",
-					"pivot": [0, 30, 0.1],
+					"pivot": [0, 30, -0.4],
 					"cubes": [
 						{"origin": [-4.5, 29, -4], "size": [8.5, 4.5, 8.5], "inflate": 0.5, "uv": [0, 0]},
 						{
