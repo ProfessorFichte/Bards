@@ -34,6 +34,9 @@
           }
         ]
       },
+      "sound": {
+        "id": "bards_rpg:vicious_mockery"
+      },
       "particles": [
         {
           "particle_id": "more_rpg_classes:music_note",

@@ -92,6 +92,9 @@
           "amplifier_power_multiplier": 0.3,
           "amplifier_cap": 4
         }
+      },
+      "sound": {
+        "id": "bards_rpg:bard_impact"
       }
     },
     {
@@ -104,6 +107,9 @@
           "amplifier_power_multiplier": 0.3,
           "amplifier_cap": 4
         }
+      },
+      "sound": {
+        "id": "bards_rpg:bard_buff"
       }
     }
   ],

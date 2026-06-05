@@ -30,6 +30,7 @@ import net.minecraft.village.VillagerData;
 import net.more_rpg_classes.client.particle.MoreParticles;
 import net.more_rpg_classes.client.particle.PopupParticleEffect;
 import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.ParticleHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -158,10 +159,10 @@ public abstract class LuthierVillagerMixin {
         }
 
         if (bards_tickCounter++ % 20 != 0) return;
-
+        Color color = song.noteColor();
         var musicNoteBatch = new ParticleBatch("more_rpg_classes:music_note",
                 ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.CENTER,
-                5, 0.1F, 0.2F).extent(1.0F).color(((long) song.noteColor() << 8) | 0xFFL);
+                5, 0.1F, 0.2F).extent(1.0F).color(color.toRGBA());
         ParticleHelper.sendBatches(villager, new ParticleBatch[]{ musicNoteBatch });
 
         Box effectBox = Box.of(villager.getPos(), 8, 4, 8);
@@ -222,10 +223,10 @@ public abstract class LuthierVillagerMixin {
 
             if (bards_reactionTickCount % 30 == 0) {
                 LuthierSongs.Song song = getDailySong(luthier, serverWorld);
-                long color = ((long) song.noteColor() << 8) | 0xFFL;
+                Color color = song.noteColor();
                 var noteBatch = new ParticleBatch("more_rpg_classes:music_note",
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        2, 0.05F, 0.2F).color(color);
+                        2, 0.05F, 0.2F).color(color.toRGBA());
                 ParticleHelper.sendBatches(villager, new ParticleBatch[]{ noteBatch });
             }
         }

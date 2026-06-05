@@ -32,6 +32,30 @@
       "bards_rpg:bard_impact_3"
     ]
   },
+  "canticle_of_the_tides": {
+    "sounds": [
+      "bards_rpg:canticle_of_the_tides_1",
+      "bards_rpg:canticle_of_the_tides_2",
+      "bards_rpg:canticle_of_the_tides_3",
+      "bards_rpg:canticle_of_the_tides_4"
+    ]
+  },
+  "canticle_of_the_tides_full": {
+    "sounds": [
+      "bards_rpg:canticle_of_the_tides_full"
+    ]
+  },
+  "crescendo_launch": {
+    "sounds": [
+      "bards_rpg:crescendo_launch"
+    ]
+  },
+  "discordant_note": {
+    "sounds": [
+      "bards_rpg:discordant_note_1",
+      "bards_rpg:discordant_note_2"
+    ]
+  },
   "encore_channel": {
     "sounds": [
       "bards_rpg:encore_channel"
@@ -60,25 +84,15 @@
       "bards_rpg:harp_crossbow_shoot_4"
     ]
   },
+  "hymn_of_the_golden_light_full": {
+    "sounds": [
+      "bards_rpg:hymn_of_the_golden_light_full"
+    ]
+  },
   "lute_hit": {
     "sounds": [
       "bards_rpg:lute_hit_1",
       "bards_rpg:lute_hit_2"
-    ]
-  },
-  "luthier_song_resilience": {
-    "sounds": [
-      "bards_rpg:luthier_song_resilience"
-    ]
-  },
-  "luthier_song_swiftness": {
-    "sounds": [
-      "bards_rpg:luthier_song_swiftness"
-    ]
-  },
-  "luthier_song_vitality": {
-    "sounds": [
-      "bards_rpg:luthier_song_vitality"
     ]
   },
   "lyre_channel": {
@@ -105,9 +119,83 @@
       "bards_rpg:magical_ballad"
     ]
   },
+  "natures_minne": {
+    "sounds": [
+      "bards_rpg:natures_minne_1",
+      "bards_rpg:natures_minne_2",
+      "bards_rpg:natures_minne_3"
+    ]
+  },
+  "natures_minne_full": {
+    "sounds": [
+      "bards_rpg:natures_minne_full"
+    ]
+  },
+  "secret_sonata": {
+    "sounds": [
+      "bards_rpg:secret_sonata_1",
+      "bards_rpg:secret_sonata_2"
+    ]
+  },
+  "song_of_celerity": {
+    "sounds": [
+      "bards_rpg:song_of_celerity_1",
+      "bards_rpg:song_of_celerity_2",
+      "bards_rpg:song_of_celerity_3"
+    ]
+  },
+  "song_of_celerity_full": {
+    "sounds": [
+      "bards_rpg:song_of_celerity_full"
+    ]
+  },
+  "song_of_the_turning_sky": {
+    "sounds": [
+      "bards_rpg:song_of_the_turning_sky_1",
+      "bards_rpg:song_of_the_turning_sky_2",
+      "bards_rpg:song_of_the_turning_sky_3",
+      "bards_rpg:song_of_the_turning_sky_4",
+      "bards_rpg:song_of_the_turning_sky_5"
+    ]
+  },
+  "song_of_the_turning_sky_full": {
+    "sounds": [
+      "bards_rpg:song_of_the_turning_sky_full"
+    ]
+  },
+  "tale_of_the_dragonslayer": {
+    "sounds": [
+      "bards_rpg:tale_of_the_dragonslayer_1",
+      "bards_rpg:tale_of_the_dragonslayer_2"
+    ]
+  },
   "troubadours_minuet": {
     "sounds": [
       "bards_rpg:troubadours_minuet"
+    ]
+  },
+  "troubadours_minuet_full": {
+    "sounds": [
+      "bards_rpg:troubadours_minuet_full"
+    ]
+  },
+  "vicious_mockery": {
+    "sounds": [
+      "bards_rpg:vicious_mockery_1",
+      "bards_rpg:vicious_mockery_2",
+      "bards_rpg:vicious_mockery_3"
+    ]
+  },
+  "wanderers_minuet": {
+    "sounds": [
+      "bards_rpg:wanderers_minuet_1",
+      "bards_rpg:wanderers_minuet_2",
+      "bards_rpg:wanderers_minuet_3"
+    ]
+  },
+  "wanderers_minuet_full": {
+    "sounds": [
+      "bards_rpg:wanderers_minuet_full"
     ]
   }
 }

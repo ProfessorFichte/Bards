@@ -43,7 +43,10 @@
         "extent": 2.0,
         "color_rgba": 4292280575
       }
-    ]
+    ],
+    "sound": {
+      "id": "bards_rpg:crescendo_launch"
+    }
   },
   "target": {
     "type": "AIM",

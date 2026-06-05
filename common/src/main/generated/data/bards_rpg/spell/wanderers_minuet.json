@@ -5,8 +5,8 @@
   "learn": {},
   "active": {
     "cast": {
-      "duration": 5.0,
-      "channel_ticks": 5,
+      "duration": 10.0,
+      "channel_ticks": 10,
       "animation": {
         "id": "bards_rpg:sing_channel",
         "overrides": [
@@ -35,7 +35,7 @@
       },
       "movement_speed": 1.5,
       "sound": {
-        "id": "bards_rpg:troubadours_minuet"
+        "id": "bards_rpg:wanderers_minuet"
       },
       "particles": [
         {
@@ -113,7 +113,7 @@
     "exhaust": 0.2,
     "cooldown": {
       "group": "weapon",
-      "duration": 2.0
+      "duration": 5.0
     }
   }
 }
