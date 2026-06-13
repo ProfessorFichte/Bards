@@ -63,8 +63,8 @@ public class BardsEffects {
                     )
             )
     ));
-    public static float critChanceIncrease = 0.01F;
-    public static float critDamageIncrease = 0.03F;
+    public static float critChanceIncrease = 0.02F;
+    public static float critDamageIncrease = 0.04F;
     public static Effects.Entry WANDERERS_MINUET = add(new Effects.Entry(Identifier.of(MOD_ID, "wanderers_minuet"),
             "Wanderer's Minuet",
             "Increases Critical Chance and Critical Damage.",
