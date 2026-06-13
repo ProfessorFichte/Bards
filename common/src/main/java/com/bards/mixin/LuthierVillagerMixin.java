@@ -172,6 +172,18 @@ public abstract class LuthierVillagerMixin {
                     song.effect(), 200, song.effectAmplifier(), false, true, true
             ));
         }
+
+        Optional<RegistryKey<SoundEvent>> soundKey = song.sound().getKey();
+        if (soundKey.isPresent()) {
+            StopSoundS2CPacket stopPacket = new StopSoundS2CPacket(soundKey.get().getValue(), null);
+            Box outerBox = Box.of(villager.getPos(), 128, 64, 128);
+            for (PlayerEntity player : serverWorld.getEntitiesByClass(PlayerEntity.class, outerBox,
+                    p -> p.squaredDistanceTo(villager) > 32 * 32)) {
+                if (player instanceof ServerPlayerEntity sp) {
+                    sp.networkHandler.sendPacket(stopPacket);
+                }
+            }
+        }
     }
 
     @Unique
