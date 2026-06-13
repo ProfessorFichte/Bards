@@ -69,37 +69,39 @@ public class Weapons {
         return meleeEntry(name, material, SpellSwordItem::new, new WeaponConfig(damage, rapier_attack_speed), Equipment.WeaponType.SWORD)
                 .spellContainer(SpellContainers.forMeleeWeapon().withSpellId(MrpgLibSpells.puncture.id()));
     }
-    // Base spell power per tier (index 0 = first tier, 1 = second, etc.)
-    private static final float[] BASE_SPELL_POWER = { 3.5F, 4.0F, 4.5F, 5.0F, 5.0F };
+    // Spell power weapon balancing
+    private static final float STEP            = 0.5F;
+    private static final float BASE_START      = 3.0F;
+    private static final float LUTE_ARC_START  = round05(BASE_START);
+    private static final float LUTE_HEAL_START = round05(BASE_START);
+    private static final float LYRE_ARC_START  = round05(BASE_START * 0.5F);
+    private static final float LYRE_HEAL_START = round05(BASE_START * 1.5F);
+    private static final float HARP_ARC_START  = round05(BASE_START * 0.75F);
+    private static final float HARP_HEAL_START = round05(BASE_START * 0.5F);
 
-    private enum Instrument {
-        LUTE(1.0F, 1.0F),
-        LYRE(0.5F, 1.5F),
-        HARP(0.8F, 0.6F);
-        final float arcaneMult, healingMult;
-        Instrument(float a, float h) { arcaneMult = a; healingMult = h; }
+    private static float round05(float v) { return Math.round(v * 2) / 2.0F; }
+    private static float tier(float start, int idx) {
+        return round05(start + STEP * Math.min(idx, 3));
     }
-
-    private static float spellPower(int tier, Instrument type, boolean arcane) {
-        float base = BASE_SPELL_POWER[Math.min(tier, BASE_SPELL_POWER.length - 1)];
-        float mult = arcane ? type.arcaneMult : type.healingMult;
-        return Math.round(base * mult * 2) / 2.0F;
+    private static float harpSpellPower(Equipment.Tier equipTier, boolean arcane) {
+        int idx = equipTier.ordinal();
+        return arcane ? tier(HARP_ARC_START, idx) : tier(HARP_HEAL_START, idx);
     }
 
     private static final float lute_attack_speed = -3.0F;
     private static Weapon.Entry lute(String name, Weapon.CustomMaterial material, float damage, int tier) {
         return meleeEntry(name, material, StaffItem::new, new WeaponConfig(damage, lute_attack_speed), Equipment.WeaponType.DAMAGE_STAFF)
                 .spellContainer(SpellContainers.forMagicWeapon()).withSpellChoices("bards_rpg:weapon/lute")
-                .attribute(AttributeModifier.bonus(SpellSchools.ARCANE.id, spellPower(tier, Instrument.LUTE, true)))
-                .attribute(AttributeModifier.bonus(SpellSchools.HEALING.id, spellPower(tier, Instrument.LUTE, false)));
+                .attribute(AttributeModifier.bonus(SpellSchools.ARCANE.id, tier(LUTE_ARC_START, tier)))
+                .attribute(AttributeModifier.bonus(SpellSchools.HEALING.id, tier(LUTE_HEAL_START, tier)));
     }
     private static final float lyre_attack_speed = -2.2F;
     private static final float lyre_attack_damage = 3.0F;
     private static Weapon.Entry lyre(String name, Weapon.CustomMaterial material, int tier) {
         return meleeEntry(name, material, StaffItem::new, new WeaponConfig(lyre_attack_damage, lyre_attack_speed), Equipment.WeaponType.HEALING_STAFF)
                 .spellContainer(SpellContainers.forMagicWeapon()).withSpellChoices("bards_rpg:weapon/lyre")
-                .attribute(AttributeModifier.bonus(SpellSchools.ARCANE.id, spellPower(tier, Instrument.LYRE, true)))
-                .attribute(AttributeModifier.bonus(SpellSchools.HEALING.id, spellPower(tier, Instrument.LYRE, false)));
+                .attribute(AttributeModifier.bonus(SpellSchools.ARCANE.id, tier(LYRE_ARC_START, tier)))
+                .attribute(AttributeModifier.bonus(SpellSchools.HEALING.id, tier(LYRE_HEAL_START, tier)));
     }
     /// RAPIERS
     public static final Weapon.Entry golden_rapier = rapier("golden_rapier",
@@ -159,8 +161,8 @@ public class Weapons {
     private static RangedWeapon.Entry harpCrossbow(String name, Equipment.Tier tier, Supplier<Ingredient> repairIngredientSupplier) {
         var entry = new RangedWeapon.Entry(Identifier.of(MOD_ID, name), tier, HarpCrossbowItem::new,
                 new RangedConfig(rangedDamage(tier.getNumber()), PULL_TIME_HARP_CROSSBOW, VELOCITY_HARP_CROSSBOW)
-                        .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, spellPower(tier.getNumber(), Instrument.HARP, true))
-                        .withAttribute(SpellSchools.HEALING.id, EntityAttributeModifier.Operation.ADD_VALUE, spellPower(tier.getNumber(), Instrument.HARP, false))
+                        .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, harpSpellPower(tier, true))
+                        .withAttribute(SpellSchools.HEALING.id, EntityAttributeModifier.Operation.ADD_VALUE, harpSpellPower(tier, false))
 
                 , repairIngredientSupplier, Equipment.WeaponType.RAPID_CROSSBOW);
         rangedEntries.add(entry);
