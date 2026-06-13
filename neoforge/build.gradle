@@ -168,6 +168,7 @@ if (System.getenv("CURSEFORGE_API_KEY")) {
                 requiredDependency 'azurelib-armor'
                 requiredDependency 'ranged-weapon-api'
                 requiredDependency 'structure-pool-api'
+                requiredDependency 'more-rpg-library'
             }
 
             mainArtifact(remapJar)
