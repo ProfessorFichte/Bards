@@ -4,38 +4,7 @@
   "range": 10.0,
   "tier": 3,
   "learn": {},
-  "active": {
-    "cast": {
-      "duration": 0.75,
-      "animation": {
-        "id": "bards_rpg:sing_channel",
-        "overrides": [
-          {
-            "equipment": {
-              "slot": "MAINHAND",
-              "item": "#bards_rpg:lyres"
-            },
-            "id": "bards_rpg:lyre_channel"
-          },
-          {
-            "equipment": {
-              "slot": "MAINHAND",
-              "item": "#bards_rpg:lutes"
-            },
-            "id": "bards_rpg:lute_channel"
-          },
-          {
-            "equipment": {
-              "slot": "MAINHAND",
-              "item": "#bards_rpg:harp_crossbows"
-            },
-            "id": "bards_rpg:harp_channel"
-          }
-        ]
-      },
-      "movement_speed": 1.5
-    }
-  },
+  "active": {},
   "release": {
     "animation": {
       "id": "bards_rpg:sing_release",

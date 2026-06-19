@@ -35,7 +35,8 @@
         ]
       },
       "sound": {
-        "id": "bards_rpg:vicious_mockery"
+        "id": "bards_rpg:vicious_mockery",
+        "volume": 0.7
       },
       "particles": [
         {

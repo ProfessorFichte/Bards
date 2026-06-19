@@ -35,7 +35,8 @@
       },
       "movement_speed": 1.5,
       "sound": {
-        "id": "bards_rpg:discordant_note"
+        "id": "bards_rpg:discordant_note",
+        "volume": 0.7
       },
       "particles": [
         {
@@ -63,7 +64,7 @@
       "action": {
         "type": "DAMAGE",
         "damage": {
-          "spell_power_coefficient": 0.7
+          "spell_power_coefficient": 0.5
         }
       },
       "particles": [
@@ -89,7 +90,7 @@
           "effect_id": "bards_rpg:discordant_note",
           "duration": 9.0,
           "amplifier": 1,
-          "amplifier_cap": 4,
+          "amplifier_cap": 5,
           "amplifier_cap_power_multiplier": 0.1,
           "apply_mode": "ADD"
         }

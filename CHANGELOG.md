@@ -1,6 +1,16 @@
-# 1.0.0 - 1.21.1
+# 0.1.4 - 1.21.1
 - **BARD RELEASE VERSION**
 - Fixed wrong Upgrade Crystal for the Storyteller Armor Set
+- Attempt to fix the issue with the Bard Sounds being played in the whole world
+- lowered the volume of many spell SFX's
+- Fix missing dependency in build gradle for Curseforge
+- Fixed the issue for Troubadours Minuet & Astral Shooting spell description, where attribute modifiers showed -% values
+- Re-Balance some Spell Power Values for the Bard-Weapons
+- Again increase the Attribute Modifier of the Wanderer's Minuet Spell
+- Nerfed Healing & Damage spell-power coefficient for the Bard's Weapon Skills
+- Buffed the max effect amplifier & amplifier cap spell-power coefficient of Bard Weapon Skills 
+- This was done to shift the role of the Bard more towards the enchanter/buffer role
+- Wardens Paean is now a instant cast spell
 
 # 0.1.3 - 1.21.1
 - Wanderers Minuet now also buffs crit damage, crit chance was slightly buffed

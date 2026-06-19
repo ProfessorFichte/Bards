@@ -35,7 +35,8 @@
       },
       "movement_speed": 1.5,
       "sound": {
-        "id": "bards_rpg:song_of_the_turning_sky"
+        "id": "bards_rpg:song_of_the_turning_sky",
+        "volume": 0.7
       },
       "particles": [
         {
@@ -63,7 +64,7 @@
       "action": {
         "type": "DAMAGE",
         "damage": {
-          "spell_power_coefficient": 0.55
+          "spell_power_coefficient": 0.35
         }
       },
       "particles": [
@@ -100,8 +101,8 @@
           "effect_id": "bards_rpg:song_of_the_turning_sky",
           "duration": 9.0,
           "amplifier": 1,
-          "amplifier_cap": 3,
-          "amplifier_cap_power_multiplier": 0.1,
+          "amplifier_cap": 4,
+          "amplifier_cap_power_multiplier": 0.15,
           "apply_mode": "ADD"
         }
       },
@@ -133,7 +134,7 @@
       "action": {
         "type": "HEAL",
         "heal": {
-          "spell_power_coefficient": 0.2
+          "spell_power_coefficient": 0.05
         }
       }
     }

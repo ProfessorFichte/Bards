@@ -146,7 +146,7 @@ public class BardsSpells {
         spell.active.cast.movement_speed = 1.5F;
         spell.active.cast.channel_ticks = 10;
         spell.active.cast.animation = bardCastAnimation();
-        spell.active.cast.sound =  new Sound(bardsong);
+        spell.active.cast.sound =  Sound.withVolume(bardsong,0.7F);
         spell.active.cast.particles = new ParticleBatch[] {
                 musicParticles(0.5F).color(color).extent(2.0F)
         };
@@ -173,7 +173,7 @@ public class BardsSpells {
     public static Spell.Impact bardSongBuffImpact(long color, String effect, int amplifierCap){
         var buff = SpellBuilder.Impacts.effectAdd(effect,9,1,amplifierCap);
         buff.school = SpellSchools.HEALING;
-        buff.action.status_effect.amplifier_cap_power_multiplier = 0.1F;
+        buff.action.status_effect.amplifier_cap_power_multiplier = 0.15F;
         buff.action.status_effect.refresh_duration = true;
         buff.particles = new ParticleBatch[]{
                 musicImpactParticles(0.5F).extent(0.5F).color(color)
@@ -207,11 +207,11 @@ public class BardsSpells {
         return deadCondition;
     }
     /// WEAPON SKILLS
-    public static float songWithoutHealDmg = 0.7F;
-    public static  float songWithHealDmg = 0.55F;
-    public static  float songHealing = 0.2F;
-    public static  int effectCapWithoutHeal = 4;
-    public static  int effectCapWithHeal = 3;
+    public static float songWithoutHealDmg = 0.5F;
+    public static  float songWithHealDmg = 0.35F;
+    public static  float songHealing = 0.05F;
+    public static  int effectCapWithoutHeal = 5;
+    public static  int effectCapWithHeal = 4;
 
     public static final Entry troubadours_minuet = add(troubadours_minuet());
     private static Entry troubadours_minuet() {
@@ -223,7 +223,7 @@ public class BardsSpells {
         var stringEffect = buffEffect.id.toString();
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = buffEffect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            var bonus = SpellTooltip.bonus(Math.abs(modifier.value), modifier.operation);
             return args.description()
                     .replace("{bonus}", bonus);
         };
@@ -648,7 +648,7 @@ public class BardsSpells {
         spell.active.cast.particles = new ParticleBatch[]{
                 musicParticles(0.5F).color(spellColor).extent(2.0F)
         };
-        spell.active.cast.sound = Sound.of(BardsSounds.vicious_mockery.id());
+        spell.active.cast.sound = Sound.withVolume(BardsSounds.vicious_mockery.id(),0.7F);
 
         spell.target.type = Spell.Target.Type.AIM;
         spell.target.aim = new Spell.Target.Aim();
@@ -696,12 +696,7 @@ public class BardsSpells {
         spell.target.type = Spell.Target.Type.AIM;
         spell.target.aim = new Spell.Target.Aim();
         spell.target.aim.use_caster_as_fallback =  true;
-
-
-        spell.active.cast.duration = 0.75F;
-        spell.active.cast.movement_speed = 1.5F;
-        spell.active.cast.animation = bardCastAnimation();
-
+        
         spell.release = new Spell.Release();
         spell.release.animation = bardReleaseAnimation();
         spell.release.particles = new ParticleBatch[]{
@@ -1237,7 +1232,7 @@ public class BardsSpells {
                         15, 0.2F, 0.25F)
                         .color(SpellBuilderHelper.MAGENTA.toRGBA()),
         };
-        var heal = SpellBuilder.Impacts.heal(0.25F);
+        var heal = SpellBuilder.Impacts.heal(0.1F);
         spell.impacts = List.of(buff, heal);
 
         SpellBuilder.Cost.cooldown(spell,10.0F);
@@ -1256,6 +1251,7 @@ public class BardsSpells {
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();
             var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            if (bonus.startsWith("-")) bonus = bonus.substring(1);
             return args.description()
                     .replace("{bonus}", bonus);
         };
