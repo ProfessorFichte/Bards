@@ -1,5 +1,6 @@
 package com.bard_rpg.worldgen.villages;
 
+import com.bard_rpg.block.BardBlocks;
 import com.google.common.collect.ImmutableSet;
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
 import net.minecraft.block.Blocks;
@@ -23,7 +24,7 @@ public class BardVillagerProfessions {
     public static VillagerProfession LUTHIER;
 
     public static void registerPoiTypes() {
-        LUTHIER_POI = PointOfInterestHelper.register(new Identifier(MOD_ID, "luthier"), 1, 1, Blocks.NOTE_BLOCK);
+        LUTHIER_POI = PointOfInterestHelper.register(new Identifier(MOD_ID, "luthier"), 1, 1, BardBlocks.MUSIC_STAND.block());
     }
 
     public static void registerProfessions() {

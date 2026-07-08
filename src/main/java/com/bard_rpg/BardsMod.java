@@ -14,6 +14,7 @@ import com.bard_rpg.item.Weapons;
 import com.bard_rpg.worldgen.villages.BardVillagerProfessions;
 import com.bard_rpg.worldgen.villages.BardVillagerTrades;
 import com.bard_rpg.worldgen.villages.LuthierSongs;
+import net.fabric_extras.structure_pool.api.StructurePoolConfig;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.loader.api.FabricLoader;
@@ -52,11 +53,19 @@ public class BardsMod implements ModInitializer {
             .sanitize(true)
             .build();
 
+    public static ConfigManager<StructurePoolConfig> villagesConfig = new ConfigManager<>
+            ("villages", Default.villageConfig)
+            .builder()
+            .setDirectory(MOD_ID)
+            .sanitize(true)
+            .build();
+
     @Override
     public void onInitialize() {
         itemConfig.refresh();
         tweaksConfig.refresh();
         effectsConfig.refresh();
+        villagesConfig.refresh();
         if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
             tweaksConfig.value.ignore_items_required_mods = true;
         }

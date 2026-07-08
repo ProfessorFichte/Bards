@@ -29,15 +29,15 @@ public class LuthierSongs {
                 new Song("troubadours_minuet", Weapons.wooden_lute.item(),
                         BardsEffects.TROUBADOURS_MINUET, 0,
                         BardsSounds.troubadours_minuet.soundEvent(),
-                        BardsSounds.troubadours_minuet.id(), 100),
+                        BardsSounds.troubadours_minuet.id(), 520),
                 new Song("natures_minne", Weapons.golden_lyre.item(),
                         BardsEffects.NATURES_MINNE, 0,
                         BardsSounds.natures_minne.soundEvent(),
-                        BardsSounds.natures_minne.id(), 120),
+                        BardsSounds.natures_minne.id(), 740),
                 new Song("song_of_celerity", Weapons.wooden_lute.item(),
                         BardsEffects.SONG_OF_CELERITY, 0,
                         BardsSounds.song_of_celerity.soundEvent(),
-                        BardsSounds.song_of_celerity.id(), 100)
+                        BardsSounds.song_of_celerity.id(), 720)
         );
     }
 }
