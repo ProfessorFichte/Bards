@@ -1,7 +1,7 @@
 {
   "school": "ARCANE",
   "range": 5,
-  "learn": { "tier": 1 },
+  "learn": { "tier": 4 },
   "cast": {},
   "release": {
     "animation": "more_rpg_classes:sing_release",

@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "bards_rpg:entertainer_garb_chest",
+    "bards_rpg:troubadour_garb_chest",
+    "bards_rpg:netherite_troubadour_garb_chest",
+
+    "bards_rpg:entertainer_garb_feet",
+    "bards_rpg:troubadour_garb_feet",
+    "bards_rpg:netherite_troubadour_garb_feet",
+
+    "bards_rpg:entertainer_garb_head",
+    "bards_rpg:troubadour_garb_head",
+    "bards_rpg:netherite_troubadour_garb_head",
+
+    "bards_rpg:entertainer_garb_legs",
+    "bards_rpg:troubadour_garb_legs",
+    "bards_rpg:netherite_troubadour_garb_legs"
+
+  ]
+}
