@@ -1,0 +1,6 @@
+{
+  "parent": "bards_rpg:item/netherite_harp_crossbow",
+  "textures": {
+    "layer0": "bards_rpg:item/bow_pulling/netherite_harp_crossbow_pulling_0"
+  }
+}

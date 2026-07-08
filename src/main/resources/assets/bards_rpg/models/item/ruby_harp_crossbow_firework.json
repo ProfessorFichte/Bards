@@ -1,0 +1,6 @@
+{
+  "parent": "bards_rpg:item/ruby_harp_crossbow",
+  "textures": {
+    "layer0": "bards_rpg:item/ruby_harp_crossbow_firework"
+  }
+}

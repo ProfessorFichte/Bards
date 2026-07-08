@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "bards_rpg:unique_rapier_0",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:unique_lyre_0",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:unique_harp_crossbow_1",
+      "required": false
+    }
+  ]
+}

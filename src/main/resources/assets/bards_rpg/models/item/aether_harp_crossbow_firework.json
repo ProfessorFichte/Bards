@@ -1,0 +1,6 @@
+{
+  "parent": "bards_rpg:item/aether_harp_crossbow",
+  "textures": {
+    "layer0": "bards_rpg:item/aether_harp_crossbow_firework"
+  }
+}

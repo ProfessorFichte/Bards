@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "bards_rpg:iron_rapier",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:wooden_lute",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:harp_crossbow",
+      "required": false
+    }
+  ]
+}

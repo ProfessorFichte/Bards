@@ -1,0 +1,85 @@
+{
+  "school": "ARCANE",
+  "range": 6,
+  "learn": { "tier": 3 },
+  "cast": {
+    "duration": 0.75,
+    "animation": "more_rpg_classes:sing_channel",
+    "particles": [
+      {
+        "particle_id": "more_rpg_classes:music_note_cyan",
+        "angle": 360,
+        "shape": "PIPE",
+        "origin": "FEET",
+        "count": 0.5,
+        "min_speed": 0.4,
+        "max_speed": 0.5
+      }
+    ],
+    "sound": { "id": "bards_rpg:troubadours_minuet" }
+  },
+  "release": {
+    "target": {
+      "type": "AREA",
+      "area": {
+        "distance_dropoff": "NONE",
+        "angle_degrees": 360,
+        "include_caster": true
+      }
+    }
+  },
+  "impact": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "bards_rpg:wardens_paean_harmful",
+          "duration": 8.0,
+          "amplifier_power_multiplier": 0.3,
+          "apply_mode": "SET",
+          "show_particles": false
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "more_rpg_classes:music_note_cyan",
+          "shape": "SPHERE",
+          "origin": "CENTER",
+          "count": 5.0,
+          "min_speed": 0.5,
+          "max_speed": 0.8
+        }
+      ],
+      "sound": { "id": "bards_rpg:bard_impact" }
+    },
+    {
+      "school": "HEALING",
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "bards_rpg:wardens_paean_beneficial",
+          "duration": 8.0,
+          "amplifier_power_multiplier": 0.3,
+          "apply_mode": "SET",
+          "show_particles": false
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "more_rpg_classes:music_note_cyan",
+          "shape": "CIRCLE",
+          "origin": "CENTER",
+          "count": 0.5,
+          "min_speed": 0.6,
+          "max_speed": 0.8
+        }
+      ],
+      "sound": { "id": "bards_rpg:bard_buff" }
+    }
+  ],
+  "cost": {
+    "exhaust": 0.3,
+    "cooldown_duration": 25,
+    "cooldown_haste_affected": "false"
+  }
+}

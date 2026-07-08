@@ -1,0 +1,6 @@
+{
+  "parent": "bards_rpg:item/rapier_model",
+  "textures": {
+    "layer0": "bards_rpg:item/netherite_rapier"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "bards_rpg:aether_rapier",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:aether_lute",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:aether_lyre",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:aether_harp_crossbow",
+      "required": false
+    }
+  ]
+}

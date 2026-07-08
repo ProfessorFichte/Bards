@@ -1,0 +1,7 @@
+{
+  "parent": "bards_rpg:item/generic_lyre",
+  "textures": {
+    "0": "bards_rpg:item/golden_lyre",
+    "particle": "bards_rpg:item/golden_lyre"
+  }
+}

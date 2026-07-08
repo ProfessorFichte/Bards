@@ -1,0 +1,56 @@
+{
+  "school": "ARCANE",
+  "range": 5,
+  "learn": { "tier": 1 },
+  "cast": {},
+  "release": {
+    "animation": "more_rpg_classes:sing_release",
+    "particles": [
+      {
+        "particle_id": "more_rpg_classes:music_note_gold",
+        "angle": 360,
+        "shape": "PIPE",
+        "origin": "FEET",
+        "count": 0.5,
+        "min_speed": 0.4,
+        "max_speed": 0.5
+      }
+    ],
+    "sound": { "id": "bards_rpg:armys_paeon_buff" },
+    "target": {
+      "type": "SELF"
+    }
+  },
+  "impact": [
+    {
+      "school": "HEALING",
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "bards_rpg:armys_paeon",
+          "duration": 15.0,
+          "amplifier": 0,
+          "apply_mode": "SET",
+          "show_particles": false
+        },
+        "apply_to_caster": true
+      },
+      "particles": [
+        {
+          "particle_id": "more_rpg_classes:music_note_gold",
+          "shape": "CIRCLE",
+          "origin": "CENTER",
+          "count": 5.0,
+          "min_speed": 0.5,
+          "max_speed": 0.8
+        }
+      ],
+      "sound": { "id": "bards_rpg:bard_buff" }
+    }
+  ],
+  "cost": {
+    "exhaust": 0.3,
+    "cooldown_duration": 30,
+    "cooldown_haste_affected": "false"
+  }
+}

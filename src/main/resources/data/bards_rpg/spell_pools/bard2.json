@@ -1,0 +1,8 @@
+{
+  "spell_ids": [
+    "bards_rpg:wardens_paean",
+    "bards_rpg:vicious_mockery",
+    "bards_rpg:crescendo"
+  ],
+  "creatable_as_spellbook": true
+}

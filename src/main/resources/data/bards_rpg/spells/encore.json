@@ -1,0 +1,67 @@
+{
+  "school": "ARCANE",
+  "range": 12,
+  "learn": { "tier": 3 },
+  "cast": {
+    "duration": 1.25,
+    "animation": "more_rpg_classes:sing_channel",
+    "particles": [
+      {
+        "particle_id": "more_rpg_classes:music_note_cyan",
+        "angle": 360,
+        "shape": "PIPE",
+        "origin": "FEET",
+        "count": 1.0,
+        "min_speed": 0.4,
+        "max_speed": 0.6
+      }
+    ],
+    "sound": { "id": "bards_rpg:encore_channel" }
+  },
+  "release": {
+    "custom_impact": true,
+    "target": {
+      "type": "AREA",
+      "area": {
+        "distance_dropoff": "SQUARED",
+        "angle_degrees": 360,
+        "include_caster": true
+      }
+    },
+    "particles": [
+      {
+        "particle_id": "more_rpg_classes:music_note_cyan",
+        "shape": "SPHERE",
+        "origin": "CENTER",
+        "count": 10.0,
+        "min_speed": 0.6,
+        "max_speed": 1.0
+      }
+    ],
+    "sound": { "id": "bards_rpg:bard_impact" }
+  },
+  "impact": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": { "spell_power_coefficient": 1.0 }
+      },
+      "particles": [
+        {
+          "particle_id": "more_rpg_classes:music_note_cyan",
+          "shape": "SPHERE",
+          "origin": "CENTER",
+          "count": 12.0,
+          "min_speed": 0.6,
+          "max_speed": 1.2
+        }
+      ],
+      "sound": { "id": "bards_rpg:bard_impact" }
+    }
+  ],
+  "cost": {
+    "exhaust": 0.4,
+    "cooldown_duration": 20,
+    "cooldown_haste_affected": "false"
+  }
+}

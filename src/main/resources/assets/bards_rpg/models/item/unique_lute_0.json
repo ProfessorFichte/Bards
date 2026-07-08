@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bards_rpg:item/unique_lute_0_inventory"
+  }
+}

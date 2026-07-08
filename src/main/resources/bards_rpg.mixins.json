@@ -1,0 +1,21 @@
+{
+	"required": true,
+	"package": "com.bard_rpg.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"WardensPaeanMixin",
+		"DiscordantNoteMixin",
+		"ArmiesPaeonMixin",
+		"ArmiesMotivationMixin",
+		"LuthierVillagerMixin",
+		"HarpCrossbowShootMixin"
+	],
+	"client": [
+		"BardSpellAnimationMixin",
+		"ItemRendererAccessor",
+		"ItemRendererMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

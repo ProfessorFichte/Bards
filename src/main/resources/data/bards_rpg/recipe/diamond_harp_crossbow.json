@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "minecraft:tripwire_hook"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "pattern": [
+    "DGD",
+    "SSS",
+    "C C"
+  ],
+  "result": {
+    "count": 1,
+    "item": "bards_rpg:diamond_harp_crossbow"
+  }
+}

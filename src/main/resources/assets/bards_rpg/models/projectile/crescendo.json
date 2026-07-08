@@ -1,0 +1,126 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Slepykat",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "bards_rpg:spell_projectile/crescendo_trail",
+		"1": "bards_rpg:spell_projectile/crescendo",
+		"particle": "bards_rpg:spell_projectile/crescendo_trail"
+	},
+	"elements": [
+		{
+			"from": [-4, 12, -8],
+			"to": [22, 12, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [10, 12, -3]},
+			"faces": {
+				"north": {"uv": [0, 0, 6.5, 0], "texture": "#1"},
+				"east": {"uv": [0, 0, 3, 0], "texture": "#1"},
+				"south": {"uv": [0, 0, 6.5, 0], "texture": "#1"},
+				"west": {"uv": [0, 0, 3, 0], "texture": "#1"},
+				"up": {"uv": [13, 3, 6.5, 0], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [13, 0, 6.5, 3], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [-4.5, 11, -9],
+			"to": [20.5, 13, 7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9.5, 12, -3]},
+			"faces": {
+				"north": {"uv": [6.5, 6, 13, 6.5], "texture": "#1"},
+				"east": {"uv": [6.5, 7, 10.5, 7.5], "texture": "#1"},
+				"south": {"uv": [6.5, 6, 13, 6.5], "texture": "#1"},
+				"west": {"uv": [6.5, 6.5, 10.5, 7], "texture": "#1"},
+				"up": {"uv": [6.25, 4, 0, 0], "rotation": 180, "texture": "#1"},
+				"down": {"uv": [6.25, 0, 0, 4], "rotation": 180, "texture": "#1"}
+			}
+		},
+		{
+			"from": [-4, 12, 2],
+			"to": [22, 12, 14],
+			"rotation": {"angle": 0, "axis": "y", "origin": [10, 12, 9]},
+			"faces": {
+				"north": {"uv": [10, 11.5, 17.5, 11.5], "texture": "#0"},
+				"east": {"uv": [0, 11.75, 4.25, 11.75], "texture": "#0"},
+				"south": {"uv": [5.5, 11.25, 13, 11.25], "texture": "#0"},
+				"west": {"uv": [5.5, 11.5, 9.75, 11.5], "texture": "#0"},
+				"up": {"uv": [7.375, 2.25, 3.875, 0], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [7.375, 0, 3.875, 2.25], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [-4, 11, 1],
+			"to": [22, 13, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9.5, 12, 9]},
+			"faces": {
+				"north": {"uv": [7.5, 9.75, 14.75, 10.25], "texture": "#0"},
+				"east": {"uv": [0, 11, 5.25, 11.5], "texture": "#0"},
+				"south": {"uv": [7.5, 9, 14.75, 9.5], "texture": "#0"},
+				"west": {"uv": [7.5, 10.5, 12.75, 11], "texture": "#0"},
+				"up": {"uv": [3.875, 2.375, 0, 0], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [3.875, 0, 0, 2.375], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [-4, 12, 11],
+			"to": [22, 12, 23],
+			"rotation": {"angle": 0, "axis": "y", "origin": [10, 12, 18]},
+			"faces": {
+				"north": {"uv": [10, 11.5, 17.5, 11.5], "texture": "#0"},
+				"east": {"uv": [0, 11.75, 4.25, 11.75], "texture": "#0"},
+				"south": {"uv": [5.5, 11.25, 13, 11.25], "texture": "#0"},
+				"west": {"uv": [5.5, 11.5, 9.75, 11.5], "texture": "#0"},
+				"up": {"uv": [7.375, 2.25, 3.875, 0], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [7.375, 0, 3.875, 2.25], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"from": [-4, 12, 20],
+			"to": [22, 12, 32],
+			"rotation": {"angle": 0, "axis": "y", "origin": [10, 12, 27]},
+			"faces": {
+				"north": {"uv": [10, 11.5, 17.5, 11.5], "texture": "#0"},
+				"east": {"uv": [0, 11.75, 4.25, 11.75], "texture": "#0"},
+				"south": {"uv": [5.5, 11.25, 13, 11.25], "texture": "#0"},
+				"west": {"uv": [5.5, 11.5, 9.75, 11.5], "texture": "#0"},
+				"up": {"uv": [7.375, 2.25, 3.875, 0], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [7.375, 0, 3.875, 2.25], "rotation": 180, "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 6, -24]
+		}
+	},
+	"groups": [
+		{
+			"name": "crescendo",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1]
+		},
+		{
+			"name": "trail_1",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [2, 3]
+		},
+		{
+			"name": "trail_2",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [4]
+		},
+		{
+			"name": "trail_3",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [5]
+		}
+	]
+}

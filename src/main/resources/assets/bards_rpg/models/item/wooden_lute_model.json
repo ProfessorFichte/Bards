@@ -1,0 +1,7 @@
+{
+  "parent": "bards_rpg:item/generic_lute",
+  "textures": {
+    "4": "bards_rpg:item/wooden_lute",
+    "particle": "bards_rpg:item/wooden_lute"
+  }
+}

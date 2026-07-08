@@ -1,0 +1,6 @@
+{
+  "parent": "bards_rpg:item/unique_harp_crossbow_0",
+  "textures": {
+    "layer0": "bards_rpg:item/unique_harp_crossbow_0_arrow"
+  }
+}

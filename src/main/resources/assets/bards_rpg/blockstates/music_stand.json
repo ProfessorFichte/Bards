@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "bards_rpg:block/music_stand" },
+    "facing=east":  { "model": "bards_rpg:block/music_stand", "y": 90 },
+    "facing=south": { "model": "bards_rpg:block/music_stand", "y": 180 },
+    "facing=west":  { "model": "bards_rpg:block/music_stand", "y": 270 }
+  }
+}

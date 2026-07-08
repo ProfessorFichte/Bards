@@ -1,0 +1,88 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Slepykat",
+	"textures": {
+		"1": "bards_rpg:spell_projectile/magical_ballad",
+		"particle": "bards_rpg:spell_projectile/magical_ballad"
+	},
+	"elements": [
+		{
+			"from": [4.9, 8, 7.4],
+			"to": [4.9, 16, 15.4],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [4.9, 9, 7.4]},
+			"faces": {
+				"north": {"uv": [13.33333, 12.33333, 16, 16], "texture": "#1"},
+				"east": {"uv": [16, 0, 11, 7.66667], "texture": "#1"},
+				"south": {"uv": [13.33333, 12.33333, 16, 16], "texture": "#1"},
+				"west": {"uv": [11, 0, 16, 7.66667], "texture": "#1"},
+				"up": {"uv": [13.33333, 12.33333, 16, 16], "rotation": 270, "texture": "#1"},
+				"down": {"uv": [13.33333, 12.33333, 16, 16], "rotation": 90, "texture": "#1"}
+			}
+		},
+		{
+			"from": [8, 8, 0],
+			"to": [8, 16, 8],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [8, 9, 0]},
+			"faces": {
+				"north": {"uv": [13.33333, 12.33333, 16, 16], "texture": "#1"},
+				"east": {"uv": [10.66667, 0, 5.66667, 7.66667], "texture": "#1"},
+				"south": {"uv": [13.33333, 12.33333, 16, 16], "texture": "#1"},
+				"west": {"uv": [5.66667, 0, 10.66667, 7.66667], "texture": "#1"},
+				"up": {"uv": [13.33333, 12.33333, 16, 16], "rotation": 270, "texture": "#1"},
+				"down": {"uv": [13.33333, 12.33333, 16, 16], "rotation": 90, "texture": "#1"}
+			}
+		},
+		{
+			"from": [8, 8, -8],
+			"to": [8, 16, 0],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9, -8]},
+			"faces": {
+				"north": {"uv": [13.33333, 12.33333, 16, 16], "texture": "#1"},
+				"east": {"uv": [5.66667, 0, 0.66667, 7.66667], "texture": "#1"},
+				"south": {"uv": [13.33333, 12.33333, 16, 16], "texture": "#1"},
+				"west": {"uv": [0.66667, 0, 5.66667, 7.66667], "texture": "#1"},
+				"up": {"uv": [13.33333, 12.33333, 16, 16], "rotation": 270, "texture": "#1"},
+				"down": {"uv": [13.33333, 12.33333, 16, 16], "rotation": 90, "texture": "#1"}
+			}
+		},
+		{
+			"from": [8, 8, 14.8],
+			"to": [8, 16, 22.8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 9, 14.8]},
+			"faces": {
+				"north": {"uv": [13.33333, 12.33333, 16, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 5, 7.66667], "texture": "#1"},
+				"south": {"uv": [13.33333, 12.33333, 16, 16], "texture": "#1"},
+				"west": {"uv": [5, 0, 0, 7.66667], "texture": "#1"},
+				"up": {"uv": [13.33333, 12.33333, 16, 16], "rotation": 270, "texture": "#1"},
+				"down": {"uv": [13.33333, 12.33333, 16, 16], "rotation": 90, "texture": "#1"}
+			}
+		},
+		{
+			"from": [8, 8, 22.8],
+			"to": [8, 16, 30.8],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [8, 9, 22.8]},
+			"faces": {
+				"north": {"uv": [13.33333, 12.33333, 16, 16], "texture": "#1"},
+				"east": {"uv": [5, 8, 0, 15.66667], "texture": "#1"},
+				"south": {"uv": [13.33333, 12.33333, 16, 16], "texture": "#1"},
+				"west": {"uv": [0, 8, 5, 15.66667], "texture": "#1"},
+				"up": {"uv": [13.33333, 12.33333, 16, 16], "rotation": 270, "texture": "#1"},
+				"down": {"uv": [13.33333, 12.33333, 16, 16], "rotation": 90, "texture": "#1"}
+			}
+		},
+		{
+			"from": [11.1, 8, -15.4],
+			"to": [11.1, 16, -7.4],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [11.1, 9, -15.4]},
+			"faces": {
+				"north": {"uv": [13.33333, 12.33333, 16, 16], "texture": "#1"},
+				"east": {"uv": [0, 8, 5, 15.66667], "texture": "#1"},
+				"south": {"uv": [13.33333, 12.33333, 16, 16], "texture": "#1"},
+				"west": {"uv": [5, 8, 0, 15.66667], "texture": "#1"},
+				"up": {"uv": [13.33333, 12.33333, 16, 16], "rotation": 270, "texture": "#1"},
+				"down": {"uv": [13.33333, 12.33333, 16, 16], "rotation": 90, "texture": "#1"}
+			}
+		}
+	]
+}

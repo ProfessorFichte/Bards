@@ -1,0 +1,11 @@
+{
+  "values": [
+    {
+      "id": "bards_rpg:storyteller_garb_head",
+      "required": false
+    },
+    "bards_rpg:entertainer_garb_head",
+    "bards_rpg:troubadour_garb_head",
+    "bards_rpg:netherite_troubadour_garb_head"
+  ]
+}

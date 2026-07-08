@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "bards_rpg:item/bard_spell_scroll"
+  }
+}

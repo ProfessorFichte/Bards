@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "bards_rpg:troubadour_garb_head",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:troubadour_garb_chest",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:troubadour_garb_legs",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:troubadour_garb_feet",
+      "required": false
+    }
+  ]
+}

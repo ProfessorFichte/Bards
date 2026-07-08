@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bards_rpg:item/elder_guardian_lyre_inventory"
+  }
+}
