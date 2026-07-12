@@ -2,14 +2,14 @@
   "school": "ARCANE",
   "group": "song",
   "range": 5,
-  "learn": { "tier": 1 },
+  "learn": { "tier": 0 },
   "cast": {
     "duration": 5.0,
     "animation": "more_rpg_classes:sing_channel",
     "channel_ticks": 20,
     "particles": [
       {
-        "particle_id": "note",
+        "particle_id": "more_rpg_classes:music_note_yellow_green",
         "angle": 360,
         "shape": "PIPE",
         "origin": "FEET",
@@ -34,11 +34,11 @@
     {
       "action": {
         "type": "DAMAGE",
-        "damage": { "spell_power_coefficient": 0.35 }
+        "damage": { "spell_power_coefficient": 0.3 }
       },
       "particles": [
         {
-          "particle_id": "more_rpg_classes:music_note_bright_green",
+          "particle_id": "more_rpg_classes:music_note_yellow_green",
           "shape": "SPHERE",
           "origin": "CENTER",
           "count": 5.0,
@@ -53,17 +53,17 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "bards_rpg:troubadours_minuet",
+          "effect_id": "bards_rpg:natures_minne",
           "duration": 9.0,
           "apply_mode": "ADD",
-          "amplifier": 4,
-          "amplifier_power_multiplier": 0.15,
+          "amplifier": 2,
+          "amplifier_power_multiplier": 0.1,
           "show_particles": false
         }
       },
       "particles": [
         {
-          "particle_id": "more_rpg_classes:music_note_bright_green",
+          "particle_id": "note",
           "shape": "CIRCLE",
           "origin": "CENTER",
           "count": 0.5,
@@ -77,7 +77,7 @@
       "school": "HEALING",
       "action": {
         "type": "HEAL",
-        "heal": { "spell_power_coefficient": 0.05 }
+        "heal": { "spell_power_coefficient": 0.075 }
       }
     }
   ],

@@ -3,6 +3,10 @@
   "values": [
     "bards_rpg:wooden_lute",
     "bards_rpg:diamond_lute",
-    "bards_rpg:netherite_lute"
+    "bards_rpg:netherite_lute",
+    {
+      "id": "bards_rpg:ruby_lute",
+      "required": false
+    }
   ]
 }

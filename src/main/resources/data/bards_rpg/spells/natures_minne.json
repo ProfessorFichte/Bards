@@ -1,5 +1,6 @@
 {
   "school": "ARCANE",
+  "group": "song",
   "range": 5,
   "learn": { "tier": 1 },
   "cast": {
@@ -76,7 +77,7 @@
       "school": "HEALING",
       "action": {
         "type": "HEAL",
-        "heal": { "spell_power_coefficient": 0.2 }
+        "heal": { "spell_power_coefficient": 0.1 }
       }
     }
   ],

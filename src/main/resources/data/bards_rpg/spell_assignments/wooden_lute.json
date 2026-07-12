@@ -1,6 +1,6 @@
 {
   "content": "MAGIC",
   "is_proxy": false,
-  "max_spell_count": 2,
-  "pool": "bards_rpg:wooden_lute"
+  "max_spell_count": 1,
+  "pool": "bards_rpg:lute"
 }

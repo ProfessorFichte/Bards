@@ -3,6 +3,10 @@
   "values": [
     "bards_rpg:golden_lyre",
     "bards_rpg:diamond_lyre",
-    "bards_rpg:netherite_lyre"
+    "bards_rpg:netherite_lyre",
+    {
+      "id": "bards_rpg:aeternium_lyre",
+      "required": false
+    }
   ]
 }

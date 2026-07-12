@@ -14,12 +14,6 @@
   "base": {
     "item": "bards_rpg:netherite_rapier"
   },
-  "neoforge:conditions": [
-    {
-      "type": "neoforge:mod_loaded",
-      "modid": "loot_n_explore"
-    }
-  ],
   "result": {
     "count": 1,
     "item": "bards_rpg:elder_guardian_rapier"

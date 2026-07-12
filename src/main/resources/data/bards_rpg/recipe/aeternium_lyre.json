@@ -1,0 +1,27 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "betterend"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "betterend:smaragdant_crystal_shard"
+    },
+    "D": {
+      "item": "betterend:aeternium_ingot"
+    }
+  },
+  "pattern": [
+    "DCD",
+    "DCD",
+    " D "
+  ],
+  "result": {
+    "item": "bards_rpg:aeternium_lyre"
+  }
+}
