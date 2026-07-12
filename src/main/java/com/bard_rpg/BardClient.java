@@ -4,6 +4,7 @@ import com.bard_rpg.block.BardBlocks;
 import com.bard_rpg.client.SpellDescriptionMutators;
 import com.bard_rpg.client.effect.ArmysPaeonCircleRenderer;
 import com.bard_rpg.client.effect.ArmysPaeonNoteRenderer;
+import com.bard_rpg.client.effect.WardensPaeanEffectRenderer;
 import com.bard_rpg.effect.BardsEffects;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -19,11 +20,16 @@ import static com.bard_rpg.BardsMod.MOD_ID;
 
 @Environment(EnvType.CLIENT)
 public class BardClient implements ClientModInitializer {
+    private static final Identifier wardensPaeanHelpfulModelId = new Identifier(MOD_ID, "effect/warens_paean_helpful");
+    private static final Identifier wardensPaeanHarmfulModelId = new Identifier(MOD_ID, "effect/warens_paean_harmful");
+
     @Override
     public void onInitializeClient() {
         CustomModels.registerModelIds(List.of(
                 ArmysPaeonNoteRenderer.modelIdNote,
                 ArmysPaeonCircleRenderer.modelIdCircle,
+                wardensPaeanHelpfulModelId,
+                wardensPaeanHarmfulModelId,
                 new Identifier(MOD_ID, "projectile/crescendo"),
                 new Identifier(MOD_ID, "projectile/magical_ballad"),
                 new ModelIdentifier(MOD_ID, "wooden_lute_model", "inventory"),
@@ -37,6 +43,8 @@ public class BardClient implements ClientModInitializer {
         ));
 
         CustomModelStatusEffect.register(BardsEffects.ARMYS_PAEON_STASH, new ArmysPaeonCircleRenderer());
+        CustomModelStatusEffect.register(BardsEffects.BENEFICIAL_WARDENS_PAEAN, new WardensPaeanEffectRenderer(wardensPaeanHelpfulModelId, false));
+        CustomModelStatusEffect.register(BardsEffects.HARMFUL_WARDENS_PAEAN, new WardensPaeanEffectRenderer(wardensPaeanHarmfulModelId, true));
         BardBlocks.registerClient();
         SpellDescriptionMutators.register();
     }
