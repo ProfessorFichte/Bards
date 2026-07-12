@@ -4,6 +4,7 @@ import com.bards.BardsMod;
 import com.bards.block.BardBlocks;
 import com.bards.client.armor.CustomArmorRenderer;
 import com.bards.client.effect.ArmysPaeonCircleRenderer;
+import com.bards.client.effect.WardensPaeanEffectRenderer;
 import com.bards.client.particle.PopupParticle;
 import com.bards.content.BardParticles;
 import com.bards.content.BardsSpells;
@@ -22,10 +23,14 @@ import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.rpg_series.item.Armor;
 import net.spell_engine.client.gui.SpellTooltip;
+import net.minecraft.util.Identifier;
 
 import java.util.function.Supplier;
 
 public class BardClient {
+    private static final Identifier wardensPaeanHelpfulModelId = Identifier.of(BardsMod.MOD_ID, "spell_effect/warens_paean_helpful");
+    private static final Identifier wardensPaeanHarmfulModelId = Identifier.of(BardsMod.MOD_ID, "spell_effect/warens_paean_harmful");
+
     public static void init() {
         BardBlocks.registerClient();
         for (var spell: BardsSpells.entries) {
@@ -42,6 +47,8 @@ public class BardClient {
         }
         registerEffectParticles();
         CustomModelStatusEffect.register(BardsEffects.ARMYS_PAEON_STASH.effect, new ArmysPaeonCircleRenderer());
+        CustomModelStatusEffect.register(BardsEffects.BENEFICIAL_WARDENS_PAEAN.effect, new WardensPaeanEffectRenderer(wardensPaeanHelpfulModelId, false));
+        CustomModelStatusEffect.register(BardsEffects.HARMFUL_WARDENS_PAEAN.effect, new WardensPaeanEffectRenderer(wardensPaeanHarmfulModelId, true));
         ParticleFactoryRegistry.getInstance().register(BardParticles.SPELL_STOLEN_POPUP, new PopupParticle.Factory());
     }
     private static void registerArmorRenderer(Armor.Set set, Supplier<AzArmorRenderer> armorRendererSupplier) {
