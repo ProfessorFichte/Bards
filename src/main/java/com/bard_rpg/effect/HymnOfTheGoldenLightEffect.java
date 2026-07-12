@@ -13,6 +13,10 @@ public class HymnOfTheGoldenLightEffect extends StatusEffect {
         this.absorptionPerLevel = absorptionPerLevel;
     }
 
+    public float getAbsorptionPerLevel() {
+        return absorptionPerLevel;
+    }
+
     private float effectContribution(int amplifier) {
         return absorptionPerLevel * (amplifier + 1);
     }
