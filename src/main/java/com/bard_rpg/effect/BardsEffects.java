@@ -1,6 +1,7 @@
 package com.bard_rpg.effect;
 
 import com.bard_rpg.BardsMod;
+import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
@@ -58,20 +59,23 @@ public class BardsEffects {
     public static StatusEffect CANTICLES_OF_THE_TIDES = new CanticlesOfTheTidesEffect(StatusEffectCategory.BENEFICIAL, 0x33aaff);
     public static StatusEffect TALE_OF_THE_DRAGON_SLAYER = new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff);
 
-    public static float critChanceIncrease = 0.01F;
-    public static float critDamageIncrease = 0.03F;
-    public static float offensiveReductionDiscordant = -0.02F;
-    public static float dragonSlayerMultiplier = 0.01F;
-    public static float troubadoursMinuetIncomingDamageReduction = -0.03F;
-    public static float naturesMinneHealingTakenIncrease = 0.03F;
-    public static float songOfTheTurningSkyIncomingDamageReduction = -0.03F;
+    public static float critChanceIncrease = BardsMod.effectsConfig.value.wanderers_minuet_crit_chance;
+    public static float critDamageIncrease = BardsMod.effectsConfig.value.wanderers_minuet_crit_damage;
+    public static float offensiveReductionDiscordant = BardsMod.effectsConfig.value.discordant_note_offensive_attribute_decrease;
+    public static float dragonSlayerMultiplier = BardsMod.effectsConfig.value.dragonslayer_tale_offensive_buff;
+    public static float troubadoursMinuetIncomingDamageReduction = BardsMod.effectsConfig.value.troubadours_minuet_damage_reduction;
+    public static float naturesMinneHealingTakenIncrease = BardsMod.effectsConfig.value.natures_minne_healing_increase;
+    public static float songOfTheTurningSkyIncomingDamageReduction = BardsMod.effectsConfig.value.song_of_the_turning_sky_damage_reduction;
+    public static float balladOffensiveMultiplier = BardsMod.effectsConfig.value.ballad_offensive_buff;
+    public static float songOfCelerityIncrease = BardsMod.effectsConfig.value.song_of_celerity_speed_increase;
 
     public static void register() {
-        addAttributeModifierAllSchools(BALLAD, "ballad_spell_power", 0.025, EntityAttributeModifier.Operation.MULTIPLY_BASE)
-            .addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, "a1b2c3d4-e5f6-7890-abcd-ef1234567802", 0.025, EntityAttributeModifier.Operation.MULTIPLY_BASE);
+        addAttributeModifierAllSchools(BALLAD, "ballad_spell_power", balladOffensiveMultiplier, EntityAttributeModifier.Operation.MULTIPLY_BASE)
+                .addAttributeModifier(EntityAttributes_RangedWeapon.DAMAGE.attribute, "a1b2c3d4-e5f6-7890-abcd-ef1234567803", balladOffensiveMultiplier, EntityAttributeModifier.Operation.MULTIPLY_BASE)
+            .addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, "a1b2c3d4-e5f6-7890-abcd-ef1234567802", balladOffensiveMultiplier, EntityAttributeModifier.Operation.MULTIPLY_BASE);
 
         SONG_OF_CELERITY
-            .addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, "a1b2c3d4-e5f6-7890-abcd-ef1234567810", 0.03, EntityAttributeModifier.Operation.MULTIPLY_BASE);
+            .addAttributeModifier(EntityAttributes.GENERIC_MOVEMENT_SPEED, "a1b2c3d4-e5f6-7890-abcd-ef1234567810", songOfCelerityIncrease, EntityAttributeModifier.Operation.MULTIPLY_BASE);
 
         TROUBADOURS_MINUET
             .addAttributeModifier(MRPGCEntityAttributes.DAMAGE_TAKEN, "7a1e4c6b-2f3d-49a8-9c5e-1b6d8f0a3c72", troubadoursMinuetIncomingDamageReduction, EntityAttributeModifier.Operation.MULTIPLY_BASE);
@@ -86,9 +90,11 @@ public class BardsEffects {
                 .addAttributeModifier(MRPGCEntityAttributes.DAMAGE_TAKEN, "3f8a1c2e-7b9d-4a6f-8c21-5d3e9b7f1024", BardsMod.effectsConfig.value.vicious_mockery_incoming_damage_increase, EntityAttributeModifier.Operation.MULTIPLY_BASE);
 
         addAttributeModifierAllSchools(DISCORDANT_NOTE, "discordant_note_spell_power", offensiveReductionDiscordant, EntityAttributeModifier.Operation.MULTIPLY_BASE)
+                .addAttributeModifier(EntityAttributes_RangedWeapon.DAMAGE.attribute, "a1b2c3d4-e5f6-7890-abcd-ef1234567832", offensiveReductionDiscordant, EntityAttributeModifier.Operation.MULTIPLY_BASE)
             .addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, "a1b2c3d4-e5f6-7890-abcd-ef1234567831", offensiveReductionDiscordant, EntityAttributeModifier.Operation.MULTIPLY_BASE);
 
         addAttributeModifierAllSchools(TALE_OF_THE_DRAGON_SLAYER, "tale_of_the_dragonslayer_spell_power", dragonSlayerMultiplier, EntityAttributeModifier.Operation.MULTIPLY_BASE)
+                .addAttributeModifier(EntityAttributes_RangedWeapon.DAMAGE.attribute, "a1b2c3d4-e5f6-7890-abcd-ef1234567842", dragonSlayerMultiplier, EntityAttributeModifier.Operation.MULTIPLY_BASE)
             .addAttributeModifier(EntityAttributes.GENERIC_ATTACK_DAMAGE, "a1b2c3d4-e5f6-7890-abcd-ef1234567841", dragonSlayerMultiplier, EntityAttributeModifier.Operation.MULTIPLY_BASE);
 
         WANDERERS_MINUET
