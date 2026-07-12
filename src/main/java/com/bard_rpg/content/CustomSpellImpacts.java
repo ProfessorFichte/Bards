@@ -13,6 +13,7 @@ import net.spell_engine.api.spell.SpellInfo;
 import net.spell_engine.internals.SpellHelper;
 import net.spell_engine.internals.SpellRegistry;
 import net.spell_engine.internals.casting.SpellCasterEntity;
+import net.spell_engine.utils.TargetHelper;
 
 import java.util.List;
 
@@ -104,9 +105,7 @@ public class CustomSpellImpacts {
                 case MOD_ID + ":song_of_celerity" -> BardsEffects.SONG_OF_CELERITY;
                 case MOD_ID + ":song_of_the_turning_sky" -> BardsEffects.SONG_OF_THE_TURNING_SKY;
                 case MOD_ID + ":discordant_note" -> null;
-                case MOD_ID + ":tale_of_the_dragonslayer" -> BardsEffects.TALE_OF_THE_DRAGON_SLAYER;
                 case MOD_ID + ":hymn_of_the_golden_light" -> BardsEffects.HYMN_OF_THE_GOLDEN_LIGHT;
-                case MOD_ID + ":canticle_of_the_tides" -> BardsEffects.CANTICLES_OF_THE_TIDES;
                 default -> null;
             };
             if (effectToApply == null) return true;
@@ -118,5 +117,43 @@ public class CustomSpellImpacts {
             d.caster().addStatusEffect(new StatusEffectInstance(effectToApply, 180, 0));
             return true;
         });
+
+        Identifier songOfTheTurningSkyId = new Identifier(MOD_ID, "song_of_the_turning_sky");
+        CustomSpellHandler.register(songOfTheTurningSkyId, (data) -> {
+            CustomSpellHandler.Data d = (CustomSpellHandler.Data) data;
+            if (d.caster().getWorld().isClient()) return true;
+            var spell = getSpell(songOfTheTurningSkyId);
+            boolean performed = false;
+            for (Entity target : d.targets()) {
+                if (!(target instanceof LivingEntity living) || !living.isAttackable()) continue;
+
+                Spell.Impact.Action.Type actionType;
+                if (TargetHelper.getRelation(d.caster(), living) == TargetHelper.Relation.FRIENDLY) {
+                    boolean lowHealth = living.getHealth() < living.getMaxHealth() * 0.5F;
+                    actionType = lowHealth ? Spell.Impact.Action.Type.HEAL : Spell.Impact.Action.Type.STATUS_EFFECT;
+                } else {
+                    actionType = Spell.Impact.Action.Type.DAMAGE;
+                }
+
+                var chosenImpact = impactOfType(spell, actionType);
+                if (chosenImpact == null) continue;
+
+                var singleImpactSpell = new Spell();
+                singleImpactSpell.school = spell.school;
+                singleImpactSpell.impact = new Spell.Impact[]{ chosenImpact };
+                var singleImpactInfo = new SpellInfo(singleImpactSpell, songOfTheTurningSkyId);
+
+                boolean result = SpellHelper.performImpacts(d.caster().getWorld(), d.caster(), living, living, singleImpactInfo, d.impactContext());
+                performed = performed || result;
+            }
+            return performed;
+        });
+    }
+
+    private static Spell.Impact impactOfType(Spell spell, Spell.Impact.Action.Type type) {
+        for (var impact : spell.impact) {
+            if (impact.action.type == type) return impact;
+        }
+        return null;
     }
 }
