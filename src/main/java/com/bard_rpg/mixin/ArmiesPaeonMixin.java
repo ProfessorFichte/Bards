@@ -1,5 +1,6 @@
 package com.bard_rpg.mixin;
 
+import com.bard_rpg.BardsMod;
 import com.bard_rpg.effect.BardsEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -27,7 +28,7 @@ public abstract class ArmiesPaeonMixin {
         if (!livingAttacker.hasStatusEffect(BardsEffects.ARMYS_PAEON_STASH)) return;
 
         float healPower = (float) SpellPower.getSpellPower(SpellSchools.HEALING, livingAttacker).baseValue();
-        int amplifierCap = 4 + (int)(healPower * 0.15F);
+        int amplifierCap = BardsMod.tweaksConfig.value.armys_paeon_amplifier_cap + (int)(healPower * BardsMod.tweaksConfig.value.armys_paeon_cap_multiplier );
 
         float range = 5.0F;
         for (Entity ally : livingAttacker.getWorld().getOtherEntities(livingAttacker, livingAttacker.getBoundingBox().expand(range))) {

@@ -29,9 +29,11 @@ public class BardClient implements ClientModInitializer {
                 new ModelIdentifier(MOD_ID, "wooden_lute_model", "inventory"),
                 new ModelIdentifier(MOD_ID, "diamond_lute_model", "inventory"),
                 new ModelIdentifier(MOD_ID, "netherite_lute_model", "inventory"),
+                new ModelIdentifier(MOD_ID, "ruby_lute_model", "inventory"),
                 new ModelIdentifier(MOD_ID, "golden_lyre_model", "inventory"),
                 new ModelIdentifier(MOD_ID, "diamond_lyre_model", "inventory"),
-                new ModelIdentifier(MOD_ID, "netherite_lyre_model", "inventory")
+                new ModelIdentifier(MOD_ID, "netherite_lyre_model", "inventory"),
+                new ModelIdentifier(MOD_ID, "aeternium_lyre_model", "inventory")
         ));
 
         CustomModelStatusEffect.register(BardsEffects.ARMYS_PAEON_STASH, new ArmysPaeonCircleRenderer());

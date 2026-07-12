@@ -1,5 +1,6 @@
 package com.bard_rpg.content;
 
+import com.bard_rpg.BardsMod;
 import com.bard_rpg.effect.BardsEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -51,6 +52,7 @@ public class CustomSpellImpacts {
         });
 
         Identifier encoreId = new Identifier(MOD_ID, "encore");
+        Float encoreReduction = 1.0F - BardsMod.tweaksConfig.value.encore_cooldown_reduction;
         CustomSpellHandler.register(encoreId, (data) -> {
             CustomSpellHandler.Data d = (CustomSpellHandler.Data) data;
             if (d.caster().getWorld().isClient()) return true;
@@ -63,7 +65,7 @@ public class CustomSpellImpacts {
                 Spell spell = entry.getValue().spell;
                 float progress = cooldownManager.getCooldownProgress(id, 0);
                 int totalTicks = Math.round(SpellHelper.getCooldownDuration(d.caster(), spell) * 20F);
-                cooldownManager.set(id, (int)(totalTicks * progress * 0.2f));
+                cooldownManager.set(id, (int)(totalTicks * progress * encoreReduction));
             }
             // Reduce cooldowns for all nearby allied players
             float range = getSpell(encoreId).range;
@@ -80,7 +82,7 @@ public class CustomSpellImpacts {
                     Spell spell = entry.getValue().spell;
                     float progress = allyCooldowns.getCooldownProgress(id, 0);
                     int totalTicks = Math.round(SpellHelper.getCooldownDuration(ally, spell) * 20F);
-                    allyCooldowns.set(id, (int)(totalTicks * progress * 0.2f));
+                    allyCooldowns.set(id, (int)(totalTicks * progress * encoreReduction));
                 }
             }
             return true;

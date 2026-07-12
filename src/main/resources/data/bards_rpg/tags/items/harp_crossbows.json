@@ -3,6 +3,10 @@
   "values": [
     "bards_rpg:harp_crossbow",
     "bards_rpg:diamond_harp_crossbow",
-    "bards_rpg:netherite_harp_crossbow"
+    "bards_rpg:netherite_harp_crossbow",
+    {
+      "id": "bards_rpg:ruby_harp_crossbow",
+      "required": false
+    }
   ]
 }

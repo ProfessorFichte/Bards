@@ -1,6 +1,6 @@
 {
   "content": "MAGIC",
-  "is_proxy": false,
+  "is_proxy": true,
   "max_spell_count": 1,
-  "pool": "bards_rpg:lyre"
+  "spell_ids": [ "bards_rpg:natures_minne_0" ]
 }

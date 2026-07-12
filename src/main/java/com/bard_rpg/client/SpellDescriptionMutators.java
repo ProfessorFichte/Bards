@@ -4,10 +4,15 @@ import com.bard_rpg.BardsMod;
 import com.bard_rpg.effect.BardsEffects;
 import com.bard_rpg.effect.HymnOfTheGoldenLightEffect;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_power.api.SpellPower;
+import net.spell_power.api.SpellSchools;
 
 import java.text.DecimalFormat;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 import static com.bard_rpg.BardsMod.MOD_ID;
 
@@ -31,7 +36,16 @@ public class SpellDescriptionMutators {
         addBonus("wanderers_minuet", () -> BardsEffects.critChanceIncrease, EntityAttributeModifier.Operation.MULTIPLY_BASE);
 
         var hymnEffect = (HymnOfTheGoldenLightEffect) BardsEffects.HYMN_OF_THE_GOLDEN_LIGHT;
-        addLiteral("hymn_of_the_golden_light", () -> formattedNumber(hymnEffect.getAbsorptionPerLevel()));
+        addToken("hymn_of_the_golden_light", "bonus", () -> formattedNumber(hymnEffect.getAbsorptionPerLevel()));
+
+        addToken("encore", "encore_reduction", () -> percent(BardsMod.tweaksConfig.value.encore_cooldown_reduction));
+
+        addPlayerToken("armys_paeon", "armys_paeon_cap", player -> {
+            float healingPower = (float) SpellPower.getSpellPower(SpellSchools.HEALING, player).baseValue();
+            int cap = BardsMod.tweaksConfig.value.armys_paeon_amplifier_cap
+                    + (int) (healingPower * BardsMod.tweaksConfig.value.armys_paeon_cap_multiplier);
+            return Integer.toString(cap);
+        });
     }
 
     private interface FloatSupplier { float get(); }
@@ -42,10 +56,16 @@ public class SpellDescriptionMutators {
                 .replace("{bonus}", bonus(amount.get(), operation)));
     }
 
-    private static void addLiteral(String spellPath, java.util.function.Supplier<String> value) {
+    private static void addToken(String spellPath, String token, Supplier<String> value) {
         var id = new Identifier(MOD_ID, spellPath);
         SpellTooltip.addDescriptionMutator(id, args -> args.description()
-                .replace("{bonus}", value.get()));
+                .replace("{" + token + "}", value.get()));
+    }
+
+    private static void addPlayerToken(String spellPath, String token, Function<PlayerEntity, String> value) {
+        var id = new Identifier(MOD_ID, spellPath);
+        SpellTooltip.addDescriptionMutator(id, args -> args.description()
+                .replace("{" + token + "}", value.apply(args.player())));
     }
 
     public static String bonus(float amount, EntityAttributeModifier.Operation operation) {

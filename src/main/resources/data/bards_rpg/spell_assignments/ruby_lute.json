@@ -1,6 +1,7 @@
 {
   "content": "MAGIC",
-  "is_proxy": false,
-  "max_spell_count": 1,
-  "pool": "bards_rpg:lute"
+  "is_proxy": true,
+  "max_spell_count": 2,
+  "pool": "bards_rpg:lute_t2",
+  "spell_ids": [ "bards_rpg:troubadours_minuet_0" ]
 }
