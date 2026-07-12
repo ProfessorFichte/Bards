@@ -1,6 +1,7 @@
 package com.bard_rpg;
 
 import com.bard_rpg.block.BardBlocks;
+import com.bard_rpg.client.SpellDescriptionMutators;
 import com.bard_rpg.client.effect.ArmysPaeonCircleRenderer;
 import com.bard_rpg.client.effect.ArmysPaeonNoteRenderer;
 import com.bard_rpg.effect.BardsEffects;
@@ -35,5 +36,6 @@ public class BardClient implements ClientModInitializer {
 
         CustomModelStatusEffect.register(BardsEffects.ARMYS_PAEON_STASH, new ArmysPaeonCircleRenderer());
         BardBlocks.registerClient();
+        SpellDescriptionMutators.register();
     }
 }

@@ -8,7 +8,8 @@
 		"ArmiesPaeonMixin",
 		"ArmiesMotivationMixin",
 		"LuthierVillagerMixin",
-		"HarpCrossbowShootMixin"
+		"HarpCrossbowShootMixin",
+		"HarpCrossbowSpellSourceMixin"
 	],
 	"client": [
 		"BardSpellAnimationMixin",
