@@ -5,6 +5,7 @@ import com.bards.item.Armors;
 import com.bards.item.Weapons;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
@@ -236,5 +237,22 @@ public class BardRecipeProvider extends FabricRecipeProvider {
     private void createConditionalShapedRecipe(RecipeExporter exporter, String name, RecipeCategory category,
                                                String resultId, String[] pattern,
                                                char key, String ingredientId, char key2, String ingredientId2, String requiredMod) {
+        // The required mod (e.g. betterend) isn't present during datagen, so its items don't resolve here.
+        // We fall back to a vanilla stand-in to build valid recipe JSON; the recipe only actually loads
+        // at runtime (via the resource condition below) when the required mod - and its real items - are present.
+        var conditionalExporter = withConditions(exporter, ResourceConditions.allModsLoaded(requiredMod));
+
+        Item result = getOrFallback(Identifier.of(resultId), Items.BARRIER);
+        Item ingredient = getOrFallback(Identifier.of(ingredientId), Items.NETHERITE_INGOT);
+        Item ingredient2 = getOrFallback(Identifier.of(ingredientId2), Items.AMETHYST_SHARD);
+
+        var builder = ShapedRecipeJsonBuilder.create(category, result);
+        for (String row : pattern) {
+            builder.pattern(row);
+        }
+        builder.input(key, ingredient)
+                .input(key2, ingredient2)
+                .criterion(hasItem(ingredient), conditionsFromItem(ingredient))
+                .offerTo(conditionalExporter, Identifier.of(MOD_ID, name));
     }
 }

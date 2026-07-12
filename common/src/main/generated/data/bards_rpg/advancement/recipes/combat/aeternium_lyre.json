@@ -1,0 +1,40 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "betterend"
+      ]
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_netherite_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:netherite_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bards_rpg:aeternium_lyre"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_netherite_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bards_rpg:aeternium_lyre"
+    ]
+  }
+}

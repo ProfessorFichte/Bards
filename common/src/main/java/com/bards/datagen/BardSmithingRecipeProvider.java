@@ -82,7 +82,7 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
                     Weapons.netherite_lute.item(),
                     Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE,
                     Identifier.of("betternether", "nether_ruby"),
-                    rubyRapier,
+                    rubyLute,
                     "betternether"
             );
         }

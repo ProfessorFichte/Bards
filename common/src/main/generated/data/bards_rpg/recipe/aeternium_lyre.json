@@ -1,0 +1,29 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "betterend"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "R": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "W": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "pattern": [
+    "WRW",
+    "WRW",
+    " W "
+  ],
+  "result": {
+    "count": 1,
+    "id": "bards_rpg:aeternium_lyre"
+  }
+}
