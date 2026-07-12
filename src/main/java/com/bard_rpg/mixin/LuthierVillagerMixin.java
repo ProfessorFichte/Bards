@@ -139,7 +139,7 @@ public abstract class LuthierVillagerMixin {
 
         if (bards_tickCounter++ % 20 != 0) return;
 
-        var noteBatch = new ParticleBatch("note", ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.CENTER,
+        var noteBatch = new ParticleBatch(song.noteParticleId(), ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.CENTER,
                 null, 5, 0.1F, 0.2F, 0);
         ParticleHelper.sendBatches(villager, new ParticleBatch[]{ noteBatch });
 
@@ -198,7 +198,8 @@ public abstract class LuthierVillagerMixin {
             villager.setHeadYaw(bards_spinYaw);
 
             if (bards_reactionTickCount % 30 == 0) {
-                var noteBatch = new ParticleBatch("note", ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                LuthierSongs.Song song = bards_getDailySong(luthier, serverWorld);
+                var noteBatch = new ParticleBatch(song.noteParticleId(), ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         null, 2, 0.05F, 0.2F, 0);
                 ParticleHelper.sendBatches(villager, new ParticleBatch[]{ noteBatch });
             }
