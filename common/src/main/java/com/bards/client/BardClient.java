@@ -77,24 +77,6 @@ public class BardClient {
                                 SpellBuilderHelper.GOLD.toRGBA()).followEntity(true)
                 ).withFrequency(20).scaleWithAmplifier(false)
         );
-        CustomParticleStatusEffect.register(
-                BardsEffects.BENEFICIAL_WARDENS_PAEAN.effect,
-                new BuffParticleSpawner(
-                        BuffParticleSpawner.defaultBatch(
-                                "more_rpg_classes:music_note",
-                                5,
-                                SpellBuilderHelper.CYAN.toRGBA()).followEntity(true).extent(1)
-                ).withFrequency(10).scaleWithAmplifier(false)
-        );
-        CustomParticleStatusEffect.register(
-                BardsEffects.HARMFUL_WARDENS_PAEAN.effect,
-                new BuffParticleSpawner(
-                        BuffParticleSpawner.defaultBatch(
-                                "more_rpg_classes:music_note",
-                                5,
-                                Color.RAGE.toRGBA()).followEntity(true).extent(1)
-                ).withFrequency(10).scaleWithAmplifier(false)
-        );
 
     }
 }

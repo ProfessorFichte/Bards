@@ -13,7 +13,7 @@ import net.spell_engine.api.render.CustomModels;
 import net.spell_engine.api.render.LightEmission;
 
 public class WardensPaeanEffectRenderer implements CustomModelStatusEffect.Renderer {
-    private static final RenderLayer RENDER_LAYER = CustomLayers.spellEffect(LightEmission.RADIATE, false);
+    private static final RenderLayer RENDER_LAYER = CustomLayers.spellEffect(LightEmission.RADIATE, true);
 
     // Model is authored around a player-sized hitbox; other entities (e.g. the Warden) scale relative to it.
     private static final float REFERENCE_WIDTH = 0.6F;

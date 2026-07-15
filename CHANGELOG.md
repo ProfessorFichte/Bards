@@ -1,5 +1,11 @@
+# ??? - 1.21.1
+- Improve Sound Effects of Weapon Skills (Bard Song's)
+- Fix wrong Ruby Lute Smithing Recipe
+- Wardens Paean received a new Status Effect Renderer
+- Melody of the Meteor received new projectile models
+- Fixed Datagen and Aeternium Recipes
+
 # 0.1.4 - 1.21.1
-- **BARD RELEASE VERSION**
 - Fixed wrong Upgrade Crystal for the Storyteller Armor Set
 - Attempt to fix the issue with the Bard Sounds being played in the whole world
 - lowered the volume of many spell SFX's
