@@ -1,9 +1,10 @@
 package com.bard_rpg.mixin;
 
 import com.bard_rpg.BardsMod;
-import com.bard_rpg.item.HarpCrossbowItem;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BowItem;
+import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
@@ -20,7 +21,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Mixin(SpellContainerHelper.class)
-public abstract class HarpCrossbowSpellSourceMixin {
+public abstract class RangedWeaponSpellSourceMixin {
 
     @Unique
     private static final Set<Identifier> BARD_SPELL_BOOK_IDS = Set.of(
@@ -34,17 +35,22 @@ public abstract class HarpCrossbowSpellSourceMixin {
             cancellable = true
     )
     private static void bards_rpg$mergeBardSpellBooks(ItemStack heldItemStack, PlayerEntity player, CallbackInfoReturnable<SpellContainer> cir) {
-        if (!(heldItemStack.getItem() instanceof HarpCrossbowItem)) return;
-
-        SpellContainer base = cir.getReturnValue();
-        if (base == null) return;
+        boolean isRangedWeapon = heldItemStack.getItem() instanceof BowItem || heldItemStack.getItem() instanceof CrossbowItem;
+        if (!isRangedWeapon) return;
 
         var bardSpellIds = bards_rpg$equippedBardBookSpellIds(player);
         if (bardSpellIds.isEmpty()) return;
 
-        var merged = new LinkedHashSet<String>(base.spell_ids);
-        merged.addAll(bardSpellIds);
-        cir.setReturnValue(new SpellContainer(base.content, false, null, 0, new ArrayList<>(merged)));
+        SpellContainer base = cir.getReturnValue();
+        if (base != null) {
+            var merged = new LinkedHashSet<String>(base.spell_ids);
+            merged.addAll(bardSpellIds);
+            cir.setReturnValue(new SpellContainer(base.content, false, null, 0, new ArrayList<>(merged)));
+        } else {
+            // Vanilla bows/crossbows carry no innate spell container, so build one from scratch
+            // out of the equipped bard spellbooks instead of only merging into an existing base.
+            cir.setReturnValue(new SpellContainer(SpellContainer.ContentType.ARCHERY, false, null, 0, new ArrayList<>(bardSpellIds)));
+        }
     }
 
     @Unique
