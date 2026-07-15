@@ -1,10 +1,8 @@
 package com.bard_rpg.content;
 
 import com.bard_rpg.BardsMod;
-import com.bard_rpg.effect.BardsEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
@@ -16,6 +14,7 @@ import net.spell_engine.internals.SpellRegistry;
 import net.spell_engine.internals.casting.SpellCasterEntity;
 import net.spell_engine.utils.TargetHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.bard_rpg.BardsMod.MOD_ID;
@@ -23,17 +22,10 @@ import static net.spell_engine.internals.SpellRegistry.getSpell;
 
 public class CustomSpellImpacts {
 
-    private static final List<String> BARD_SONGS = List.of(
-            MOD_ID + ":troubadours_minuet",
-            MOD_ID + ":wanderers_minuet",
-            MOD_ID + ":natures_minne",
-            MOD_ID + ":song_of_celerity",
-            MOD_ID + ":song_of_the_turning_sky",
-            MOD_ID + ":discordant_note",
-            MOD_ID + ":tale_of_the_dragonslayer",
-            MOD_ID + ":hymn_of_the_golden_light",
-            MOD_ID + ":canticle_of_the_tides"
-    );
+    // 1.20.1 Spell Engine has no spell tags, so the "songs" pool Secret Sonata draws from
+    // is a real spell_pools.json entry (data/bards_rpg/spell_pools/secret_sonata_songs.json),
+    // mirroring the tag-driven pool used by the 1.21.1 version.
+    private static final Identifier SECRET_SONATA_SONGS_POOL = new Identifier(MOD_ID, "secret_sonata_songs");
 
     public static void register() {
         // Handler ID must match the spell's own identifier ("vicious_mockery", not "vicious_mockery_taunt")
@@ -85,39 +77,49 @@ public class CustomSpellImpacts {
                     allyCooldowns.set(id, (int)(totalTicks * progress * encoreReduction));
                 }
             }
-            return true;
+            return false;
         });
 
-        CustomSpellHandler.register(new Identifier(MOD_ID, "secret_sonata"), (data) -> {
+        Identifier secretSonataId = new Identifier(MOD_ID, "secret_sonata");
+        CustomSpellHandler.register(secretSonataId, (data) -> {
             CustomSpellHandler.Data d = (CustomSpellHandler.Data) data;
             if (d.caster().getWorld().isClient()) return true;
             // Apply normal impacts (DAMAGE) for each target
             for (Entity target : d.targets()) {
                 SpellHelper.performImpacts(d.caster().getWorld(), d.caster(), target, target,
-                        new SpellInfo(getSpell(new Identifier(MOD_ID, "secret_sonata")), new Identifier(MOD_ID)),
+                        new SpellInfo(getSpell(secretSonataId), new Identifier(MOD_ID)),
                         d.impactContext());
             }
-            // Apply a random bard song effect to all targets and the caster
-            int songIndex = d.caster().getWorld().getRandom().nextInt(BARD_SONGS.size());
-            String songId = BARD_SONGS.get(songIndex);
-            var effectToApply = switch (songId) {
-                case MOD_ID + ":troubadours_minuet" -> BardsEffects.TROUBADOURS_MINUET;
-                case MOD_ID + ":wanderers_minuet" -> BardsEffects.WANDERERS_MINUET;
-                case MOD_ID + ":natures_minne" -> BardsEffects.NATURES_MINNE;
-                case MOD_ID + ":song_of_celerity" -> BardsEffects.SONG_OF_CELERITY;
-                case MOD_ID + ":song_of_the_turning_sky" -> BardsEffects.SONG_OF_THE_TURNING_SKY;
-                case MOD_ID + ":discordant_note" -> null;
-                case MOD_ID + ":hymn_of_the_golden_light" -> BardsEffects.HYMN_OF_THE_GOLDEN_LIGHT;
-                default -> null;
-            };
-            if (effectToApply == null) return true;
-            for (Entity target : d.targets()) {
-                if (target instanceof LivingEntity living) {
-                    living.addStatusEffect(new StatusEffectInstance(effectToApply, 180, 0));
-                }
+
+            // Pick a random song from the dummy spell pool and re-apply just that song's own
+            // STATUS_EFFECT impact, so its real effect_id/duration/amplifier definition is used
+            // instead of a hardcoded one, and so harmful songs (e.g. discordant_note) go through
+            // the same intent/relation checks performImpacts uses for every other spell.
+            var pool = SpellRegistry.spellPool(SECRET_SONATA_SONGS_POOL);
+            List<Identifier> candidates = new ArrayList<>(pool.spellIds());
+            candidates.removeIf(secretSonataId::equals);
+            if (candidates.isEmpty()) return true;
+
+            Identifier songId = candidates.get(d.caster().getWorld().getRandom().nextInt(candidates.size()));
+            Spell song = getSpell(songId);
+            if (song == null || song.impact == null) return true;
+
+            var statusEffectImpact = impactOfType(song, Spell.Impact.Action.Type.STATUS_EFFECT);
+            if (statusEffectImpact == null) return true;
+
+            var singleImpactSpell = new Spell();
+            singleImpactSpell.school = song.school;
+            singleImpactSpell.impact = new Spell.Impact[]{ statusEffectImpact };
+            var singleImpactInfo = new SpellInfo(singleImpactSpell, songId);
+
+            List<Entity> songTargets = new ArrayList<>(d.targets());
+            if (!songTargets.contains(d.caster())) {
+                songTargets.add(d.caster());
             }
-            d.caster().addStatusEffect(new StatusEffectInstance(effectToApply, 180, 0));
-            return true;
+            for (Entity target : songTargets) {
+                SpellHelper.performImpacts(d.caster().getWorld(), d.caster(), target, target, singleImpactInfo, d.impactContext());
+            }
+            return false;
         });
 
         Identifier songOfTheTurningSkyId = new Identifier(MOD_ID, "song_of_the_turning_sky");
@@ -148,7 +150,7 @@ public class CustomSpellImpacts {
                 boolean result = SpellHelper.performImpacts(d.caster().getWorld(), d.caster(), living, living, singleImpactInfo, d.impactContext());
                 performed = performed || result;
             }
-            return performed;
+            return false;
         });
     }
 
