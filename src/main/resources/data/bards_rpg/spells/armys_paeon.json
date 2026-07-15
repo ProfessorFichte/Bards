@@ -4,7 +4,7 @@
   "learn": { "tier": 4 },
   "cast": {},
   "release": {
-    "animation": "more_rpg_classes:sing_release",
+    "animation": "bards_rpg:sing_release",
     "particles": [
       {
         "particle_id": "more_rpg_classes:music_note_gold",

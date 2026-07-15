@@ -4,7 +4,7 @@
   "learn": { "tier": 2 },
   "cast": {
     "duration": 2.0,
-    "animation": "more_rpg_classes:sing_channel",
+    "animation": "bards_rpg:sing_channel",
     "channel_ticks": 2,
     "particles": [
       {
