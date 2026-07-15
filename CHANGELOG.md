@@ -7,6 +7,8 @@
 - Increased the casting duration of all Songs to 10 seconds and cooldown to 5 seconds
 - fixed fallback animations not working when casting spells with no lyre or lute
 - Bows and Crossbows can now also cast the Bard Spells
+- Add missing weapon attributes for better Combat
+- Fixed Recipes not working
 
 # 0.1.0 - 1.20.1
 ### Bard's 1.20.1 Backport Beta!
