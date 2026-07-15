@@ -23,6 +23,11 @@ import static com.bards.BardsMod.MOD_ID;
 public class SecretSonataImpact implements SpellHandlers.CustomImpact {
 
     private static final TagKey<Spell> SONGS_TAG = TagKey.of(SpellRegistry.KEY, Identifier.of(MOD_ID, "songs"));
+    // All songs are authored with amplifier=1, apply_mode=ADD, amplifier_cap 4-5 and
+    // amplifier_cap_power_multiplier=0.15, so direct casting can stack a song up to Level 5-6.
+    // Borrowed songs are floored at Level 1 (cap 0) with only a small power-scaled ceiling
+    // (0.1, below the source songs' own 0.15) so a maxed-power caster still gets a token bonus
+    // without approaching what dedicated single-song builds reach.
     private static final int BORROWED_AMPLIFIER_CAP = 0;
     private static final float BORROWED_AMPLIFIER_CAP_MULTIPLIER = 0.1F;
 
@@ -55,6 +60,10 @@ public class SecretSonataImpact implements SpellHandlers.CustomImpact {
                 se.amplifier_cap = BORROWED_AMPLIFIER_CAP;
                 se.amplifier_cap_power_multiplier =BORROWED_AMPLIFIER_CAP_MULTIPLIER;
                 se.refresh_duration = src.refresh_duration;
+                // Forcing SET (instead of copying the source song's own ADD) is what actually
+                // stops the exploit: ADD lets repeated Secret Sonata casts climb the same way
+                // repeated direct casts of one song do, which is how a caster could stack every
+                // song's effect to its cap "for free". SET re-applies the same floor each time.
                 se.apply_mode = Spell.Impact.Action.StatusEffect.ApplyMode.SET;
                 se.apply_limit = src.apply_limit;
                 se.show_particles = src.show_particles;
