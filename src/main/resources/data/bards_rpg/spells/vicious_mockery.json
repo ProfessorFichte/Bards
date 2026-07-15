@@ -3,9 +3,9 @@
   "range": 16,
   "learn": { "tier": 2 },
   "cast": {
-    "duration": 2.0,
+    "duration": 5.0,
     "animation": "bards_rpg:sing_channel",
-    "channel_ticks": 2,
+    "channel_ticks": 10,
     "particles": [
       {
         "particle_id": "more_rpg_classes:music_note_rage",
@@ -36,7 +36,7 @@
           "particle_id": "more_rpg_classes:music_note_rage",
           "shape": "SPHERE",
           "origin": "CENTER",
-          "count": 8.0,
+          "count": 0.5,
           "min_speed": 0.5,
           "max_speed": 0.8
         },
@@ -44,7 +44,7 @@
           "particle_id": "more_rpg_classes:rage_particle",
           "origin": "CENTER",
           "shape": "SPHERE",
-          "count": 10.0,
+          "count": 0.2,
           "min_speed": 0.8,
           "max_speed": 1.2
         }

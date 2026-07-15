@@ -40,7 +40,7 @@ public class CustomSpellImpacts {
                     mob.setTarget(d.caster());
                 }
             }
-            return true;
+            return false;
         });
 
         Identifier encoreId = new Identifier(MOD_ID, "encore");
