@@ -1,4 +1,4 @@
-
+# 0.1.1 - 1.20.1
 - forgot to add Ranged Weapon Damage Attribute Modifiers to some Status Effects
 - Also added all Status Effect values to the EffectsConfig
 - Wardens Paean received a new Status Effect Renderer
