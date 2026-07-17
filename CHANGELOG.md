@@ -1,9 +1,11 @@
-# ??? - 1.21.1
+# 1.0.0 - 1.21.1
+### Bard's Official 1.21.1 Release Version
 - Improve Sound Effects of Weapon Skills (Bard Song's)
 - Fix wrong Ruby Lute Smithing Recipe
 - Wardens Paean received a new Status Effect Renderer
 - Melody of the Meteor received new projectile models
 - Fixed Datagen and Aeternium Recipes
+- Fixed GH-Issue #10: Crash due to duplicate sound registration: 'bards_rpg:canticle_of_the_tides'
 
 # 0.1.4 - 1.21.1
 - Fixed wrong Upgrade Crystal for the Storyteller Armor Set
