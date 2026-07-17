@@ -93,7 +93,7 @@ public class BardsSounds {
     public static final Entry natures_minne = add(new Entry("natures_minne")).variants(3).travelDistance(travelDistanceSpellSounds);
     public static final Entry song_of_celerity = add(new Entry("song_of_celerity")).variants(3).travelDistance(travelDistanceSpellSounds);
     public static final Entry canticle_of_the_tides = add(new Entry("canticle_of_the_tides")).variants(3).travelDistance(travelDistanceSpellSounds);
-    public static final Entry hymn_of_the_golden_light = add(new Entry("canticle_of_the_tides")).variants(4).travelDistance(travelDistanceSpellSounds);
+    public static final Entry hymn_of_the_golden_light = add(new Entry("hymn_of_the_golden_light")).variants(4).travelDistance(travelDistanceSpellSounds);
     public static final Entry song_of_the_turning_sky = add(new Entry("song_of_the_turning_sky")).variants(5).travelDistance(travelDistanceSpellSounds);
     //LUTHIER SONGS
     public static final Entry troubadours_minuet_full = add(new Entry("troubadours_minuet_full"));
