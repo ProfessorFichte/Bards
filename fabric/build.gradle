@@ -143,6 +143,8 @@ if (System.getenv("CURSEFORGE_API_KEY")) {
             releaseType = release_type
             addGameVersion "${project.minecraft_version}"
             addGameVersion "Fabric"
+            addGameVersion "Client"
+            addGameVersion "Server"
 
             relations {
                 // Required dependencies
