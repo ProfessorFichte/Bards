@@ -34,7 +34,7 @@
     {
       "action": {
         "type": "DAMAGE",
-        "damage": { "spell_power_coefficient": 0.7 }
+        "damage": { "spell_power_coefficient": 0.5 }
       },
       "particles": [
         {
@@ -56,7 +56,7 @@
           "effect_id": "bards_rpg:tale_of_the_dragonslayer",
           "duration": 9.0,
           "apply_mode": "ADD",
-          "amplifier": 4,
+          "amplifier": 5,
           "amplifier_power_multiplier": 0.15,
           "show_particles": false
         }

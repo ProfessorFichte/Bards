@@ -34,7 +34,7 @@
     {
       "action": {
         "type": "DAMAGE",
-        "damage": { "spell_power_coefficient": 0.3 }
+        "damage": { "spell_power_coefficient": 0.25 }
       },
       "particles": [
         {
@@ -77,7 +77,7 @@
       "school": "HEALING",
       "action": {
         "type": "HEAL",
-        "heal": { "spell_power_coefficient": 0.075 }
+        "heal": { "spell_power_coefficient": 0.03 }
       }
     }
   ],

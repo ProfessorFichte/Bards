@@ -35,7 +35,7 @@
     {
       "action": {
         "type": "DAMAGE",
-        "damage": { "spell_power_coefficient": 0.55 }
+        "damage": { "spell_power_coefficient": 0.35 }
       },
       "particles": [
         {
@@ -53,7 +53,7 @@
       "school": "HEALING",
       "action": {
         "type": "HEAL",
-        "heal": { "spell_power_coefficient": 0.08 }
+        "heal": { "spell_power_coefficient": 0.05 }
       },
       "particles": [
         {
@@ -75,7 +75,7 @@
           "effect_id": "bards_rpg:song_of_the_turning_sky",
           "duration": 9.0,
           "apply_mode": "ADD",
-          "amplifier": 3,
+          "amplifier": 4,
           "amplifier_power_multiplier": 0.15,
           "show_particles": false
         }
