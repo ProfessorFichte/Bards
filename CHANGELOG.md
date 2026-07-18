@@ -1,3 +1,6 @@
+# 1.0.1 - 1.21.1
+- fixed Bard Structure files being in the wrong folder, resulting in pub's not spawning in villages
+
 # 1.0.0 - 1.21.1
 ### Bard's Official 1.21.1 Release Version
 - Improve Sound Effects of Weapon Skills (Bard Song's)

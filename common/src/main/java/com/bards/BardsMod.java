@@ -13,6 +13,7 @@ import com.bards.item.Group;
 import com.bards.worldgen.villages.BardVillagerProfessions;
 import com.bards.worldgen.villages.BardVillagerTrades;
 import com.bards.item.Weapons;
+import net.fabric_extras.structure_pool.api.StructurePoolAPI;
 import net.fabric_extras.structure_pool.api.StructurePoolConfig;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -66,6 +67,10 @@ public final class BardsMod {
         CustomSpellImpacts.registerCustomImpacts();
         if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
             tweaksConfig.value.ignore_items_required_mods = true;
+        }
+        if (!FabricLoader.getInstance().isModLoaded("lithostitched")) {
+            // Only inject the village if the Lithostitched is not present
+            StructurePoolAPI.injectAll(BardsMod.villageConfig.value);
         }
     }
 

@@ -182,6 +182,7 @@ if (System.getenv("GH_API_KEY")) {
         body changelog_last_section()
         draft false
         prerelease false
+        overwrite true
         releaseAssets remapJar.archiveFile
     }
     tasks.githubRelease.dependsOn remapJar
