@@ -98,7 +98,7 @@ public class BardsSounds {
     //LUTHIER SONGS
     public static final Entry troubadours_minuet_full = add(new Entry("troubadours_minuet_full"));
     public static final Entry wanderers_minuet_full = add(new Entry("wanderers_minuet_full"));
-    public static final Entry tale_of_the_dragonslayer_full = add(new Entry("wanderers_minuet_full"));
+    public static final Entry tale_of_the_dragonslayer_full = add(new Entry("tale_of_the_dragonslayer_full"));
     public static final Entry natures_minne_full = add(new Entry("natures_minne_full"));
     public static final Entry song_of_celerity_full = add(new Entry("song_of_celerity_full"));
     public static final Entry canticle_of_the_tides_full = add(new Entry("canticle_of_the_tides_full"));

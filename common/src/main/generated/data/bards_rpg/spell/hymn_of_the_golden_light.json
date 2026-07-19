@@ -35,7 +35,7 @@
       },
       "movement_speed": 1.5,
       "sound": {
-        "id": "bards_rpg:canticle_of_the_tides",
+        "id": "bards_rpg:hymn_of_the_golden_light",
         "volume": 0.7
       },
       "particles": [
