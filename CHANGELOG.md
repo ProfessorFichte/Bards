@@ -1,3 +1,7 @@
+# 0.1.2 - 1.20.1
+- fixed an issue with instruments not dealing damage due to wrong better combat weapon attribute
+- Delete some unused Sound Effects
+
 # 0.1.1 - 1.20.1
 - forgot to add Ranged Weapon Damage Attribute Modifiers to some Status Effects
 - Also added all Status Effect values to the EffectsConfig
