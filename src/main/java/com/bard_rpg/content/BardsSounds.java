@@ -75,9 +75,6 @@ public class BardsSounds {
     public static final Entry canticle_of_the_tides_full = add(new Entry("canticle_of_the_tides_full"));
     public static final Entry hymn_of_the_golden_light_full = add(new Entry("hymn_of_the_golden_light_full"));
     public static final Entry song_of_the_turning_sky_full = add(new Entry("song_of_the_turning_sky_full"));
-    public static final Entry luthier_song_vitality = add(new Entry("luthier_song_vitality"));
-    public static final Entry luthier_song_swiftness = add(new Entry("luthier_song_swiftness"));
-    public static final Entry luthier_song_resilience = add(new Entry("luthier_song_resilience"));
 
     public static void register() {
         for (var entry : entries) {

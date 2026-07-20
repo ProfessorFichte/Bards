@@ -208,20 +208,5 @@
     "sounds": [
       "bards_rpg:song_of_the_turning_sky_full"
     ]
-  },
-  "luthier_song_vitality": {
-    "sounds": [
-      "bards_rpg:luthier_song_vitality"
-    ]
-  },
-  "luthier_song_swiftness": {
-    "sounds": [
-      "bards_rpg:luthier_song_swiftness"
-    ]
-  },
-  "luthier_song_resilience": {
-    "sounds": [
-      "bards_rpg:luthier_song_resilience"
-    ]
   }
 }
