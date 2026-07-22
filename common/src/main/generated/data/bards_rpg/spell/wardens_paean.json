@@ -3,6 +3,7 @@
   "secondary_archetype": "ANY",
   "range": 10.0,
   "tier": 3,
+  "group": "humiliate",
   "learn": {},
   "active": {},
   "release": {

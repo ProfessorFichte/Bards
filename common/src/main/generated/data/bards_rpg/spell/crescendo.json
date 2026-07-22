@@ -3,6 +3,7 @@
   "secondary_archetype": "ANY",
   "range": 30.0,
   "tier": 4,
+  "group": "humiliate",
   "learn": {},
   "active": {},
   "release": {
@@ -105,11 +106,17 @@
               "color_rgba": 4292280575
             }
           ],
-          "model": {
-            "model_id": "bards_rpg:spell_projectile/crescendo",
-            "light_emission": "RADIATE",
-            "scale": 3.5,
-            "rotate_degrees_per_tick": 0.0
+          "composite_model": {
+            "models": [
+              {
+                "rotate_degrees_per_tick": 0.0,
+                "fx": {
+                  "model_id": "bards_rpg:spell_projectile/crescendo",
+                  "light_emission": "RADIATE",
+                  "scale": 3.5
+                }
+              }
+            ]
           }
         }
       }

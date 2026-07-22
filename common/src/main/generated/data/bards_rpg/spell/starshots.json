@@ -127,10 +127,16 @@
         "scale": 0.3
       }
     ],
-    "override_render": {
-      "model_id": "bards_rpg:spell_projectile/star_arrow",
-      "light_emission": "RADIATE",
-      "scale": 1.2
+    "composite_model": {
+      "models": [
+        {
+          "fx": {
+            "model_id": "bards_rpg:spell_projectile/star_arrow",
+            "light_emission": "RADIATE",
+            "scale": 1.2
+          }
+        }
+      ]
     }
   },
   "cost": {

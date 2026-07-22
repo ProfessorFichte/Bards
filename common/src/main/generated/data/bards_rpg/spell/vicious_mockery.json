@@ -3,11 +3,15 @@
   "secondary_archetype": "ANY",
   "range": 16.0,
   "tier": 2,
+  "group": "humiliate",
   "learn": {},
   "active": {
     "cast": {
       "duration": 5.0,
-      "channel_ticks": 15,
+      "type": "CHANNEL",
+      "channel": {
+        "ticks": 15
+      },
       "animation": {
         "id": "bards_rpg:sing_channel",
         "overrides": [

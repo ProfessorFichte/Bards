@@ -44,9 +44,15 @@
               "color_rgba": 4278190335
             }
           ],
-          "model": {
-            "model_id": "bards_rpg:spell_projectile/melody_of_the_meteor",
-            "scale": 2.0
+          "composite_model": {
+            "models": [
+              {
+                "fx": {
+                  "model_id": "bards_rpg:spell_projectile/melody_of_the_meteor",
+                  "scale": 2.0
+                }
+              }
+            ]
           }
         }
       }

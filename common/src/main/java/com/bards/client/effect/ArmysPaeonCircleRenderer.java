@@ -26,7 +26,7 @@ public class ArmysPaeonCircleRenderer implements CustomModelStatusEffect.Rendere
     private static final float BOB_BASE_HEIGHT = 2.0F;
 
     @Override
-    public void renderEffect(int amplifier, LivingEntity livingEntity, float delta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light) {
+    public void renderEffect(long appliedAtWorldTime, int amplifier, LivingEntity livingEntity, float delta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light) {
         var itemRenderer = MinecraftClient.getInstance().getItemRenderer();
         var camera = MinecraftClient.getInstance().gameRenderer.getCamera();
 

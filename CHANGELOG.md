@@ -1,3 +1,8 @@
+# 1.0.3 - 1.21.1
+- Adapt to Spell Engine 1.9.10+ API Changes
+**Balancing & Internal Changes:**
+- Encore is now a charged spell, increases its range the longer you cast.
+
 # 1.0.2 - 1.21.1
 - Fixed GH-Issue #11: Crash due to duplicate sound registration: 'bards_rpg:tale_of_the_dragonslayer_full'
 

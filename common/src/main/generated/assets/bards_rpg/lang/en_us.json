@@ -120,7 +120,7 @@
   "spell.bards_rpg.discordant_note.name": "Discordant Note",
   "spell.bards_rpg.eclipse_mantle.description": "On effect applied: {trigger_chance} chance to heal your ally by {heal} hearts and increase evasion chance by {bonus}.",
   "spell.bards_rpg.eclipse_mantle.name": "Eclipse Mantle",
-  "spell.bards_rpg.encore.description": "Deals {damage} damage to nearby targets and motivates allies by slightly reducing active spells cooldowns.",
+  "spell.bards_rpg.encore.description": "Deals {damage} damage to nearby targets and motivates allies by slightly reducing active spells cooldowns. The range increases, the longer you charge.",
   "spell.bards_rpg.encore.name": "Encore",
   "spell.bards_rpg.hymn_of_the_golden_light.description": "Soothing song that deals {damage} damage to enemies, heals allies by {heal}. Adds {bonus} absorption hearts, that refresh every 2 seconds. Can be stacked {effect_amplifier_cap} times.",
   "spell.bards_rpg.hymn_of_the_golden_light.name": "Hymn of the Golden Light",

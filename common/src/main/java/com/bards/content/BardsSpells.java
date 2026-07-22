@@ -56,6 +56,9 @@ public class BardsSpells {
         return entry;
     }
 
+    public static final String ENCOURAGE =  "encourage";
+    public static final String HUMILIATE = "humiliate";
+
     public static Spell.Trigger meleeImpactTrigger(float triggerChance) {
         Spell.Trigger trigger = new Spell.Trigger();
         trigger.chance = triggerChance;
@@ -144,7 +147,9 @@ public class BardsSpells {
 
         spell.active.cast.duration = 10.0F;
         spell.active.cast.movement_speed = 1.5F;
-        spell.active.cast.channel_ticks = 10;
+        spell.active.cast.type = Spell.Active.Cast.Type.CHANNEL;
+        spell.active.cast.channel = new Spell.Active.Cast.Channel();
+        spell.active.cast.channel.ticks = 10;
         spell.active.cast.animation = bardCastAnimation();
         spell.active.cast.sound =  Sound.withVolume(bardsong,0.7F);
         spell.active.cast.particles = new ParticleBatch[] {
@@ -286,7 +291,9 @@ public class BardsSpells {
 
         spell.active.cast.duration = 10.0F;
         spell.active.cast.movement_speed = 1.5F;
-        spell.active.cast.channel_ticks = 10;
+        spell.active.cast.type = Spell.Active.Cast.Type.CHANNEL;
+        spell.active.cast.channel = new Spell.Active.Cast.Channel();
+        spell.active.cast.channel.ticks = 10;
 
         spell.active.cast.animation = bardCastAnimation();
         spell.active.cast.sound =  new Sound(bardSong);
@@ -529,6 +536,7 @@ public class BardsSpells {
         spell.school = SpellSchools.ARCANE;
         spell.range = 20;
         spell.tier = 2;
+        spell.group = ENCOURAGE;
         spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
         var spellColor = BardSkillColors.magical_ballad.toRGBA();
 
@@ -538,7 +546,9 @@ public class BardsSpells {
         spell.active.cast.movement_speed = 1.5F;
         spell.active.cast.animation = bardCastAnimation();
         spell.active.cast.sound = new Sound(BardsSounds.magical_ballad.id());
-        spell.active.cast.channel_ticks = 4;
+        spell.active.cast.type = Spell.Active.Cast.Type.CHANNEL;
+        spell.active.cast.channel = new Spell.Active.Cast.Channel();
+        spell.active.cast.channel.ticks = 4;
         spell.active.cast.particles = new ParticleBatch[]{
                 musicParticles(0.5F).color(spellColor).extent(2.0F)
         };
@@ -575,12 +585,9 @@ public class BardsSpells {
                         ParticleBatch.Rotation.LOOK, 1,0F,0.05F, 0).extent(1.5F)
                         .color(spellColor),
         };
-        projectile.client_data.model = new Spell.ProjectileModel();
-        projectile.client_data.model.model_id = "bards_rpg:spell_projectile/magical_ballad";
-        projectile.client_data.model.scale = 2.0F;
-        projectile.client_data.model.rotate_degrees_per_tick = 0F;
-        projectile.client_data.model.rotate_degrees_offset = 0F;
-        projectile.client_data.model.light_emission = LightEmission.RADIATE;
+        var magicalBalladModel = SpellBuilder.ProjectileModels.model("bards_rpg:spell_projectile/magical_ballad", 2.0F, LightEmission.RADIATE);
+        magicalBalladModel.rotate_degrees_per_tick = 0F;
+        projectile.client_data.composite_model = SpellBuilder.ProjectileModels.composite(magicalBalladModel);
         projectile.hitbox = new Spell.ProjectileData.HitBox(0.6F, 0.8F);
         spell.deliver.projectile.projectile = projectile;
 
@@ -637,6 +644,7 @@ public class BardsSpells {
         spell.school = SpellSchools.ARCANE;
         spell.range = 16;
         spell.tier = 2;
+        spell.group = HUMILIATE;
         spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
         spell.learn = new Spell.Learn();
         var spellColor = BardSkillColors.vicious_mockery.toRGBA();
@@ -689,6 +697,7 @@ public class BardsSpells {
         spell.school = SpellSchools.ARCANE;
         spell.range = 10;
         spell.tier = 3;
+        spell.group = HUMILIATE;
         spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
         spell.learn = new Spell.Learn();
         var spellColor = BardSkillColors.wardens_paean.toRGBA();
@@ -722,16 +731,22 @@ public class BardsSpells {
     private static Entry encore() {
         var id = Identifier.of(MOD_ID, "encore");
         var title = "Encore";
-        var description = "Deals {damage} damage to nearby targets and motivates allies by slightly reducing active spells cooldowns.";
+        var description = "Deals {damage} damage to nearby targets and motivates allies by slightly reducing active spells cooldowns. The range increases, the longer you charge.";
 
         var spell = SpellBuilder.createSpellActive();
         spell.school = SpellSchools.ARCANE;
-        spell.range = 12;
+        spell.range = 4;
         spell.tier = 3;
+        spell.group = ENCOURAGE;
         spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
         var spellColor = BardSkillColors.encore.toRGBA();
 
         spell.learn = new Spell.Learn();
+
+        var charge = SpellBuilder.Casting.charge(spell, 1.5F);
+        charge.min_release_ratio = 0.2F;
+        charge.output_scaling = 0.8F;
+        charge.bonus.range_add = 12.0F;
 
         spell.active.cast.duration = 1.25F;
         spell.active.cast.movement_speed = 1.5F;
@@ -740,7 +755,7 @@ public class BardsSpells {
 
         spell.target.type = Spell.Target.Type.AREA;
         spell.target.area = new Spell.Target.Area();
-        spell.target.area.vertical_range_multiplier = 0.5F;
+        spell.target.area.vertical_range_multiplier = 1.0F;
         spell.target.area.include_caster = true;
 
         spell.release = new Spell.Release();
@@ -793,6 +808,7 @@ public class BardsSpells {
         spell.school = SpellSchools.ARCANE;
         spell.range = 5;
         spell.tier = 4;
+        spell.group = ENCOURAGE;
         spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
         var spellColor = BardSkillColors.armys_paeon.toRGBA();
 
@@ -857,6 +873,7 @@ public class BardsSpells {
         spell.school = SpellSchools.ARCANE;
         spell.range = 30;
         spell.tier = 4;
+        spell.group = HUMILIATE;
         spell.secondary_archetype = Spell.ExtendedArchetype.ANY;
         var spellColor = BardSkillColors.crescendo.toRGBA();
 
@@ -899,12 +916,9 @@ public class BardsSpells {
                         ParticleBatch.Rotation.LOOK, 1,0F,0.05F, 0).extent(1.5F)
                         .color(spellColor),
         };
-        projectile.client_data.model = new Spell.ProjectileModel();
-        projectile.client_data.model.model_id = "bards_rpg:spell_projectile/crescendo";
-        projectile.client_data.model.scale = 3.5F;
-        projectile.client_data.model.rotate_degrees_per_tick = 0F;
-        projectile.client_data.model.rotate_degrees_offset = 0F;
-        projectile.client_data.model.light_emission = LightEmission.RADIATE;
+        var crescendoModel = SpellBuilder.ProjectileModels.model("bards_rpg:spell_projectile/crescendo", 3.5F, LightEmission.RADIATE);
+        crescendoModel.rotate_degrees_per_tick = 0F;
+        projectile.client_data.composite_model = SpellBuilder.ProjectileModels.composite(crescendoModel);
         projectile.hitbox = new Spell.ProjectileData.HitBox(3.0F, 0.8F);
         spell.deliver.projectile.projectile = projectile;
 
@@ -1161,9 +1175,7 @@ public class BardsSpells {
                         null, 20, 0.2F, 0.7F, 0.0F, 0F)
                         .color(Color.RED.toRGBA())
         };
-        projectile.client_data.model = new Spell.ProjectileModel();
-        projectile.client_data.model.model_id = "bards_rpg:spell_projectile/melody_of_the_meteor";
-        projectile.client_data.model.scale = 2F;
+        projectile.client_data.composite_model = SpellBuilder.ProjectileModels.single("bards_rpg:spell_projectile/melody_of_the_meteor", 2F);
         spell.deliver.meteor.projectile = projectile;
 
         var damage = SpellBuilder.Impacts.damage(0.5F, 1.5F);
@@ -1286,10 +1298,7 @@ public class BardsSpells {
         spell.arrow_perks = new Spell.ArrowPerks();
         spell.arrow_perks.pierce = 10;
         spell.arrow_perks.bypass_iframes = true;
-        spell.arrow_perks.override_render = new Spell.ProjectileModel();
-        spell.arrow_perks.override_render.model_id = "bards_rpg:spell_projectile/star_arrow";
-        spell.arrow_perks.override_render.scale = 1.2F;
-        spell.arrow_perks.override_render.light_emission = LightEmission.RADIATE;
+        spell.arrow_perks.composite_model = SpellBuilder.ProjectileModels.single("bards_rpg:spell_projectile/star_arrow", 1.2F, LightEmission.RADIATE);
         spell.arrow_perks.launch_particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(

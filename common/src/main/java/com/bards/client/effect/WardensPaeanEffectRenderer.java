@@ -32,7 +32,7 @@ public class WardensPaeanEffectRenderer implements CustomModelStatusEffect.Rende
     }
 
     @Override
-    public void renderEffect(int amplifier, LivingEntity livingEntity, float delta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light) {
+    public void renderEffect(long appliedAtWorldTime, int amplifier, LivingEntity livingEntity, float delta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light) {
         var itemRenderer = MinecraftClient.getInstance().getItemRenderer();
         float time = livingEntity.age + delta;
 

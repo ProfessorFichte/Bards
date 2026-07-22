@@ -6,7 +6,10 @@
   "active": {
     "cast": {
       "duration": 10.0,
-      "channel_ticks": 10,
+      "type": "CHANNEL",
+      "channel": {
+        "ticks": 10
+      },
       "animation": {
         "id": "bards_rpg:sing_channel",
         "overrides": [

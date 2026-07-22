@@ -21,7 +21,7 @@ public class ArmysPaeonNoteRenderer implements CustomModelStatusEffect.Renderer{
     private static final float MODEL_SCALE = 0.75F;
 
     @Override
-    public void renderEffect(int amplifier, LivingEntity livingEntity, float delta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light) {
+    public void renderEffect(long appliedAtWorldTime, int amplifier, LivingEntity livingEntity, float delta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light) {
         var itemRenderer = MinecraftClient.getInstance().getItemRenderer();
         var camera =  MinecraftClient.getInstance().gameRenderer.getCamera();
         var direction = camera.getPos().subtract(livingEntity.getPos()).normalize().multiply(livingEntity.getWidth() * 0.5F);

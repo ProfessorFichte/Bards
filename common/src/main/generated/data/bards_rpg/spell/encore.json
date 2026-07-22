@@ -1,12 +1,20 @@
 {
   "school": "spell_power:arcane",
   "secondary_archetype": "ANY",
-  "range": 12.0,
+  "range": 4.0,
   "tier": 3,
+  "group": "encourage",
   "learn": {},
   "active": {
     "cast": {
       "duration": 1.25,
+      "type": "CHARGE",
+      "charge": {
+        "output_scaling": 0.8,
+        "bonus": {
+          "range_add": 12.0
+        }
+      },
       "animation": {
         "id": "bards_rpg:sing_channel",
         "overrides": [
@@ -82,7 +90,6 @@
   "target": {
     "type": "AREA",
     "area": {
-      "vertical_range_multiplier": 0.5,
       "include_caster": true
     }
   },
