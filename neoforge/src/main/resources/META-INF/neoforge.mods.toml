@@ -30,7 +30,7 @@ side = "BOTH"
 [[dependencies.bards_rpg]]
 modId = "spell_engine"
 type = "required"
-versionRange = "(,${spell_engine_version}]"
+versionRange = "*"
 ordering = "NONE"
 side = "BOTH"
 
@@ -44,14 +44,14 @@ side = "BOTH"
 [[dependencies.bards_rpg]]
 modId = "ranged_weapon_api"
 type = "required"
-versionRange = "[${ranged_weapon_api_version},)"
+versionRange = "*"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.bards_rpg]]
 modId = "more_rpg_classes"
 type = "required"
-versionRange = "[${more_rpg_library_version},)"
+versionRange = "*"
 ordering = "BEFORE"
 side = "BOTH"
 

@@ -1,3 +1,6 @@
+# 1.0.3.1 - 1.21.1
+-NEOFORGE ONLY: Remove fixed compatibility version for the dependencies in the "neoforge.mods.toml"
+
 # 1.0.3 - 1.21.1
 - Adapt to Spell Engine 1.9.10+ API Changes
 **Balancing & Internal Changes:**
