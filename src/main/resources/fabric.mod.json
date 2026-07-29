@@ -3,7 +3,7 @@
 	"id": "bards_rpg",
 	"version": "${version}",
 	"name": "Bards (More RPG Classes)",
-	"description": "Motivate and strengthen the party with awesome song's and ballads!",
+	"description": "Motivate and strengthen the party with awesome songs and ballads!",
 	"authors": ["Fichte"],
 	"license": "ARR",
 	"icon": "assets/bards_rpg/icon.png",

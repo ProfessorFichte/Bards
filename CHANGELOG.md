@@ -1,3 +1,8 @@
+# 0.1.3 - 1.20.1
+- fixed some grammar and spelling mistakes
+- overall improve some descriptions
+- Fixed the Custom Spell Impact of "encore", it did not deal damage and lowered its own cooldown
+
 # 0.1.2 - 1.20.1
 - fixed an issue with instruments not dealing damage due to wrong better combat weapon attribute
 - Delete some unused Sound Effects

@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 import net.spell_engine.api.spell.CustomSpellHandler;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.SpellInfo;
+import net.spell_engine.internals.SpellCooldownManager;
 import net.spell_engine.internals.SpellHelper;
 import net.spell_engine.internals.SpellRegistry;
 import net.spell_engine.internals.casting.SpellCasterEntity;
@@ -28,7 +29,6 @@ public class CustomSpellImpacts {
     private static final Identifier SECRET_SONATA_SONGS_POOL = new Identifier(MOD_ID, "secret_sonata_songs");
 
     public static void register() {
-        // Handler ID must match the spell's own identifier ("vicious_mockery", not "vicious_mockery_taunt")
         CustomSpellHandler.register(new Identifier(MOD_ID, "vicious_mockery"), (data) -> {
             CustomSpellHandler.Data d = (CustomSpellHandler.Data) data;
             if (d.caster().getWorld().isClient()) return true;
@@ -48,18 +48,15 @@ public class CustomSpellImpacts {
         CustomSpellHandler.register(encoreId, (data) -> {
             CustomSpellHandler.Data d = (CustomSpellHandler.Data) data;
             if (d.caster().getWorld().isClient()) return true;
-            // Reduce caster's cooldowns to 20% of remaining
-            var cooldownManager = ((SpellCasterEntity) d.caster()).getCooldownManager();
-            for (var entry : SpellRegistry.all().entrySet()) {
-                Identifier id = entry.getKey();
-                if (id.equals(encoreId)) continue;
-                if (!cooldownManager.isCoolingDown(id)) continue;
-                Spell spell = entry.getValue().spell;
-                float progress = cooldownManager.getCooldownProgress(id, 0);
-                int totalTicks = Math.round(SpellHelper.getCooldownDuration(d.caster(), spell) * 20F);
-                cooldownManager.set(id, (int)(totalTicks * progress * encoreReduction));
+
+            for (Entity target : d.targets()) {
+                SpellHelper.performImpacts(d.caster().getWorld(), d.caster(), target, target,
+                        new SpellInfo(getSpell(encoreId), encoreId), d.impactContext());
             }
-            // Reduce cooldowns for all nearby allied players
+
+            var cooldownManager = ((SpellCasterEntity) d.caster()).getCooldownManager();
+            reduceOtherCooldowns(d.caster(), cooldownManager, encoreId, encoreReduction);
+
             float range = getSpell(encoreId).range;
             List<Entity> allies = d.caster().getWorld().getOtherEntities(d.caster(),
                     d.caster().getBoundingBox().expand(range),
@@ -67,24 +64,16 @@ public class CustomSpellImpacts {
             for (Entity target : allies) {
                 if (!(target instanceof ServerPlayerEntity ally)) continue;
                 var allyCooldowns = ((SpellCasterEntity) ally).getCooldownManager();
-                for (var entry : SpellRegistry.all().entrySet()) {
-                    Identifier id = entry.getKey();
-                    if (id.equals(encoreId)) continue;
-                    if (!allyCooldowns.isCoolingDown(id)) continue;
-                    Spell spell = entry.getValue().spell;
-                    float progress = allyCooldowns.getCooldownProgress(id, 0);
-                    int totalTicks = Math.round(SpellHelper.getCooldownDuration(ally, spell) * 20F);
-                    allyCooldowns.set(id, (int)(totalTicks * progress * encoreReduction));
-                }
+                reduceOtherCooldowns(ally, allyCooldowns, encoreId, encoreReduction);
             }
-            return false;
+            return true;
         });
 
         Identifier secretSonataId = new Identifier(MOD_ID, "secret_sonata");
         CustomSpellHandler.register(secretSonataId, (data) -> {
             CustomSpellHandler.Data d = (CustomSpellHandler.Data) data;
             if (d.caster().getWorld().isClient()) return true;
-            // Apply normal impacts (DAMAGE) for each target
+            // damage impacts for each target
             for (Entity target : d.targets()) {
                 SpellHelper.performImpacts(d.caster().getWorld(), d.caster(), target, target,
                         new SpellInfo(getSpell(secretSonataId), new Identifier(MOD_ID)),
@@ -159,5 +148,18 @@ public class CustomSpellImpacts {
             if (impact.action.type == type) return impact;
         }
         return null;
+    }
+
+    private static void reduceOtherCooldowns(LivingEntity caster, SpellCooldownManager cooldownManager,
+                                              Identifier excludedSpellId, float reduction) {
+        for (var entry : SpellRegistry.all().entrySet()) {
+            Identifier id = entry.getKey();
+            if (id.equals(excludedSpellId)) continue;
+            if (!cooldownManager.isCoolingDown(id)) continue;
+            Spell spell = entry.getValue().spell;
+            float progress = cooldownManager.getCooldownProgress(id, 0);
+            int totalTicks = Math.round(SpellHelper.getCooldownDuration(caster, spell) * 20F);
+            cooldownManager.set(id, (int) (totalTicks * progress * reduction));
+        }
     }
 }
