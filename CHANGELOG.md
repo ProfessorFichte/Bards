@@ -2,6 +2,7 @@
 - Fixed Elder Guardian Lyre & Ender Dragon Lute not being able to cast spells
 - Fixed the issue with not correctly rendered armor models
 - Add merchantmarker mod compat for the luthier villager
+- Fixed wrong recipe Results for LNE Instrument Smithing Recipes
 
 # 0.1.3 - 1.20.1
 - fixed some grammar and spelling mistakes
