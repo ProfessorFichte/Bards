@@ -57,7 +57,7 @@ public class Armors {
                     new ItemConfig.ArmorSet.Piece(2).addAll(List.of(spellPower(bard_spell_power_t1), healingPower(bard_spell_power_t1), movementSpeed(bard_speed_T1))),
                     new ItemConfig.ArmorSet.Piece(1).addAll(List.of(spellPower(bard_spell_power_t1), healingPower(bard_spell_power_t1), movementSpeed(bard_speed_T1)))
             ),
-            "entertainer_armor", "entertainers_armor"
+            "entertainer_armor", "entertainer_armor"
     );
 
     public static final Armor.Set troubadourArmorSet = create(
@@ -68,7 +68,7 @@ public class Armors {
                     new ItemConfig.ArmorSet.Piece(3).addAll(List.of(spellPower(bard_spell_power_t2), healingPower(bard_spell_power_t2), movementSpeed(bard_speed_T2))),
                     new ItemConfig.ArmorSet.Piece(2).addAll(List.of(spellPower(bard_spell_power_t2), healingPower(bard_spell_power_t2), movementSpeed(bard_speed_T2)))
             ),
-            "troubadour_armor", "troubadours_armor"
+            "troubadour_armor", "troubadour_armor"
     );
 
     public static final Armor.Set netheriteTroubadourArmorSet = create(
@@ -79,7 +79,7 @@ public class Armors {
                     new ItemConfig.ArmorSet.Piece(3).addAll(List.of(spellPower(bard_spell_power_t3), healingPower(bard_spell_power_t3), movementSpeed(bard_speed_T3))),
                     new ItemConfig.ArmorSet.Piece(2).addAll(List.of(spellPower(bard_spell_power_t3), healingPower(bard_spell_power_t3), movementSpeed(bard_speed_T3)))
             ),
-            "troubadour_armor", "troubadour_armor"
+            "troubadour_armor", "netherite_troubadour_armor"
     );
 
     public static void register(Map<String, ItemConfig.ArmorSet> configs) {
