@@ -1,3 +1,8 @@
+# 1.0.4 - 1.21.1
+- Armory & Arsenal Compat Equipment is no added to a separate Item Group
+- added Music Disc's for all Bard Songs that can be found in a Pub in Villages
+- Add Merchant Marker Mod Compat for the Luthier Villager
+
 # 1.0.3.1 - 1.21.1
 -NEOFORGE ONLY: Remove fixed compatibility version for the dependencies in the "neoforge.mods.toml"
 

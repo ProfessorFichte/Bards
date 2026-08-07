@@ -1,19 +1,23 @@
 package com.bards.item;
 
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.more_rpg_classes.item.MRPGCItemGroups;
 import net.spell_engine.api.config.ArmorSetConfig;
 import net.spell_engine.api.config.AttributeModifier;
 import net.spell_engine.rpg_series.item.Equipment;
@@ -22,6 +26,7 @@ import net.spell_engine.api.spell.SpellDataComponents;
 import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -43,6 +48,13 @@ public class Armors {
                 settings
         );
         entries.add(entry);
+        return entry;
+    }
+
+    private static final Map<Armor.Entry, RegistryKey<ItemGroup>> groupOverrides = new IdentityHashMap<>();
+
+    private static Armor.Entry groupKey(Armor.Entry entry, RegistryKey<ItemGroup> key) {
+        groupOverrides.put(entry, key);
         return entry;
     }
 
@@ -198,7 +210,7 @@ public class Armors {
 
     public static void register(Map<String, ArmorSetConfig> configs) {
         if (armoryLoadCheck()) {
-            storytellerArmorSet = create(
+            storytellerArmorSet = groupKey(create(
                     storytellers_garb,
                     Identifier.of(MOD_ID, "storyteller_garb"),
                     40,
@@ -223,8 +235,22 @@ public class Armors {
                                     .add(movementSpeed(bard_speed_T5))
                     ),
                     commonSettings(storyteller_passive))
-                    .translatedName("Storyteller Hat", "Storyteller Tunic", "Storyteller Trousers", "Storyteller Boots");
+                    .translatedName("Storyteller Hat", "Storyteller Tunic", "Storyteller Trousers", "Storyteller Boots"), MRPGCItemGroups.ARMORY_KEY);
         }
         Armor.register(configs, entries, Group.KEY);
+        for (var override : groupOverrides.entrySet()) {
+            var entry = override.getKey();
+            var key = override.getValue();
+            var pieces = entry.armorSet().pieces();
+            ItemGroupEvents.modifyEntriesEvent(Group.KEY).register(content -> {
+                content.getDisplayStacks().removeIf(stack -> pieces.stream().anyMatch(p -> stack.isOf((ArmorItem) p)));
+                content.getSearchTabStacks().removeIf(stack -> pieces.stream().anyMatch(p -> stack.isOf((ArmorItem) p)));
+            });
+            ItemGroupEvents.modifyEntriesEvent(key).register(content -> {
+                for (var piece : pieces) {
+                    content.add((ArmorItem) piece);
+                }
+            });
+        }
     }
 }

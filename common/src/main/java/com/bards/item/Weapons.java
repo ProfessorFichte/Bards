@@ -3,16 +3,20 @@ package com.bards.item;
 import com.bards.BardsMod;
 import com.bards.content.BardsSpells;
 import net.fabric_extras.ranged_weapon.api.RangedConfig;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterials;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.more_rpg_classes.custom.MrpgLibSpells;
+import net.more_rpg_classes.item.MRPGCItemGroups;
 import net.spell_engine.api.config.AttributeModifier;
 import net.spell_engine.api.config.WeaponConfig;
 import net.spell_engine.api.spell.container.SpellContainers;
@@ -24,6 +28,8 @@ import net.spell_engine.api.item.weapon.SpellSwordItem;
 import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
+import java.util.IdentityHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -32,6 +38,19 @@ import static com.bards.BardsMod.MOD_ID;
 public class Weapons {
     public static final ArrayList<Weapon.Entry> meleeEntries = new ArrayList<>();
     public static final ArrayList<RangedWeapon.Entry> rangedEntries = new ArrayList<>();
+
+    private static final Map<Weapon.Entry, RegistryKey<ItemGroup>> groupOverrides = new IdentityHashMap<>();
+    private static final Map<RangedWeapon.Entry, RegistryKey<ItemGroup>> rangedGroupOverrides = new IdentityHashMap<>();
+
+    private static Weapon.Entry groupKey(Weapon.Entry entry, RegistryKey<ItemGroup> key) {
+        groupOverrides.put(entry, key);
+        return entry;
+    }
+
+    private static RangedWeapon.Entry groupKey(RangedWeapon.Entry entry, RegistryKey<ItemGroup> key) {
+        rangedGroupOverrides.put(entry, key);
+        return entry;
+    }
 
     private static Weapon.Entry meleeEntry(String name, Weapon.CustomMaterial material, Weapon.Factory factory, WeaponConfig defaults, Equipment.WeaponType category) {
         var entry = new Weapon.Entry(MOD_ID, name, material, factory, defaults, category);
@@ -183,6 +202,7 @@ public class Weapons {
     /// REGISTRY
     private static final float rapier_t5_attack_damage = 6.7F;
     private static final float lute_t5_attack_damage = 10;
+    public static Weapon.Entry uniqueRapier0;
     public static void register(Map<String, RangedConfig> rangedConfig, Map<String, WeaponConfig> meleeConfig) {
         if (BardsMod.tweaksConfig.value.ignore_items_required_mods || FabricLoader.getInstance().isModLoaded(BETTER_NETHER)) {
             var repair = ingredient("betternether:nether_ruby", FabricLoader.getInstance().isModLoaded(BETTER_NETHER), Items.NETHERITE_INGOT);
@@ -251,50 +271,69 @@ public class Weapons {
 
         }
         if (BardsMod.tweaksConfig.value.ignore_items_required_mods || FabricLoader.getInstance().isModLoaded(ARSENAL) || FabricLoader.getInstance().isDevelopmentEnvironment()) {
-            rapier("unique_rapier_0", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.GOLD_BLOCK)), rapier_t5_attack_damage)
+            uniqueRapier0 = groupKey(rapier("unique_rapier_0", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.GOLD_BLOCK)), rapier_t5_attack_damage)
                     .translatedName("Singing Blade")
                     .loot(Equipment.LootProperties.of(5, "divine"))
-                    .withAdditionalSpell("arsenal:radiance_melee")
-                    .rarity = Rarity.RARE;
-            rapier("unique_rapier_1", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.IRON_BLOCK)), rapier_t5_attack_damage)
+                    .withAdditionalSpell("arsenal:radiance_melee"), MRPGCItemGroups.ARSENAL_KEY);
+            uniqueRapier0.rarity = Rarity.RARE;
+            var uniqueRapier1 = groupKey(rapier("unique_rapier_1", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.IRON_BLOCK)), rapier_t5_attack_damage)
                     .translatedName("Duelist's Rapier")
                     .loot(Equipment.LootProperties.of(5))
-                    .withAdditionalSpell(MrpgLibSpells.duelists_focus.id().toString())
-                    .rarity = Rarity.RARE;
-            lute("unique_lute_0", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.REDSTONE_BLOCK)), lute_t5_attack_damage, 3)
+                    .withAdditionalSpell(MrpgLibSpells.duelists_focus.id().toString()), MRPGCItemGroups.ARSENAL_KEY);
+            uniqueRapier1.rarity = Rarity.RARE;
+            var uniqueLute0 = groupKey(lute("unique_lute_0", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.REDSTONE_BLOCK)), lute_t5_attack_damage, 3)
                     .translatedName("Lute of Ruby Verdict")
                     .withSpellChoices("bards_rpg:weapon/ruby_verdict_lute")
                     .withAdditionalSpell(BardsSpells.melody_of_the_meteor.id().toString())
-                    .loot(Equipment.LootProperties.of(5))
-                    .rarity = Rarity.RARE;
-            lute("unique_lute_1", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.IRON_BLOCK)), lute_t5_attack_damage, 3)
+                    .loot(Equipment.LootProperties.of(5)), MRPGCItemGroups.ARSENAL_KEY);
+            uniqueLute0.rarity = Rarity.RARE;
+            var uniqueLute1 = groupKey(lute("unique_lute_1", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.IRON_BLOCK)), lute_t5_attack_damage, 3)
                     .translatedName("Spellthief's Lute")
                     .withSpellChoices("bards_rpg:weapon/spellthief_lute")
                     .withAdditionalSpell(BardsSpells.spellthief.id().toString())
-                    .loot(Equipment.LootProperties.of(5))
-                    .rarity = Rarity.RARE;
-            lyre("unique_lyre_0", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.GOLD_BLOCK)), 3)
+                    .loot(Equipment.LootProperties.of(5)), MRPGCItemGroups.ARSENAL_KEY);
+            uniqueLute1.rarity = Rarity.RARE;
+            var uniqueLyre0 = groupKey(lyre("unique_lyre_0", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.GOLD_BLOCK)), 3)
                     .translatedName("Lyre of Apollo")
                     .withSpellChoices("bards_rpg:weapon/apollo_lyre")
                     .withAdditionalSpell("arsenal:radiance_spell")
-                    .loot(Equipment.LootProperties.of(5, "divine"))
-                    .rarity = Rarity.RARE;
-            lyre("unique_lyre_1", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.GOLD_BLOCK)), 3)
+                    .loot(Equipment.LootProperties.of(5, "divine")), MRPGCItemGroups.ARSENAL_KEY);
+            uniqueLyre0.rarity = Rarity.RARE;
+            var uniqueLyre1 = groupKey(lyre("unique_lyre_1", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.GOLD_BLOCK)), 3)
                     .translatedName("Lyre of Antecael")
                     .withSpellChoices("bards_rpg:weapon/antecael_lyre")
                     .withAdditionalSpell(BardsSpells.eclipse_mantle.id().toString())
-                    .loot(Equipment.LootProperties.of(5, "elven"))
-                    .rarity = Rarity.RARE;
-            harpCrossbow("unique_harp_crossbow_0",Equipment.Tier.TIER_5,() -> Ingredient.ofItems(Items.NETHERITE_INGOT))
+                    .loot(Equipment.LootProperties.of(5, "elven")), MRPGCItemGroups.ARSENAL_KEY);
+            uniqueLyre1.rarity = Rarity.RARE;
+            groupKey(harpCrossbow("unique_harp_crossbow_0",Equipment.Tier.TIER_5,() -> Ingredient.ofItems(Items.NETHERITE_INGOT))
                     .translatedName("Lightning Harp Crossbow")
-                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(Identifier.of(MrpgLibSpells.lightning_strike_ranged.id().toString())));
-            harpCrossbow("unique_harp_crossbow_1",Equipment.Tier.TIER_5,() -> Ingredient.ofItems(Items.NETHERITE_INGOT))
+                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(Identifier.of(MrpgLibSpells.lightning_strike_ranged.id().toString()))), MRPGCItemGroups.ARSENAL_KEY);
+            groupKey(harpCrossbow("unique_harp_crossbow_1",Equipment.Tier.TIER_5,() -> Ingredient.ofItems(Items.NETHERITE_INGOT))
                     .translatedName("Starshot Harp Crossbow")
                     .loot(5, "divine")
-                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(Identifier.of(BardsSpells.starshots.id().toString())));
+                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(Identifier.of(BardsSpells.starshots.id().toString()))), MRPGCItemGroups.ARSENAL_KEY);
         }
 
         Weapon.register(meleeConfig, meleeEntries, Group.KEY);
         RangedWeapon.register(rangedConfig, rangedEntries, Group.KEY);
+
+        for (var override : groupOverrides.entrySet()) {
+            var entry = override.getKey();
+            var key = override.getValue();
+            ItemGroupEvents.modifyEntriesEvent(Group.KEY).register(content -> {
+                content.getDisplayStacks().removeIf(stack -> stack.isOf(entry.item()));
+                content.getSearchTabStacks().removeIf(stack -> stack.isOf(entry.item()));
+            });
+            ItemGroupEvents.modifyEntriesEvent(key).register(content -> content.add(entry.item()));
+        }
+        for (var override : rangedGroupOverrides.entrySet()) {
+            var entry = override.getKey();
+            var key = override.getValue();
+            ItemGroupEvents.modifyEntriesEvent(Group.KEY).register(content -> {
+                content.getDisplayStacks().removeIf(stack -> stack.isOf(entry.item()));
+                content.getSearchTabStacks().removeIf(stack -> stack.isOf(entry.item()));
+            });
+            ItemGroupEvents.modifyEntriesEvent(key).register(content -> content.add(entry.item()));
+        }
     }
 }
