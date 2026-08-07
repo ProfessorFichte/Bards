@@ -1,0 +1,8 @@
+{
+  "sound_event": "bards_rpg:wanderers_minuet_full",
+  "description": {
+    "translate": "jukebox_song.bards_rpg.wanderers_minuet"
+  },
+  "length_in_seconds": 180.0,
+  "comparator_output": 12
+}

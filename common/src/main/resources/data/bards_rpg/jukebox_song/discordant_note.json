@@ -1,0 +1,8 @@
+{
+  "sound_event": "bards_rpg:discordant_note_full",
+  "description": {
+    "translate": "jukebox_song.bards_rpg.discordant_note"
+  },
+  "length_in_seconds": 180.0,
+  "comparator_output": 12
+}

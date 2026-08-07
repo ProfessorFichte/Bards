@@ -6,6 +6,7 @@ import com.bards.content.BardsSpells;
 import com.bards.effect.BardsEffects;
 import com.bards.item.Armors;
 import com.bards.item.Group;
+import com.bards.item.MusicDiscs;
 import com.bards.item.Weapons;
 import com.bards.tags.BardTags;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -98,6 +99,10 @@ public class BardsDataGenerator implements DataGeneratorEntrypoint {
             );
             translationBuilder.add(com.bards.item.HarpCrossbowItem.TOOLTIP_KEY,
                     "§7Half Musical Instrument and fully deadly weapon, the Harp Crossbow shoots multiple arrows");
+            MusicDiscs.all.forEach(entry -> {
+                translationBuilder.add(entry.item().getTranslationKey(), "Music Disc");
+                translationBuilder.add("jukebox_song." + MOD_ID + "." + entry.name(), MusicDiscs.titleCase(entry.name()));
+            });
             BardsSpells.entries.stream().filter(entry -> !entry.id().getPath().startsWith("helper/")).forEach(entry -> {
                 var id = entry.id();
                 translationBuilder.add("spell." + id.getNamespace() + "." + id.getPath() + ".name" , entry.title());

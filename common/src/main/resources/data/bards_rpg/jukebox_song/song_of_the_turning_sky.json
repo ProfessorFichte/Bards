@@ -1,0 +1,8 @@
+{
+  "sound_event": "bards_rpg:song_of_the_turning_sky_full",
+  "description": {
+    "translate": "jukebox_song.bards_rpg.song_of_the_turning_sky"
+  },
+  "length_in_seconds": 180.0,
+  "comparator_output": 12
+}

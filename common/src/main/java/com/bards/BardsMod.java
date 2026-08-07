@@ -10,6 +10,7 @@ import com.bards.content.CustomSpellImpacts;
 import com.bards.effect.BardsEffects;
 import com.bards.item.Armors;
 import com.bards.item.Group;
+import com.bards.item.MusicDiscs;
 import com.bards.worldgen.villages.BardVillagerProfessions;
 import com.bards.worldgen.villages.BardVillagerTrades;
 import com.bards.item.Weapons;
@@ -83,6 +84,7 @@ public final class BardsMod {
         Registry.register(Registries.ITEM_GROUP, Group.KEY, Group.BARDS);
         Weapons.register(itemConfig.value.ranged_weapons,itemConfig.value.melee_weapons);
         Armors.register(itemConfig.value.armor_sets);
+        MusicDiscs.register();
         if (armoryLoadCheck()) {
             FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
                 ResourceManagerHelper.registerBuiltinResourcePack(

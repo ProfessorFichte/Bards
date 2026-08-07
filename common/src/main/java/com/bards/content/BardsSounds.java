@@ -104,6 +104,8 @@ public class BardsSounds {
     public static final Entry canticle_of_the_tides_full = add(new Entry("canticle_of_the_tides_full"));
     public static final Entry hymn_of_the_golden_light_full = add(new Entry("hymn_of_the_golden_light_full"));
     public static final Entry song_of_the_turning_sky_full = add(new Entry("song_of_the_turning_sky_full"));
+    public static final Entry discordant_note_full = add(new Entry("discordant_note_full"));
+    public static final Entry secret_sonata_full = add(new Entry("secret_sonata_full"));
 
 
 

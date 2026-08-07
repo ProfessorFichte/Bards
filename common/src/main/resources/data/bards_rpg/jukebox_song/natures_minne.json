@@ -1,0 +1,8 @@
+{
+  "sound_event": "bards_rpg:natures_minne_full",
+  "description": {
+    "translate": "jukebox_song.bards_rpg.natures_minne"
+  },
+  "length_in_seconds": 180.0,
+  "comparator_output": 12
+}

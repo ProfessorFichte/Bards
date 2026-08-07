@@ -122,6 +122,65 @@
           "name": "bards_rpg:golden_lyre"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "bards_rpg:troubadours_minuet"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "bards_rpg:wanderers_minuet"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "bards_rpg:tale_of_the_dragonslayer"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "bards_rpg:natures_minne"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "bards_rpg:song_of_celerity"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "bards_rpg:canticle_of_the_tides"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "bards_rpg:hymn_of_the_golden_light"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "bards_rpg:song_of_the_turning_sky"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "bards_rpg:discordant_note"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "bards_rpg:secret_sonata"
+        }
+      ]
     }
   ]
 }

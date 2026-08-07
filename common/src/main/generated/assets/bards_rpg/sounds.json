@@ -55,6 +55,11 @@
       "bards_rpg:discordant_note_2"
     ]
   },
+  "discordant_note_full": {
+    "sounds": [
+      "bards_rpg:discordant_note_full"
+    ]
+  },
   "encore_channel": {
     "sounds": [
       "bards_rpg:encore_channel"
@@ -142,6 +147,11 @@
     "sounds": [
       "bards_rpg:secret_sonata_1",
       "bards_rpg:secret_sonata_2"
+    ]
+  },
+  "secret_sonata_full": {
+    "sounds": [
+      "bards_rpg:secret_sonata_full"
     ]
   },
   "song_of_celerity": {

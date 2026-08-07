@@ -1,0 +1,8 @@
+{
+  "sound_event": "bards_rpg:canticle_of_the_tides_full",
+  "description": {
+    "translate": "jukebox_song.bards_rpg.canticle_of_the_tides"
+  },
+  "length_in_seconds": 180.0,
+  "comparator_output": 12
+}

@@ -1,6 +1,7 @@
 package com.bards.datagen;
 
 import com.bards.item.Armors;
+import com.bards.item.MusicDiscs;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.bards.item.Weapons;
@@ -64,6 +65,20 @@ public class ModModelProvider extends FabricModelProvider {
                 generateCrossbowModel(itemModelGenerator, itemId, name);
             }
         }
+        MusicDiscs.all.forEach(entry -> generateMusicDiscModel(itemModelGenerator, entry.name()));
+    }
+
+    private void generateMusicDiscModel(ItemModelGenerator gen, String name) {
+        Identifier modelId = Identifier.of(MOD_ID, "item/" + name);
+
+        JsonObject json = new JsonObject();
+        json.addProperty("parent", "minecraft:item/generated");
+
+        JsonObject textures = new JsonObject();
+        textures.addProperty("layer0", MOD_ID + ":item/music_disc_bard_music");
+        json.add("textures", textures);
+
+        gen.writer.accept(modelId, () -> json);
     }
 
 
