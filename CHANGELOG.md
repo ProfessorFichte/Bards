@@ -1,5 +1,9 @@
+# 1.0.5 - 1.21.1
+- Clean up some missing / unused sound effects
+- Song of Celerity, Natures Minne, Vicious Mockery, Wardens Paean & Crescendo received new spell textures
+
 # 1.0.4 - 1.21.1
-- Armory & Arsenal Compat Equipment is no added to a separate Item Group
+- Armory & Arsenal Compat Equipment is now added to a separate Item Group
 - added Music Disc's for all Bard Songs that can be found in a Pub in Villages
 - Add Merchant Marker Mod Compat for the Luthier Villager
 

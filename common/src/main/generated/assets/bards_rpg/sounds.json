@@ -70,16 +70,6 @@
       "bards_rpg:encore_cooldown_impact"
     ]
   },
-  "harp_crossbow_hit": {
-    "sounds": [
-      "bards_rpg:harp_crossbow_hit"
-    ]
-  },
-  "harp_crossbow_pull": {
-    "sounds": [
-      "bards_rpg:harp_crossbow_pull"
-    ]
-  },
   "harp_crossbow_shoot": {
     "sounds": [
       "bards_rpg:harp_crossbow_shoot_1",
@@ -119,11 +109,6 @@
       "bards_rpg:lyre_hit_1",
       "bards_rpg:lyre_hit_2",
       "bards_rpg:lyre_hit_3"
-    ]
-  },
-  "lyre_release": {
-    "sounds": [
-      "bards_rpg:lyre_release"
     ]
   },
   "magical_ballad": {
@@ -171,8 +156,7 @@
       "bards_rpg:song_of_the_turning_sky_1",
       "bards_rpg:song_of_the_turning_sky_2",
       "bards_rpg:song_of_the_turning_sky_3",
-      "bards_rpg:song_of_the_turning_sky_4",
-      "bards_rpg:song_of_the_turning_sky_5"
+      "bards_rpg:song_of_the_turning_sky_4"
     ]
   },
   "song_of_the_turning_sky_full": {
