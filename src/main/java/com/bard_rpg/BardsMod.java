@@ -10,10 +10,12 @@ import com.bard_rpg.content.CustomSpellImpacts;
 import com.bard_rpg.effect.BardsEffects;
 import com.bard_rpg.item.Armors;
 import com.bard_rpg.item.Group;
+import com.bard_rpg.item.MusicDiscs;
 import com.bard_rpg.item.Weapons;
 import com.bard_rpg.worldgen.villages.BardVillagerProfessions;
 import com.bard_rpg.worldgen.villages.BardVillagerTrades;
 import com.bard_rpg.worldgen.villages.LuthierSongs;
+import net.fabric_extras.structure_pool.api.StructurePoolAPI;
 import net.fabric_extras.structure_pool.api.StructurePoolConfig;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -76,11 +78,13 @@ public class BardsMod implements ModInitializer {
                 .icon(() -> new ItemStack(Armors.troubadourArmorSet.head))
                 .displayName(Text.translatable(Group.translationKey))
                 .build();
+        StructurePoolAPI.injectAll(BardsMod.villagesConfig.value);
         Registry.register(Registries.ITEM_GROUP, Group.KEY, Group.BARDS);
         SpellBooks.createAndRegister(new Identifier(MOD_ID, "bard"), Group.KEY);
         SpellBooks.createAndRegister(new Identifier(MOD_ID, "bard2"), Group.KEY);
         Weapons.register(itemConfig.value.ranged_weapons, itemConfig.value.melee_weapons);
         Armors.register(itemConfig.value.armor_sets);
+        MusicDiscs.register();
         itemConfig.save();
         CustomSpellImpacts.register();
         BardVillagerProfessions.registerPoiTypes();

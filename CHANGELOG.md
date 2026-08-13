@@ -1,3 +1,10 @@
+# 1.0.0 - 1.20.1
+**1.20.1 Release Version with final Asset Improvements and Additions**
+- Add Music Discs with all Bard Songs that drop in the Villages Pub-Structures
+- Clean up some missing / unused sound effects
+- Song of Celerity, Natures Minne, Vicious Mockery, Wardens Paean & Crescendo received new spell textures
+- Fixed missing registration of Structure Pool Village Injection for the Bard's Pub Structure
+
 # 0.1.4 - 1.20.1
 - Fixed Elder Guardian Lyre & Ender Dragon Lute not being able to cast spells
 - Fixed the issue with not correctly rendered armor models

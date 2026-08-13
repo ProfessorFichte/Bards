@@ -13,11 +13,6 @@
       "bards_rpg:lyre_hit_3"
     ]
   },
-  "lyre_release": {
-    "sounds": [
-      "bards_rpg:lyre_release_1"
-    ]
-  },
   "lute_hit": {
     "sounds": [
       "bards_rpg:lute_hit_1",
@@ -72,22 +67,12 @@
       "bards_rpg:armys_paeon_release_3"
     ]
   },
-  "harp_crossbow_pull": {
-    "sounds": [
-      "bards_rpg:harp_crossbow_pull"
-    ]
-  },
   "harp_crossbow_shoot": {
     "sounds": [
       "bards_rpg:harp_crossbow_shoot_1",
       "bards_rpg:harp_crossbow_shoot_2",
       "bards_rpg:harp_crossbow_shoot_3",
       "bards_rpg:harp_crossbow_shoot_4"
-    ]
-  },
-  "harp_crossbow_hit": {
-    "sounds": [
-      "bards_rpg:harp_crossbow_hit"
     ]
   },
   "vicious_mockery": {
@@ -172,41 +157,61 @@
   "troubadours_minuet_full": {
     "sounds": [
       "bards_rpg:troubadours_minuet_full"
-    ]
+    ],
+    "subtitle": "jukebox_song.bards_rpg.troubadours_minuet"
   },
   "wanderers_minuet_full": {
     "sounds": [
       "bards_rpg:wanderers_minuet_full"
-    ]
+    ],
+    "subtitle": "jukebox_song.bards_rpg.wanderers_minuet"
   },
   "tale_of_the_dragonslayer_full": {
     "sounds": [
       "bards_rpg:tale_of_the_dragonslayer_full"
-    ]
+    ],
+    "subtitle": "jukebox_song.bards_rpg.tale_of_the_dragonslayer"
   },
   "natures_minne_full": {
     "sounds": [
       "bards_rpg:natures_minne_full"
-    ]
+    ],
+    "subtitle": "jukebox_song.bards_rpg.natures_minne"
   },
   "song_of_celerity_full": {
     "sounds": [
       "bards_rpg:song_of_celerity_full"
-    ]
+    ],
+    "subtitle": "jukebox_song.bards_rpg.song_of_celerity"
   },
   "canticle_of_the_tides_full": {
     "sounds": [
       "bards_rpg:canticle_of_the_tides_full"
-    ]
+    ],
+    "subtitle": "jukebox_song.bards_rpg.canticle_of_the_tides"
   },
   "hymn_of_the_golden_light_full": {
     "sounds": [
       "bards_rpg:hymn_of_the_golden_light_full"
-    ]
+    ],
+    "subtitle": "jukebox_song.bards_rpg.hymn_of_the_golden_light"
   },
   "song_of_the_turning_sky_full": {
     "sounds": [
       "bards_rpg:song_of_the_turning_sky_full"
-    ]
+    ],
+    "subtitle": "jukebox_song.bards_rpg.song_of_the_turning_sky"
+  },
+  "discordant_note_full": {
+    "sounds": [
+      "bards_rpg:discordant_note_full"
+    ],
+    "subtitle": "jukebox_song.bards_rpg.discordant_note"
+  },
+  "secret_sonata_full": {
+    "sounds": [
+      "bards_rpg:secret_sonata_full"
+    ],
+    "subtitle": "jukebox_song.bards_rpg.secret_sonata"
   }
 }

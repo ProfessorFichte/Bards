@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "bards_rpg:troubadours_minuet",
+    "bards_rpg:wanderers_minuet",
+    "bards_rpg:tale_of_the_dragonslayer",
+    "bards_rpg:natures_minne",
+    "bards_rpg:song_of_celerity",
+    "bards_rpg:canticle_of_the_tides",
+    "bards_rpg:hymn_of_the_golden_light",
+    "bards_rpg:song_of_the_turning_sky",
+    "bards_rpg:discordant_note",
+    "bards_rpg:secret_sonata"
+  ]
+}
