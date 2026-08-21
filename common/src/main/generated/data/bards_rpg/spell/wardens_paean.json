@@ -33,18 +33,26 @@
         }
       ]
     },
-    "particles": [
-      {
-        "particle_id": "more_rpg_classes:music_note",
-        "origin": "FEET",
-        "shape": "WIDE_PIPE",
-        "count": 10.0,
-        "min_speed": 0.4,
-        "max_speed": 0.5,
-        "extent": 2.0,
-        "color_rgba": 16777215
-      }
-    ]
+    "visuals": {
+      "particles": [
+        {
+          "id": "more_rpg_classes:music_note",
+          "appearance": {
+            "color": 16777215
+          },
+          "batch": {
+            "count": 10.0,
+            "shape": "PIPE",
+            "anchor": "ENTITY",
+            "vertical_origin": 0.1,
+            "min_speed": 0.4,
+            "max_speed": 0.5,
+            "extent": 2.0,
+            "width_factor": 2.0
+          }
+        }
+      ]
+    }
   },
   "target": {
     "type": "AIM",

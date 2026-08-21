@@ -18,6 +18,7 @@ import net.more_rpg_classes.custom.SpellBuilderHelper;
 import net.spell_engine.api.effect.CustomModelStatusEffect;
 import net.spell_engine.api.effect.CustomParticleStatusEffect;
 import net.spell_engine.api.render.BuffParticleSpawner;
+import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.render.StunParticleSpawner;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
@@ -61,22 +62,36 @@ public class BardClient {
         );
         CustomParticleStatusEffect.register(
                 BardsEffects.ECLIPSE_MANTLE.effect,
-                new BuffParticleSpawner(
-                        BuffParticleSpawner.defaultBatch(
-                                SpellEngineParticles.area_circle_1.id().toString(),
-                                1,
-                                SpellBuilderHelper.MAGENTA.toRGBA()).followEntity(true)
-                ).invertFrequency().withFrequency(20).scaleWithAmplifier(false)
+                new BuffParticleSpawner(eclipseMantleParticles())
+                        .invertFrequency().withFrequency(20).scaleWithAmplifier(false)
         );
         CustomParticleStatusEffect.register(
                 BardsEffects.HYMN_OF_THE_GOLDEN_LIGHT.effect,
-                new BuffParticleSpawner(
-                        BuffParticleSpawner.defaultBatch(
-                                SpellEngineParticles.area_circle_1.id().toString(),
-                                1,
-                                SpellBuilderHelper.GOLD.toRGBA()).followEntity(true)
-                ).withFrequency(20).scaleWithAmplifier(false)
+                new BuffParticleSpawner(hymnOfTheGoldenLightParticles())
+                        .withFrequency(20).scaleWithAmplifier(false)
         );
 
+    }
+
+    /// V1 chained `.followEntity(true)` onto the ParticleBatch. In 1.10 that is
+    /// `Attachment.POSITION` on the appearance, so the group is built first and handed
+    /// to the spawner. `attached()` reproduces V1's outright position follow - NOT
+    /// `attachedToGround()`, which re-probes the floor and is a different behaviour.
+    private static ParticleGroup eclipseMantleParticles() {
+        var group = BuffParticleSpawner.defaultBatch(
+                SpellEngineParticles.area_circle_1.id().toString(),
+                1,
+                SpellBuilderHelper.MAGENTA.toRGBA());
+        group.appearance.attachment(ParticleGroup.Attachment.POSITION);
+        return group;
+    }
+
+    private static ParticleGroup hymnOfTheGoldenLightParticles() {
+        var group = BuffParticleSpawner.defaultBatch(
+                SpellEngineParticles.area_circle_1.id().toString(),
+                1,
+                SpellBuilderHelper.GOLD.toRGBA());
+        group.appearance.attachment(ParticleGroup.Attachment.POSITION);
+        return group;
     }
 }

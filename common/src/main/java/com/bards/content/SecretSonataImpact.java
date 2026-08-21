@@ -9,10 +9,10 @@ import net.minecraft.util.math.Vec3d;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.event.SpellHandlers;
 import net.spell_engine.api.spell.registry.SpellRegistry;
-import net.spell_engine.fx.ParticleHelper;
-import net.spell_engine.internals.SpellHelper;
+import net.spell_engine.fx.ReleaseFx;
+import net.spell_engine.internals.SpellExecution;
+import net.spell_engine.internals.impact.SpellImpacts;
 import net.spell_engine.internals.target.SpellTarget;
-import net.spell_engine.utils.SoundHelper;
 import net.spell_power.api.SpellPower;
 
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class SecretSonataImpact implements SpellHandlers.CustomImpact {
                 cappedImpact.attribute_from_target = impact.attribute_from_target;
                 cappedImpact.attribute = impact.attribute;
                 cappedImpact.target_modifiers = impact.target_modifiers;
-                cappedImpact.particles = impact.particles;
+                cappedImpact.visuals = impact.visuals;
                 cappedImpact.sound = impact.sound;
 
                 var action = new Spell.Impact.Action();
@@ -85,7 +85,7 @@ public class SecretSonataImpact implements SpellHandlers.CustomImpact {
             SpellPower.Result powerResult,
             LivingEntity caster,
             Entity target,
-            SpellHelper.ImpactContext context
+            SpellExecution.ImpactContext context
     ) {
         if (caster.getWorld().isClient()) {
             return new SpellHandlers.ImpactResult(true, false);
@@ -112,13 +112,15 @@ public class SecretSonataImpact implements SpellHandlers.CustomImpact {
         Spell selectedSpell = selected.value();
 
         if (selectedSpell.release != null) {
-            ParticleHelper.sendBatches(caster, selectedSpell.release.particles);
-            SoundHelper.playSound(caster.getWorld(), caster, selectedSpell.release.sound);
+            // Release visuals + sound of the borrowed song, anchored on the caster. Also picks
+            // up the borrowed song's own range binding for `scale_with = RANGE` and any modifier
+            // release FX. Progress 1F: a borrowed song is always emitted fully charged.
+            ReleaseFx.send(caster.getWorld(), caster, selected, 1F);
         }
 
         if (selectedSpell.impacts != null) {
             Vec3d pos = target instanceof LivingEntity lt ? lt.getEyePos() : caster.getEyePos();
-            SpellHelper.ImpactContext ctx = new SpellHelper.ImpactContext()
+            SpellExecution.ImpactContext ctx = new SpellExecution.ImpactContext()
                     .power(powerResult)
                     .position(pos)
                     .target(SpellTarget.FocusMode.DIRECT);
@@ -126,7 +128,7 @@ public class SecretSonataImpact implements SpellHandlers.CustomImpact {
             var originalImpacts = selectedSpell.impacts;
             selectedSpell.impacts = withCappedStatusEffectAmplifiers(originalImpacts);
             try {
-                SpellHelper.performImpacts(caster.getWorld(), caster, target, caster, selected,
+                SpellImpacts.performImpacts(caster.getWorld(), caster, target, caster, selected,
                         selectedSpell.impacts, ctx, false, null);
             } finally {
                 selectedSpell.impacts = originalImpacts;
