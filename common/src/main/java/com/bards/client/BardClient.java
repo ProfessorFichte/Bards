@@ -23,7 +23,6 @@ import net.spell_engine.api.render.StunParticleSpawner;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.rpg_series.item.Armor;
-import net.spell_engine.client.gui.SpellTooltip;
 import net.minecraft.util.Identifier;
 
 import java.util.function.Supplier;
@@ -33,12 +32,11 @@ public class BardClient {
     private static final Identifier wardensPaeanHarmfulModelId = Identifier.of(BardsMod.MOD_ID, "spell_effect/warens_paean_harmful");
 
     public static void init() {
+        // Description values that aren't expressible as declarative `{token}`s. `TooltipTokens` is
+        // server-safe; it is registered here simply because the tooltip is a client concern.
+        BardsSpells.registerTooltipTokens();
+
         BardBlocks.registerClient();
-        for (var spell: BardsSpells.entries) {
-            if (spell.mutator() != null) {
-                SpellTooltip.addDescriptionMutator(spell.id(), spell.mutator());
-            }
-        }
 
         registerArmorRenderer(Armors.entertainerArmorSet.armorSet(), CustomArmorRenderer::entertainer_armor);
         registerArmorRenderer(Armors.troubadourArmorSet.armorSet(), CustomArmorRenderer::troubadour_armor);
