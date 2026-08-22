@@ -43,14 +43,21 @@
       },
       "particles": [
         {
-          "particle_id": "more_rpg_classes:music_note",
-          "origin": "FEET",
-          "shape": "WIDE_PIPE",
-          "count": 0.5,
-          "min_speed": 0.4,
-          "max_speed": 0.5,
-          "extent": 2.0,
-          "color_rgba": 2399052287
+          "id": "more_rpg_classes:music_note",
+          "appearance": {
+            "color": 2399052287
+          },
+          "batch": {
+            "count": 1.0,
+            "chance": 0.5,
+            "shape": "PIPE",
+            "anchor": "ENTITY",
+            "vertical_origin": 0.1,
+            "min_speed": 0.4,
+            "max_speed": 0.5,
+            "extent": 2.0,
+            "width_factor": 2.0
+          }
         }
       ]
     }
@@ -70,17 +77,24 @@
           "spell_power_coefficient": 0.5
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_spell_burst",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 10.0,
-          "min_speed": 0.5,
-          "max_speed": 0.5,
-          "color_rgba": 2399052287
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:magic_spell",
+            "appearance": {
+              "color": 2399052287,
+              "motion": "BURST"
+            },
+            "batch": {
+              "count": 10.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.5,
+              "max_speed": 0.5
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "bards_rpg:bard_impact",
         "volume": 0.6
@@ -99,18 +113,25 @@
           "apply_mode": "ADD"
         }
       },
-      "particles": [
-        {
-          "particle_id": "more_rpg_classes:music_note",
-          "origin": "CENTER",
-          "shape": "CIRCLE",
-          "count": 0.5,
-          "min_speed": 0.6,
-          "max_speed": 0.8,
-          "extent": 0.5,
-          "color_rgba": 2399052287
-        }
-      ]
+      "visuals": {
+        "particles": [
+          {
+            "id": "more_rpg_classes:music_note",
+            "appearance": {
+              "color": 2399052287
+            },
+            "batch": {
+              "count": 1.0,
+              "chance": 0.5,
+              "shape": "CIRCLE",
+              "anchor": "ENTITY",
+              "min_speed": 0.6,
+              "max_speed": 0.8,
+              "extent": 0.5
+            }
+          }
+        ]
+      }
     }
   ],
   "cost": {

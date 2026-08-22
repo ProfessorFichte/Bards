@@ -8,7 +8,7 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.more_rpg_classes.util.CustomMethods;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.event.SpellHandlers;
-import net.spell_engine.internals.SpellHelper;
+import net.spell_engine.internals.SpellExecution;
 import net.spell_power.api.SpellPower;
 
 public class ArmiesPaeonImpact implements SpellHandlers.CustomImpact {
@@ -19,7 +19,7 @@ public class ArmiesPaeonImpact implements SpellHandlers.CustomImpact {
             SpellPower.Result powerResult,
             LivingEntity caster,
             Entity target,
-            SpellHelper.ImpactContext context
+            SpellExecution.ImpactContext context
     ) {
         double highestDamageAttribute = CustomMethods.getHighestDamageAttribute(caster);
         int effectAmplifier = caster.getStatusEffect(BardsEffects.ARMYS_PAEON.entry).getAmplifier() +1;

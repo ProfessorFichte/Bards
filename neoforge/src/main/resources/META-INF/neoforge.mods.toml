@@ -23,35 +23,35 @@ side = "BOTH"
 [[dependencies.bards_rpg]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.1,)"
+versionRange = "[${minecraft_compat_version},)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.bards_rpg]]
 modId = "spell_engine"
 type = "required"
-versionRange = "*"
+versionRange = "[${spell_engine_version},)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.bards_rpg]]
 modId = "structure_pool_api"
 type = "required"
-versionRange = "*"
+versionRange = "[${structure_pool_api_version},)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.bards_rpg]]
 modId = "ranged_weapon_api"
 type = "required"
-versionRange = "*"
+versionRange = "[${ranged_weapon_api_version},)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.bards_rpg]]
 modId = "more_rpg_classes"
 type = "required"
-versionRange = "*"
+versionRange = "[${more_rpg_library_version},)"
 ordering = "BEFORE"
 side = "BOTH"
 

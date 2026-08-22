@@ -1,3 +1,6 @@
+# 1.1.0 - 1.21.1
+- Adopt Spell Engine 1.10
+- Restored the Music Note and Star particle behaviour
 # 1.0.5 - 1.21.1
 - Clean up some missing / unused sound effects
 - Song of Celerity, Natures Minne, Vicious Mockery, Wardens Paean & Crescendo received new spell textures

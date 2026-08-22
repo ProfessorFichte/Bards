@@ -23,7 +23,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.spell_engine.internals.SpellTriggers;
-import net.spell_engine.internals.arrow.ArrowExtension;
+import net.spell_engine.internals.delivery.arrow.ArrowExtension;
 
 import java.util.List;
 import java.util.function.Supplier;

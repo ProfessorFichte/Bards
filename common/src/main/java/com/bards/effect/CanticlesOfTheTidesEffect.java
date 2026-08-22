@@ -6,10 +6,10 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.api.spell.registry.SpellRegistry;
-import net.spell_engine.fx.ParticleHelper;
-import net.spell_engine.internals.SpellHelper;
+import net.spell_engine.fx.ReleaseFx;
+import net.spell_engine.internals.SpellExecution;
+import net.spell_engine.internals.impact.SpellImpacts;
 import net.spell_engine.internals.target.SpellTarget;
 import net.spell_engine.utils.TargetHelper;
 import net.spell_power.api.SpellPower;
@@ -35,29 +35,25 @@ public class CanticlesOfTheTidesEffect extends StatusEffect {
         if (spell.impacts == null || spell.impacts.isEmpty()) return true;
 
         SpellPower.Result power = SpellPower.getSpellPower(spell.school, entity);
-        SpellHelper.ImpactContext ctx = new SpellHelper.ImpactContext()
+        SpellExecution.ImpactContext ctx = new SpellExecution.ImpactContext()
                 .power(power)
                 .position(entity.getPos())
                 .target(SpellTarget.FocusMode.AREA);
 
         if (spell.release != null) {
-            ParticleHelper.sendBatches(entity, spell.release.particles);
-            if (spell.release.particles_scaled_with_ranged != null) {
-                ParticleBatch[] scaledParticles = new ParticleBatch[spell.release.particles_scaled_with_ranged.length];
-                for (int i = 0; i < spell.release.particles_scaled_with_ranged.length; i++) {
-                    scaledParticles[i] = spell.release.particles_scaled_with_ranged[i].copy().scale(spell.range);
-                }
-                ParticleHelper.sendBatches(entity, scaledParticles);
-            }
+            // Emits the release visuals with `scale_with = RANGE` bound to the holder's own
+            // reach, replacing the hand-rolled `particles_scaled_with_ranged` loop. The helper
+            // spell authors no release sound, so `ReleaseFx`'s sound step is a no-op here.
+            ReleaseFx.send(entity.getWorld(), entity, spellEntry, 1F);
         }
 
         if (spell.target != null && spell.target.area != null && spell.target.area.include_caster) {
-            SpellHelper.performImpacts(entity.getWorld(), entity, entity, entity, spellEntry, spell.impacts, ctx, false, null);
+            SpellImpacts.performImpacts(entity.getWorld(), entity, entity, entity, spellEntry, spell.impacts, ctx, false, null);
         }
 
         float range = spell.range > 0 ? spell.range : 2.0F;
         for (Entity target : TargetHelper.targetsFromArea(entity, range, spell.target != null ? spell.target.area : null, e -> e != entity)) {
-            SpellHelper.performImpacts(entity.getWorld(), entity, target, entity, spellEntry, spell.impacts, ctx, false, null);
+            SpellImpacts.performImpacts(entity.getWorld(), entity, target, entity, spellEntry, spell.impacts, ctx, false, null);
         }
 
         return true;

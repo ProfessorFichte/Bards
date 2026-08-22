@@ -29,7 +29,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.village.VillagerData;
 import net.more_rpg_classes.client.particle.MoreParticles;
 import net.more_rpg_classes.client.particle.PopupParticleEffect;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.ParticleHelper;
 import org.spongepowered.asm.mixin.Mixin;
@@ -160,10 +161,12 @@ public abstract class LuthierVillagerMixin {
 
         if (bards_tickCounter++ % 20 != 0) return;
         Color color = song.noteColor();
-        var musicNoteBatch = new ParticleBatch("more_rpg_classes:music_note",
-                ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.CENTER,
-                5, 0.1F, 0.2F).extent(1.0F).color(color.toRGBA());
-        ParticleHelper.sendBatches(villager, new ParticleBatch[]{ musicNoteBatch });
+        var musicNoteBatch = ParticleGroupBuilder.of(MoreParticles.MUSIC_NOTE)
+                .color(color)
+                .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
+                        .count(5).speed(0.1F, 0.2F)
+                        .extent(1.0F));
+        ParticleHelper.sendBatches(villager, List.of(musicNoteBatch));
 
         Box effectBox = Box.of(villager.getPos(), 8, 4, 8);
         List<PlayerEntity> nearbyPlayers = serverWorld.getEntitiesByClass(PlayerEntity.class, effectBox, p -> true);
@@ -236,10 +239,11 @@ public abstract class LuthierVillagerMixin {
             if (bards_reactionTickCount % 30 == 0) {
                 LuthierSongs.Song song = getDailySong(luthier, serverWorld);
                 Color color = song.noteColor();
-                var noteBatch = new ParticleBatch("more_rpg_classes:music_note",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        2, 0.05F, 0.2F).color(color.toRGBA());
-                ParticleHelper.sendBatches(villager, new ParticleBatch[]{ noteBatch });
+                var noteBatch = ParticleGroupBuilder.of(MoreParticles.MUSIC_NOTE)
+                        .color(color)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(2).speed(0.05F, 0.2F));
+                ParticleHelper.sendBatches(villager, List.of(noteBatch));
             }
         }
     }

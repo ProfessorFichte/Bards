@@ -5,18 +5,23 @@
   "learn": {},
   "active": {},
   "release": {
-    "particles_scaled_with_ranged": [
-      {
-        "particle_id": "spell_engine:area_effect_658",
-        "origin": "GROUND",
-        "shape": "SPHERE",
-        "count": 1.0,
-        "max_speed": 0.0,
-        "color_rgba": 16777215,
-        "scale": 0.5,
-        "follow_entity": true
-      }
-    ]
+    "visuals": {
+      "particles": [
+        {
+          "id": "spell_engine:area_effect_658",
+          "appearance": {
+            "color": 16777215,
+            "scale_with": "RANGE",
+            "attachment": "POSITION"
+          },
+          "batch": {
+            "count": 1.0,
+            "shape": "NONE",
+            "anchor": "GROUND"
+          }
+        }
+      ]
+    }
   },
   "target": {
     "type": "AREA",
