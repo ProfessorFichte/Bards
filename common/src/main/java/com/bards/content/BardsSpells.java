@@ -56,8 +56,6 @@ public class BardsSpells {
         return entry;
     }
 
-    /// Attribute id used to disambiguate effect tokens on effects that carry several modifiers:
-    /// the effect's modifier map is unordered, so "the first modifier" is not a stable choice.
     private static final Identifier ATTACK_DAMAGE = Identifier.of(EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString());
 
     public static final String ENCOURAGE =  "encourage";
@@ -154,10 +152,6 @@ public class BardsSpells {
                     musicCount(b, particleCount);
                 });
     }
-    /// V1 read a fractional batch count as a PROBABILITY. V2 reads it as a period, which
-    /// only means anything on a continuous emitter - a one-shot with count < 1 simply emits.
-    /// Every caller here is a one-shot impact passing 0.5, so the coin flip is carried as
-    /// `chance`, which is what actually reproduces V1.
     private static ParticleGroup musicImpactParticles(float particleCount, long color, float extent) {
         return ParticleGroupBuilder.of(MoreParticles.MUSIC_NOTE)
                 .color(color)
@@ -270,8 +264,6 @@ public class BardsSpells {
         var id = Identifier.of(MOD_ID, "wanderers_minuet");
         var title = "Wanderer's Minuet";
         var buffEffect = BardsEffects.WANDERERS_MINUET;
-        // Four modifiers with two distinct values, so each token names its attribute. (The old mutator
-        // read indices 1 and 0 - both critical *chance* - so the critical damage value was shown wrong.)
         var description = "Minuet that deals {damage} damage to enemies and increases critical chance by "
                 + TooltipTokens.effect(buffEffect.id, 0, SpellPowerMechanics.CRITICAL_CHANCE.id)
                 + " and critical damage by "
@@ -312,9 +304,6 @@ public class BardsSpells {
 
         spell.active.cast.animation = bardCastAnimation();
         spell.active.cast.sound =  new Sound(bardSong);
-        // Deliberately NOT an Entry: RAINBOW_MUSIC_NOTE stays on its own hue-cycling
-        // factory in 1.10 and is not in MoreParticles.entries(), so it takes batch geometry
-        // only - which is exactly what V1 did here.
         spell.active.cast.particles = List.of(
                 ParticleGroupBuilder.of("more_rpg_classes:rainbow_music_note")
                         .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
@@ -803,7 +792,7 @@ public class BardsSpells {
                 ParticleGroupBuilder.of(SpellEngineParticles.area_circle_1)
                         .color(SpellBuilderHelper.GOLD)
                         .attached()
-                        .playbackSpeed(1F / 0.6F)   // V1 maxAge 0.6 - playback speed is its reciprocal
+                        .playbackSpeed(1F / 0.6F)
                         .batch(b -> b.shape(ParticleGroup.Shape.LINE_VERTICAL)
                                 .count(1).speed(0.3F, 0.3F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)),
@@ -1216,8 +1205,6 @@ public class BardsSpells {
                                 .anchor(ParticleGroup.Anchor.LAUNCH_POINT)
                                 .alignment(ParticleGroup.Alignment.LOOK)
                                 .count(50).speed(0.18F, 0.2F)),
-                // V1 rolled a fractional count as a CHANCE. On a one-shot site V2 just emits,
-                // so a literal count(0.2F) would fire on every shot instead of 1-in-5.
                 ParticleGroupBuilder.of(MoreParticles.STAR)
                         .color(STARSHOT_COLOR).scale(0.3F)
                         .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
@@ -1250,20 +1237,11 @@ public class BardsSpells {
         return new Entry(id, spell, title, description);
     }
 
-    /// Registers the one description value that no declarative `{token}` can express.
-    ///
-    /// `TooltipTokens.Custom` and `EffectConfig` reference only shared types, so this is safe on both
-    /// sides - unlike the `SpellTooltip.DescriptionMutator` it replaces, which put a client-only type
-    /// inside a spell data definition. The lambda reads the effect config lazily, so registration may
-    /// run before the config is loaded.
-    ///
-    /// This class is already runtime-reachable (`Weapons` references its passive spell ids), but the
-    /// registration is called explicitly from `BardClient.init()` rather than relying on that.
     public static void registerTooltipTokens() {
         // Astral Shots' pull-time modifier is ADD_MULTIPLIED_TOTAL: `TooltipTokens.bonus` renders it as
         // `percent(value - 1)`, i.e. "-80%" for the configured 0.2. The description phrases it as an
         // increase, so the sign is stripped - which `Format.ABS` cannot do (it takes the absolute value
-        // before the -1 offset). Verbatim port of the former mutator.
+        // before the -1 offset).
         TooltipTokens.registerCustom(starshots.id(), args -> {
             var modifier = BardsEffects.ASTRAL_SHOTS.config().firstModifier();
             var bonus = TooltipTokens.bonus(modifier.value, modifier.operation);

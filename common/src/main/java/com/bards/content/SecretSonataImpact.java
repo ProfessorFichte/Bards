@@ -112,9 +112,6 @@ public class SecretSonataImpact implements SpellHandlers.CustomImpact {
         Spell selectedSpell = selected.value();
 
         if (selectedSpell.release != null) {
-            // Release visuals + sound of the borrowed song, anchored on the caster. Also picks
-            // up the borrowed song's own range binding for `scale_with = RANGE` and any modifier
-            // release FX. Progress 1F: a borrowed song is always emitted fully charged.
             ReleaseFx.send(caster.getWorld(), caster, selected, 1F);
         }
 

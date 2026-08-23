@@ -32,8 +32,6 @@ public class BardClient {
     private static final Identifier wardensPaeanHarmfulModelId = Identifier.of(BardsMod.MOD_ID, "spell_effect/warens_paean_harmful");
 
     public static void init() {
-        // Description values that aren't expressible as declarative `{token}`s. `TooltipTokens` is
-        // server-safe; it is registered here simply because the tooltip is a client concern.
         BardsSpells.registerTooltipTokens();
 
         BardBlocks.registerClient();
@@ -71,10 +69,6 @@ public class BardClient {
 
     }
 
-    /// V1 chained `.followEntity(true)` onto the ParticleBatch. In 1.10 that is
-    /// `Attachment.POSITION` on the appearance, so the group is built first and handed
-    /// to the spawner. `attached()` reproduces V1's outright position follow - NOT
-    /// `attachedToGround()`, which re-probes the floor and is a different behaviour.
     private static ParticleGroup eclipseMantleParticles() {
         var group = BuffParticleSpawner.defaultBatch(
                 SpellEngineParticles.area_circle_1.id().toString(),

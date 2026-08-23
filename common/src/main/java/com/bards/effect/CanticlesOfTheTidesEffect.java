@@ -41,9 +41,6 @@ public class CanticlesOfTheTidesEffect extends StatusEffect {
                 .target(SpellTarget.FocusMode.AREA);
 
         if (spell.release != null) {
-            // Emits the release visuals with `scale_with = RANGE` bound to the holder's own
-            // reach, replacing the hand-rolled `particles_scaled_with_ranged` loop. The helper
-            // spell authors no release sound, so `ReleaseFx`'s sound step is a no-op here.
             ReleaseFx.send(entity.getWorld(), entity, spellEntry, 1F);
         }
 

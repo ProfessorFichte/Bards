@@ -1,6 +1,7 @@
 # 1.1.0 - 1.21.1
-- Adopt Spell Engine 1.10
-- Restored the Music Note and Star particle behaviour
+- Adopt Spell Engine 1.10 - Thanks Daedelus for the PR!
+- Added spell tags for all Spells and specific Lute & Lyre Songs to trigger spell modifiers & passives in the Skill Tree Nodes correctly
+
 # 1.0.5 - 1.21.1
 - Clean up some missing / unused sound effects
 - Song of Celerity, Natures Minne, Vicious Mockery, Wardens Paean & Crescendo received new spell textures
