@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "#bards_rpg:weapon/lute",
+      "required": false
+    },
+    {
+      "id": "#bards_rpg:weapon/dragon_lute",
+      "required": false
+    },
+    {
+      "id": "#bards_rpg:weapon/spellthief_lute",
+      "required": false
+    },
+    {
+      "id": "#bards_rpg:weapon/ruby_verdict_lute",
+      "required": false
+    }
+  ]
+}

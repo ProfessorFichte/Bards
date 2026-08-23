@@ -350,6 +350,26 @@ public class BardsDataGenerator implements DataGeneratorEntrypoint {
             var antecaelLyreTag = getOrCreateTagBuilder(antecaelLyreKey);
             antecaelLyreTag.addOptionalTag(Identifier.of(MOD_ID, "weapon/lyre"));
 
+            var allLuteSongsKey = TagKey.of(SpellRegistry.KEY, Identifier.of(MOD_ID, "weapon/all_lute_songs"));
+            var allLuteSongsTag = getOrCreateTagBuilder(allLuteSongsKey);
+            allLuteSongsTag.addOptionalTag(Identifier.of(MOD_ID, "weapon/lute"));
+            allLuteSongsTag.addOptionalTag(Identifier.of(MOD_ID, "weapon/dragon_lute"));
+            allLuteSongsTag.addOptionalTag(Identifier.of(MOD_ID, "weapon/spellthief_lute"));
+            allLuteSongsTag.addOptionalTag(Identifier.of(MOD_ID, "weapon/ruby_verdict_lute"));
+
+            var allLyreSongsKey = TagKey.of(SpellRegistry.KEY, Identifier.of(MOD_ID, "weapon/all_lyre_songs"));
+            var allLyreSongsTag = getOrCreateTagBuilder(allLyreSongsKey);
+            allLyreSongsTag.addOptionalTag(Identifier.of(MOD_ID, "weapon/lyre"));
+            allLyreSongsTag.addOptionalTag(Identifier.of(MOD_ID, "weapon/ocean_lyre"));
+            allLyreSongsTag.addOptionalTag(Identifier.of(MOD_ID, "weapon/apollo_lyre"));
+            allLyreSongsTag.addOptionalTag(Identifier.of(MOD_ID, "weapon/antecael_lyre"));
+
+
+            var bardSpellTriggersKey = TagKey.of(SpellRegistry.KEY, Identifier.of(MOD_ID, "bard_spell_triggers"));
+            var bardSpellTriggersTag = getOrCreateTagBuilder(bardSpellTriggersKey);
+            bardSpellTriggersTag.addOptionalTag(Identifier.of(MOD_ID, "weapon/all_lyre_songs"));
+            bardSpellTriggersTag.addOptionalTag(Identifier.of(MOD_ID, "weapon/all_lute_songs"));
+            bardSpellTriggersTag.addOptionalTag(Identifier.of(MOD_ID, "spell_book/bard"));
         }
     }
     public static class UnsmeltGenerator extends FabricRecipeProvider {

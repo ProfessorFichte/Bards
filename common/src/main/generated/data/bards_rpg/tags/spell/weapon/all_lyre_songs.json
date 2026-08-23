@@ -1,0 +1,20 @@
+{
+  "values": [
+    {
+      "id": "#bards_rpg:weapon/lyre",
+      "required": false
+    },
+    {
+      "id": "#bards_rpg:weapon/ocean_lyre",
+      "required": false
+    },
+    {
+      "id": "#bards_rpg:weapon/apollo_lyre",
+      "required": false
+    },
+    {
+      "id": "#bards_rpg:weapon/antecael_lyre",
+      "required": false
+    }
+  ]
+}
