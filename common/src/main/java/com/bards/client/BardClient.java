@@ -5,15 +5,12 @@ import com.bards.block.BardBlocks;
 import com.bards.client.armor.CustomArmorRenderer;
 import com.bards.client.effect.ArmysPaeonCircleRenderer;
 import com.bards.client.effect.WardensPaeanEffectRenderer;
-import com.bards.client.particle.PopupParticle;
-import com.bards.content.BardParticles;
 import com.bards.content.BardsSpells;
 import com.bards.effect.BardsEffects;
 import com.bards.item.Armors;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import mod.azure.azurelibarmor.common.render.armor.AzArmorRenderer;
-import mod.azure.azurelibarmor.common.render.armor.AzArmorRendererRegistry;
-import net.fabricmc.loader.api.FabricLoader;
+import net.spell_engine.Platform;
+import net.rpg_foundation.armor_api.client.ArmorRenderers;
+import net.rpg_foundation.armor_api.client.GeoArmorRenderer;
 import net.more_rpg_classes.custom.SpellBuilderHelper;
 import net.spell_engine.api.effect.CustomModelStatusEffect;
 import net.spell_engine.api.effect.CustomParticleStatusEffect;
@@ -39,17 +36,17 @@ public class BardClient {
         registerArmorRenderer(Armors.entertainerArmorSet.armorSet(), CustomArmorRenderer::entertainer_armor);
         registerArmorRenderer(Armors.troubadourArmorSet.armorSet(), CustomArmorRenderer::troubadour_armor);
         registerArmorRenderer(Armors.netheriteTroubadourArmorSet.armorSet(), CustomArmorRenderer::netherite_troubadour_armor);
-        if (FabricLoader.getInstance().isModLoaded("armory_rpgs") || BardsMod.tweaksConfig.value.ignore_items_required_mods) {
+        if (Platform.util().isModLoaded("armory_rpgs") || BardsMod.tweaksConfig.value.ignore_items_required_mods) {
             registerArmorRenderer(Armors.storytellerArmorSet.armorSet(), CustomArmorRenderer::storyteller_armor);
         }
+
         registerEffectParticles();
         CustomModelStatusEffect.register(BardsEffects.ARMYS_PAEON_STASH.effect, new ArmysPaeonCircleRenderer());
         CustomModelStatusEffect.register(BardsEffects.BENEFICIAL_WARDENS_PAEAN.effect, new WardensPaeanEffectRenderer(wardensPaeanHelpfulModelId, false));
         CustomModelStatusEffect.register(BardsEffects.HARMFUL_WARDENS_PAEAN.effect, new WardensPaeanEffectRenderer(wardensPaeanHarmfulModelId, true));
-        ParticleFactoryRegistry.getInstance().register(BardParticles.SPELL_STOLEN_POPUP, new PopupParticle.Factory());
     }
-    private static void registerArmorRenderer(Armor.Set set, Supplier<AzArmorRenderer> armorRendererSupplier) {
-        AzArmorRendererRegistry.register(armorRendererSupplier, set.head, set.chest, set.legs, set.feet);
+    private static void registerArmorRenderer(Armor.Set set, Supplier<GeoArmorRenderer> armorRendererSupplier) {
+        ArmorRenderers.register(armorRendererSupplier.get(), set.head, set.chest, set.legs, set.feet);
     }
     private static void registerEffectParticles() {
         CustomParticleStatusEffect.register(

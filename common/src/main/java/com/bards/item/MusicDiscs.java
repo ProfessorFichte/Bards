@@ -1,6 +1,6 @@
 package com.bards.item;
 
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import com.bards.platform.Platform;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.JukeboxPlayableComponent;
 import net.minecraft.item.Item;
@@ -57,8 +57,8 @@ public class MusicDiscs {
         for (var e : all) {
             Registry.register(Registries.ITEM, Identifier.of(MOD_ID, e.name()), e.item());
         }
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(content -> {
-            for (var e : all) content.add(e.item());
+        Platform.get().onItemGroupModify(ItemGroups.TOOLS, entries -> {
+            for (var e : all) entries.add(e.item());
         });
     }
 }

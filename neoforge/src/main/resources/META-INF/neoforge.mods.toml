@@ -28,9 +28,9 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.bards_rpg]]
-modId = "forgified_fabric_api"
+modId = "armor_model_api"
 type = "required"
-versionRange = "[${forgified_fabric_api_version},)"
+versionRange = "[${armor_model_api_version},)"
 ordering = "NONE"
 side = "BOTH"
 
@@ -38,7 +38,7 @@ side = "BOTH"
 modId = "spell_engine"
 type = "required"
 versionRange = "[${spell_engine_version},)"
-ordering = "NONE"
+ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.bards_rpg]]
@@ -59,7 +59,7 @@ side = "BOTH"
 modId = "more_rpg_classes"
 type = "required"
 versionRange = "[${more_rpg_library_version},)"
-ordering = "BEFORE"
+ordering = "AFTER"
 side = "BOTH"
 
 [[mixins]]

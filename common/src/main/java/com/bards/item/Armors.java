@@ -1,6 +1,6 @@
 package com.bards.item;
 
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import com.bards.platform.Platform;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.ArmorItem;
@@ -242,13 +242,12 @@ public class Armors {
             var entry = override.getKey();
             var key = override.getValue();
             var pieces = entry.armorSet().pieces();
-            ItemGroupEvents.modifyEntriesEvent(Group.KEY).register(content -> {
-                content.getDisplayStacks().removeIf(stack -> pieces.stream().anyMatch(p -> stack.isOf((ArmorItem) p)));
-                content.getSearchTabStacks().removeIf(stack -> pieces.stream().anyMatch(p -> stack.isOf((ArmorItem) p)));
+            Platform.get().onItemGroupModify(Group.KEY, tabEntries -> {
+                for (var piece : pieces) tabEntries.removeByItem((ArmorItem) piece);
             });
-            ItemGroupEvents.modifyEntriesEvent(key).register(content -> {
+            Platform.get().onItemGroupModify(key, tabEntries -> {
                 for (var piece : pieces) {
-                    content.add((ArmorItem) piece);
+                    tabEntries.add((ArmorItem) piece);
                 }
             });
         }

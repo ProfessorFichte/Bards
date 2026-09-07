@@ -1238,13 +1238,15 @@ public class BardsSpells {
     }
 
     public static void registerTooltipTokens() {
-        // Astral Shots' pull-time modifier is ADD_MULTIPLIED_TOTAL: `TooltipTokens.bonus` renders it as
-        // `percent(value - 1)`, i.e. "-80%" for the configured 0.2. The description phrases it as an
+        // Astral Shots' modifier is ADD_MULTIPLIED_TOTAL: `TooltipTokens.bonus` renders it as
+        // `percent(value - 1)`, i.e. "-80%" for a configured 0.2. The description phrases it as an
         // increase, so the sign is stripped - which `Format.ABS` cannot do (it takes the absolute value
-        // before the -1 offset).
+        // before the -1 offset). Since RWA 3.0.0, this is a HASTE modifier (not PULL_TIME) with the sign
+        // flipped to reproduce the same slowdown - abs() here keeps the displayed magnitude ("80%")
+        // unchanged regardless of that sign flip.
         TooltipTokens.registerCustom(starshots.id(), args -> {
             var modifier = BardsEffects.ASTRAL_SHOTS.config().firstModifier();
-            var bonus = TooltipTokens.bonus(modifier.value, modifier.operation);
+            var bonus = TooltipTokens.bonus(Math.abs(modifier.value), modifier.operation);
             if (bonus.startsWith("-")) bonus = bonus.substring(1);
             return args.description().replace("{bonus}", bonus);
         });

@@ -2,9 +2,8 @@ package com.bards.item;
 
 import com.bards.BardsMod;
 import com.bards.content.BardsSpells;
+import com.bards.platform.Platform;
 import net.fabric_extras.ranged_weapon.api.RangedConfig;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -204,8 +203,8 @@ public class Weapons {
     private static final float lute_t5_attack_damage = 10;
     public static Weapon.Entry uniqueRapier0;
     public static void register(Map<String, RangedConfig> rangedConfig, Map<String, WeaponConfig> meleeConfig) {
-        if (BardsMod.tweaksConfig.value.ignore_items_required_mods || FabricLoader.getInstance().isModLoaded(BETTER_NETHER)) {
-            var repair = ingredient("betternether:nether_ruby", FabricLoader.getInstance().isModLoaded(BETTER_NETHER), Items.NETHERITE_INGOT);
+        if (BardsMod.tweaksConfig.value.ignore_items_required_mods || net.spell_engine.Platform.util().isModLoaded(BETTER_NETHER)) {
+            var repair = ingredient("betternether:nether_ruby", net.spell_engine.Platform.util().isModLoaded(BETTER_NETHER), Items.NETHERITE_INGOT);
             rapier("ruby_rapier", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, repair), rapier_t5_attack_damage)
                     .translatedName("Ruby Rapier")
                     .loot(Equipment.LootProperties.of(4));
@@ -215,8 +214,8 @@ public class Weapons {
             harpCrossbow("ruby_harp_crossbow",Equipment.Tier.TIER_4,repair)
                     .translatedName("Heavenly Harp Crossbow");
         }
-        if (BardsMod.tweaksConfig.value.ignore_items_required_mods || FabricLoader.getInstance().isModLoaded(BETTER_END)) {
-            var repair = ingredient("betterend:aeternium_ingot", FabricLoader.getInstance().isModLoaded(BETTER_END), Items.NETHERITE_INGOT);
+        if (BardsMod.tweaksConfig.value.ignore_items_required_mods || net.spell_engine.Platform.util().isModLoaded(BETTER_END)) {
+            var repair = ingredient("betterend:aeternium_ingot", net.spell_engine.Platform.util().isModLoaded(BETTER_END), Items.NETHERITE_INGOT);
             rapier("aeternium_rapier", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, repair), rapier_t5_attack_damage)
                     .translatedName("Aeternium Rapier")
                     .loot(Equipment.LootProperties.of(4));
@@ -224,8 +223,8 @@ public class Weapons {
                     .translatedName("Aeternium Lyre")
                     .loot(Equipment.LootProperties.of(4));
         }
-        if (BardsMod.tweaksConfig.value.ignore_items_required_mods || FabricLoader.getInstance().isModLoaded(AETHER) || FabricLoader.getInstance().isDevelopmentEnvironment()) {
-            var repair = ingredient("aether:ambrosium_shard", FabricLoader.getInstance().isModLoaded(AETHER), Items.NETHERITE_INGOT);
+        if (BardsMod.tweaksConfig.value.ignore_items_required_mods || net.spell_engine.Platform.util().isModLoaded(AETHER) || net.spell_engine.Platform.util().isDevelopmentEnvironment()) {
+            var repair = ingredient("aether:ambrosium_shard", net.spell_engine.Platform.util().isModLoaded(AETHER), Items.NETHERITE_INGOT);
             rapier("aether_rapier", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, repair), rapier_t5_attack_damage)
                     .translatedName("Valkyrie Rapier")
                     .loot(Equipment.LootProperties.of("aether"));
@@ -238,7 +237,7 @@ public class Weapons {
             harpCrossbow("aether_harp_crossbow",Equipment.Tier.TIER_4,repair)
                     .translatedName("Divine Harp Crossbow").loot(-1, "aether");
         }
-        if (BardsMod.tweaksConfig.value.ignore_items_required_mods || FabricLoader.getInstance().isModLoaded(LNE) || FabricLoader.getInstance().isDevelopmentEnvironment()) {
+        if (BardsMod.tweaksConfig.value.ignore_items_required_mods || net.spell_engine.Platform.util().isModLoaded(LNE) || net.spell_engine.Platform.util().isDevelopmentEnvironment()) {
             rapier("ender_dragon_rapier", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.AMETHYST_SHARD)), rapier_t5_attack_damage)
                     .translatedName("Dragon's Rapier")
                     .withAdditionalSpell(MrpgLibSpells.dragonclaw_melee.id().toString())
@@ -270,7 +269,7 @@ public class Weapons {
                     .spellContainer(SpellContainers.forRangedWeapon().withSpellId(Identifier.of(MrpgLibSpells.reef_arrows.id().toString())));
 
         }
-        if (BardsMod.tweaksConfig.value.ignore_items_required_mods || FabricLoader.getInstance().isModLoaded(ARSENAL) || FabricLoader.getInstance().isDevelopmentEnvironment()) {
+        if (BardsMod.tweaksConfig.value.ignore_items_required_mods || net.spell_engine.Platform.util().isModLoaded(ARSENAL) || net.spell_engine.Platform.util().isDevelopmentEnvironment()) {
             uniqueRapier0 = groupKey(rapier("unique_rapier_0", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, () -> Ingredient.ofItems(Items.GOLD_BLOCK)), rapier_t5_attack_damage)
                     .translatedName("Singing Blade")
                     .loot(Equipment.LootProperties.of(5, "divine"))
@@ -320,20 +319,14 @@ public class Weapons {
         for (var override : groupOverrides.entrySet()) {
             var entry = override.getKey();
             var key = override.getValue();
-            ItemGroupEvents.modifyEntriesEvent(Group.KEY).register(content -> {
-                content.getDisplayStacks().removeIf(stack -> stack.isOf(entry.item()));
-                content.getSearchTabStacks().removeIf(stack -> stack.isOf(entry.item()));
-            });
-            ItemGroupEvents.modifyEntriesEvent(key).register(content -> content.add(entry.item()));
+            Platform.get().onItemGroupModify(Group.KEY, tabEntries -> tabEntries.removeByItem(entry.item()));
+            Platform.get().onItemGroupModify(key, tabEntries -> tabEntries.add(entry.item()));
         }
         for (var override : rangedGroupOverrides.entrySet()) {
             var entry = override.getKey();
             var key = override.getValue();
-            ItemGroupEvents.modifyEntriesEvent(Group.KEY).register(content -> {
-                content.getDisplayStacks().removeIf(stack -> stack.isOf(entry.item()));
-                content.getSearchTabStacks().removeIf(stack -> stack.isOf(entry.item()));
-            });
-            ItemGroupEvents.modifyEntriesEvent(key).register(content -> content.add(entry.item()));
+            Platform.get().onItemGroupModify(Group.KEY, tabEntries -> tabEntries.removeByItem(entry.item()));
+            Platform.get().onItemGroupModify(key, tabEntries -> tabEntries.add(entry.item()));
         }
     }
 }

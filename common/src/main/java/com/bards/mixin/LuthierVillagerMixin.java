@@ -1,7 +1,7 @@
 package com.bards.mixin;
 
-import com.bards.worldgen.villages.BardVillagerProfessions;
-import com.bards.worldgen.villages.BardVillagerTrades;
+import com.bards.BardsMod;
+import com.bards.worldgen.villages.BardVillagers;
 import com.bards.worldgen.villages.LuthierSongs;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -64,8 +64,8 @@ public abstract class LuthierVillagerMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/ai/brain/Brain;setSchedule(Lnet/minecraft/entity/ai/brain/Schedule;)V")
     )
     private void wrapInitBrain(Brain instance, Schedule schedule, Operation<Void> original) {
-        if (getVillagerData().getProfession().equals(BardVillagerProfessions.LUTHIER)) {
-            original.call(instance, BardVillagerTrades.LUTHIER_SCHEDULE);
+        if (getVillagerData().getProfession().equals(BardVillagers.LUTHIER)) {
+            original.call(instance, BardVillagers.LUTHIER_SCHEDULE);
         } else {
             original.call(instance, schedule);
         }
@@ -79,7 +79,7 @@ public abstract class LuthierVillagerMixin {
         long timeOfDay = serverWorld.getTimeOfDay() % 24000;
         boolean isPerformanceTime = timeOfDay >= 8500 && timeOfDay < 11000;
 
-        if (villager.getVillagerData().getProfession().equals(BardVillagerProfessions.LUTHIER)) {
+        if (villager.getVillagerData().getProfession().equals(BardVillagers.LUTHIER)) {
             bards_tickLuthier(villager, serverWorld, isPerformanceTime);
         } else {
             bards_tickReaction(villager, serverWorld, isPerformanceTime);
@@ -146,7 +146,10 @@ public abstract class LuthierVillagerMixin {
 
         if (bards_lastSoundTime < 0 || currentTime - bards_lastSoundTime >= song.soundDurationTicks()) {
             SoundEvent soundEvent = song.sound().value();
-            villager.playSound(soundEvent, 1.0f, 1.0f);
+            float volume = Math.max(0.0f, BardsMod.tweaksConfig.value.luthier_song_volume);
+            if (volume > 0.0f) {
+                villager.playSound(soundEvent, volume, 1.0f);
+            }
             bards_lastSoundTime = currentTime;
         }
 
@@ -258,7 +261,7 @@ public abstract class LuthierVillagerMixin {
     private static VillagerEntity bards_findPlayingLuthier(VillagerEntity self, ServerWorld world) {
         Box searchBox = Box.of(self.getPos(), 20, 8, 20);
         List<VillagerEntity> nearby = world.getEntitiesByClass(VillagerEntity.class, searchBox,
-                e -> e != self && e.getVillagerData().getProfession().equals(BardVillagerProfessions.LUTHIER));
+                e -> e != self && e.getVillagerData().getProfession().equals(BardVillagers.LUTHIER));
         for (VillagerEntity luthier : nearby) {
             if (self.canSee(luthier)) return luthier;
         }

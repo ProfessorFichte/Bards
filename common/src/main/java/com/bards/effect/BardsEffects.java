@@ -209,8 +209,8 @@ public class BardsEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes_RangedWeapon.PULL_TIME.id,
-                                    0.2F,
+                                    EntityAttributes_RangedWeapon.HASTE.id,
+                                    -0.2F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                             )
                     )

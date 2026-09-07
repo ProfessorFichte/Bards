@@ -11,15 +11,12 @@ import com.bards.effect.BardsEffects;
 import com.bards.item.Armors;
 import com.bards.item.Group;
 import com.bards.item.MusicDiscs;
-import com.bards.worldgen.villages.BardVillagerProfessions;
-import com.bards.worldgen.villages.BardVillagerTrades;
+import net.spell_engine.Platform;
+import com.bards.worldgen.villages.BardVillagers;
 import com.bards.item.Weapons;
 import net.fabric_extras.structure_pool.api.StructurePoolAPI;
 import net.fabric_extras.structure_pool.api.StructurePoolConfig;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
-import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -66,10 +63,10 @@ public final class BardsMod {
         villageConfig.refresh();
         tweaksConfig.refresh();
         CustomSpellImpacts.registerCustomImpacts();
-        if (FabricLoader.getInstance().isDevelopmentEnvironment()) {
+        if (Platform.util().isDevelopmentEnvironment()) {
             tweaksConfig.value.ignore_items_required_mods = true;
         }
-        if (!FabricLoader.getInstance().isModLoaded("lithostitched")) {
+        if (!Platform.util().isModLoaded("lithostitched")) {
             // Only inject the village if the Lithostitched is not present
             StructurePoolAPI.injectAll(BardsMod.villageConfig.value);
         }
@@ -77,7 +74,7 @@ public final class BardsMod {
 
     public static void registerItems() {
         if (itemConfig.value == null) itemConfig.value = new BardItemConfig();
-        Group.BARDS = FabricItemGroup.builder()
+        Group.BARDS = new ItemGroup.Builder(ItemGroup.Row.TOP, 0)
                 .icon(() -> new ItemStack(Armors.troubadourArmorSet.armorSet().head))
                 .displayName(Text.translatable("itemGroup.bards_rpg.general"))
                 .build();
@@ -85,15 +82,6 @@ public final class BardsMod {
         Weapons.register(itemConfig.value.ranged_weapons,itemConfig.value.melee_weapons);
         Armors.register(itemConfig.value.armor_sets);
         MusicDiscs.register();
-        if (armoryLoadCheck()) {
-            FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
-                ResourceManagerHelper.registerBuiltinResourcePack(
-                        Identifier.of(MOD_ID, "bards_armory_compat"),
-                        modContainer,
-                        ResourcePackActivationType.ALWAYS_ENABLED
-                );
-            });
-        }
         itemConfig.save();
     }
 
@@ -109,21 +97,6 @@ public final class BardsMod {
         BardBlocks.register();
     }
 
-    public static void registerVillagePoi() {
-        BardVillagerProfessions.registerPoiTypes();
-    }
-
-    public static void registerVillageProfessions() {
-        BardVillagerProfessions.registerProfessions();
-    }
-
-    public static void registerVillageSchedules() {
-        BardVillagerTrades.registerSchedule();
-    }
-
-    public static void registerVillageTrades() {
-        BardVillagerTrades.registerTrades();
-    }
 
     public static void registerSounds() {
         BardsSounds.register();
@@ -131,5 +104,9 @@ public final class BardsMod {
 
     public static void registerParticles() {
         BardParticles.register();
+    }
+
+    public static void registerVillagers() {
+        BardVillagers.registerVillagers();
     }
 }

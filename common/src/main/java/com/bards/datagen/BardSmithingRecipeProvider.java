@@ -116,6 +116,7 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
         // ====================
         // ARMOR UPGRADES - Netherite Troubadour TO Storyteller
         // ====================
+
         if (Armors.storytellerArmorSet != null) {
             // From Netherite Troubadour to Storyteller
             Identifier upgradeCrystal = Identifier.of("more_rpg_classes", "virtuoso_upgrade_crystal");
@@ -151,6 +152,7 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
                     (Item) Armors.storytellerArmorSet.armorSet().feet,
                     "armory_rpgs"
             );
+
             // ====================
             // LOOT N EXPLORE -UPGRADES
             // ====================
@@ -292,6 +294,8 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
                     (Item) Armors.storytellerArmorSet.armorSet().feet,
                     "armory_rpgs"
             );
+
         }
+
     }
 }

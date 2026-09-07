@@ -1,3 +1,8 @@
+# 1.1.1 - 1.21.1
+- Drop Forgified Fabric API (FFAPI) as a required dependency
+- Replace AzurelibArmor with ArmorModelAPI
+- Add a Config Option to turn down the volume of the Luthier Villager
+
 # 1.1.0 - 1.21.1
 - Adopt Spell Engine 1.10 - Thanks Daedelus for the PR!
 - Added spell tags for all Spells and specific Lute & Lyre Songs to trigger spell modifiers & passives in the Skill Tree Nodes correctly

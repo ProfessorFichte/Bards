@@ -1,0 +1,55 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "armory_rpgs"
+      ]
+    }
+  ],
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "armory_rpgs"
+    }
+  ],
+  "bonuses": [
+    {
+      "attributes": {
+        "modifiers": [
+          {
+            "type": "spell_power:arcane",
+            "amount": 0.05,
+            "id": "bards_rpg:storyteller",
+            "operation": "add_multiplied_base",
+            "slot": "armor"
+          },
+          {
+            "type": "spell_power:healing",
+            "amount": 0.05,
+            "id": "bards_rpg:storyteller",
+            "operation": "add_multiplied_base",
+            "slot": "armor"
+          }
+        ]
+      },
+      "required_piece_count": 2
+    },
+    {
+      "required_piece_count": 4,
+      "spells": {
+        "content": "ANY",
+        "spell_ids": [
+          "bards_rpg:improved_encore"
+        ]
+      }
+    }
+  ],
+  "items": [
+    "bards_rpg:storyteller_garb_head",
+    "bards_rpg:storyteller_garb_chest",
+    "bards_rpg:storyteller_garb_legs",
+    "bards_rpg:storyteller_garb_feet"
+  ],
+  "name": "storyteller"
+}
