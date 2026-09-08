@@ -74,6 +74,7 @@ public final class BardsMod {
 
     public static void registerItems() {
         if (itemConfig.value == null) itemConfig.value = new BardItemConfig();
+        BardBlocks.registerItems();
         Group.BARDS = new ItemGroup.Builder(ItemGroup.Row.TOP, 0)
                 .icon(() -> new ItemStack(Armors.troubadourArmorSet.armorSet().head))
                 .displayName(Text.translatable("itemGroup.bards_rpg.general"))

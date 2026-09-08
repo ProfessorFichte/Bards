@@ -3,6 +3,7 @@ package com.bards.content;
 import com.bards.effect.BardsEffects;
 import com.bards.tags.BardTags;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.SpellBuilderHelper;
@@ -49,6 +50,11 @@ public class BardsSpells {
         }
     }
 
+    /// 1.20.1 `EntityAttribute` is a raw object with no id accessor (`getIdAsString()` is 1.21-only).
+    private static String attributeId(EntityAttribute attribute) {
+        return net.minecraft.registry.Registries.ATTRIBUTE.getId(attribute).toString();
+    }
+
     public static final List<Entry> entries = new ArrayList<>();
 
     private static Entry add(Entry entry) {
@@ -56,7 +62,7 @@ public class BardsSpells {
         return entry;
     }
 
-    private static final Identifier ATTACK_DAMAGE = Identifier.of(EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString());
+    private static final Identifier ATTACK_DAMAGE = new Identifier(attributeId(EntityAttributes.GENERIC_ATTACK_DAMAGE));
 
     public static final String ENCOURAGE =  "encourage";
     public static final String HUMILIATE = "humiliate";
@@ -947,7 +953,7 @@ public class BardsSpells {
         spell.deliver.stash_effect.triggers = List.of(SpellBuilder.Triggers.meleeAttackImpact(), SpellBuilder.Triggers.arrowHit());
 
         var damage = new Spell.Impact();
-        damage.attribute = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
+        damage.attribute = attributeId(EntityAttributes.GENERIC_MAX_HEALTH);
         damage.attribute_from_target = true;
         damage.action = new Spell.Impact.Action();
         damage.action.type = Spell.Impact.Action.Type.DAMAGE;

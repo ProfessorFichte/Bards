@@ -4,7 +4,7 @@ import com.bards.platform.Platform;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
-import net.minecraft.block.enums.NoteBlockInstrument;
+import net.minecraft.block.enums.Instrument;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -37,15 +37,23 @@ public class BardBlocks {
     public static final Entry MUSIC_STAND = entry("music_stand",
             new MusicStandBlock(AbstractBlock.Settings.create()
                     .mapColor(MapColor.OAK_TAN)
-                    .instrument(NoteBlockInstrument.BASS)
+                    .instrument(Instrument.BASS)
                     .strength(2.5F)
                     .sounds(BlockSoundGroup.WOOD)
                     .nonOpaque()),
             "Music note Stand");
 
+    /// Split from {@link #registerItems()} because Forge opens one `RegisterEvent` window per registry and
+    /// keeps every other registry locked while a window is open - registering the `BlockItem`s from the
+    /// BLOCK window throws "Can not register to a locked registry".
     public static void register() {
         for (var e : all) {
             Registry.register(Registries.BLOCK, Identifier.of(MOD_ID, e.name()), e.block());
+        }
+    }
+
+    public static void registerItems() {
+        for (var e : all) {
             Registry.register(Registries.ITEM, Identifier.of(MOD_ID, e.name()), e.item());
         }
         Platform.get().onItemGroupModify(com.bards.item.Group.KEY, entries -> {

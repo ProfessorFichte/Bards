@@ -1,9 +1,11 @@
 package com.bards.effect;
 
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
+import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.spell_engine.rpg_series.config.AttributeModifier;
 import net.spell_engine.rpg_series.config.ConfigFile;
@@ -19,6 +21,11 @@ import java.util.List;
 import static com.bards.BardsMod.MOD_ID;
 
 public class BardsEffects {
+    /// 1.20.1 `EntityAttribute` is a raw object with no id accessor (`getIdAsString()` is 1.21-only).
+    private static String attributeId(EntityAttribute attribute) {
+        return Registries.ATTRIBUTE.getId(attribute).toString();
+    }
+
     public static final List<Effects.Entry> entries = new ArrayList<>();
     private static Effects.Entry add(Effects.Entry entry) {
         entries.add(entry);
@@ -34,17 +41,17 @@ public class BardsEffects {
                             new AttributeModifier(
                                     SpellSchools.GENERIC.id.toString(),
                                     0.025F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    attributeId(EntityAttributes.GENERIC_ATTACK_DAMAGE),
                                     0.025F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
                                     EntityAttributes_RangedWeapon.DAMAGE.id.toString(),
                                     0.025F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             )
                     )
             )
@@ -58,7 +65,7 @@ public class BardsEffects {
                             new AttributeModifier(
                                     SpellEngineAttributes.DAMAGE_TAKEN.id.toString(),
                                     -0.03F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             )
                     )
             )
@@ -74,22 +81,22 @@ public class BardsEffects {
                             new AttributeModifier(
                                     SpellPowerMechanics.CRITICAL_CHANCE.id,
                                     critChanceIncrease,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
                                     "critical_strike:chance",
                                     critChanceIncrease,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
                                     SpellPowerMechanics.CRITICAL_DAMAGE.id,
                                     critDamageIncrease,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
                                     "critical_strike:damage",
                                     critDamageIncrease,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             )
                     )
             )
@@ -121,7 +128,7 @@ public class BardsEffects {
                             new AttributeModifier(
                                     SpellEngineAttributes.HEALING_TAKEN.id.toString(),
                                     0.03F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             )
                     )
             )
@@ -133,9 +140,9 @@ public class BardsEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    attributeId(EntityAttributes.GENERIC_MOVEMENT_SPEED),
                                     0.03F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             )
                     )
             )
@@ -149,7 +156,7 @@ public class BardsEffects {
                             new AttributeModifier(
                                     SpellEngineAttributes.DAMAGE_TAKEN.id,
                                     0.05F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             )
                     )
             )
@@ -163,22 +170,22 @@ public class BardsEffects {
                             new AttributeModifier(
                                     SpellSchools.GENERIC.id,
                                     -0.05F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    attributeId(EntityAttributes.GENERIC_ATTACK_DAMAGE),
                                     -0.05F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
                                     EntityAttributes_RangedWeapon.DAMAGE.id.toString(),
                                     -0.05F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
                                     SpellEngineAttributes.DAMAGE_TAKEN.id.toString(),
                                     0.05F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             )
 
                     )
@@ -209,9 +216,9 @@ public class BardsEffects {
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    EntityAttributes_RangedWeapon.HASTE.id,
+                                    EntityAttributes_RangedWeapon.HASTE.id.toString(),
                                     -0.2F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                                    EntityAttributeModifier.Operation.MULTIPLY_TOTAL
                             )
                     )
             )
@@ -220,15 +227,10 @@ public class BardsEffects {
             "Hymn of the Golden Light",
             "Refreshes the absorption hearts granted by this effect every 2 seconds.",
             new HymnOfTheGoldenLightEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff, 2.0F),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
-                                    2.0F,
-                                    EntityAttributeModifier.Operation.ADD_VALUE
-                            )
-                    )
-            )
+            // 1.20.1 has no `generic.max_absorption` attribute (1.20.5+) - absorption is an uncapped float on
+            // LivingEntity. The +2/level headroom modifier is dropped; `HymnOfTheGoldenLightEffect` already
+            // sets the absorption amount itself, which is what the player actually sees.
+            new EffectConfig(List.of())
     ));
     public static Effects.Entry SONG_OF_THE_TURNING_SKY = add(new Effects.Entry(Identifier.of(MOD_ID, "song_of_the_turning_sky"),
             "Song of the Turning Sky",
@@ -239,7 +241,7 @@ public class BardsEffects {
                             new AttributeModifier(
                                     SpellEngineAttributes.DAMAGE_TAKEN.id.toString(),
                                     -0.02F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             )
                     )
             )
@@ -254,17 +256,17 @@ public class BardsEffects {
                             new AttributeModifier(
                                     SpellSchools.GENERIC.id.toString(),
                                     offensiveReductionDiscordant,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    attributeId(EntityAttributes.GENERIC_ATTACK_DAMAGE),
                                     offensiveReductionDiscordant,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
                                     EntityAttributes_RangedWeapon.DAMAGE.id.toString(),
                                     offensiveReductionDiscordant,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             )
                     )
             )
@@ -285,17 +287,17 @@ public class BardsEffects {
                             new AttributeModifier(
                                     SpellSchools.GENERIC.id.toString(),
                                     dragonSlayerMultiplier,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
-                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    attributeId(EntityAttributes.GENERIC_ATTACK_DAMAGE),
                                     dragonSlayerMultiplier,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             ),
                             new AttributeModifier(
                                     EntityAttributes_RangedWeapon.DAMAGE.id.toString(),
                                     dragonSlayerMultiplier,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             )
                     )
             )
@@ -309,7 +311,7 @@ public class BardsEffects {
                             new AttributeModifier(
                                     SpellEngineAttributes.EVASION_CHANCE.id.toString(),
                                     0.15F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                                    EntityAttributeModifier.Operation.MULTIPLY_BASE
                             )
                     )
             )

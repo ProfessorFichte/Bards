@@ -10,11 +10,13 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.ai.brain.Activity;
 import net.minecraft.entity.ai.brain.Schedule;
 import net.minecraft.entity.ai.brain.ScheduleBuilder;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
 import net.minecraft.world.poi.PointOfInterestType;
@@ -64,11 +66,11 @@ public class BardVillagers {
                 RegistryKey.of(Registries.POINT_OF_INTEREST_TYPE.getKey(), PROFESSION_ID));
         TRADES.clear();
         TRADES.put(1, List.of(
-                new TradeOffers.BuyItemFactory(Items.STRING, 8, 12, 4, 5),
-                new TradeOffers.SellItemFactory(Items.ARROW, 2, 8, 128, 3, 0.01f)
+                buyForEmeralds(Items.STRING, 8, 12, 4, 5),
+                new TradeOffers.SellItemFactory(new ItemStack(Items.ARROW), 2, 8, 128, 3, 0.01f)
         ));
         TRADES.put(2, List.of(
-                new TradeOffers.BuyItemFactory(Items.GOLD_INGOT, 12, 12, 5, 8),
+                buyForEmeralds(Items.GOLD_INGOT, 12, 12, 5, 8),
                 new TradeOffers.SellItemFactory(Weapons.wooden_lute.item(), 12, 1, 12, 10),
                 new TradeOffers.SellItemFactory(Weapons.harp_crossbow.item(), 18, 1, 12, 10),
                 new TradeOffers.SellItemFactory(Armors.entertainerArmorSet.armorSet().head, 15, 1, 12, 13)
@@ -110,6 +112,13 @@ public class BardVillagers {
                         0F).create(entity, random)
         ));
     }
+    /// 1.20.1 has no `TradeOffers.BuyItemFactory` (it only ships `BuyForOneEmeraldFactory`), so the
+    /// 1.21 offer is rebuilt on the raw `TradeOffer` constructor with the same 0.05 price multiplier.
+    private static TradeOffers.Factory buyForEmeralds(net.minecraft.item.Item item, int count, int maxUses, int experience, int price) {
+        return (entity, random) -> new TradeOffer(
+                new ItemStack(item, count), new ItemStack(Items.EMERALD, price), maxUses, experience, 0.05F);
+    }
+
     public static void registerSchedule() {
         new ScheduleBuilder(LUTHIER_SCHEDULE)
                 .withActivity(10,    Activity.IDLE)

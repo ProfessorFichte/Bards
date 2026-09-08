@@ -1,6 +1,7 @@
 package com.bards.effect;
 
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
@@ -17,7 +18,7 @@ public class HymnOfTheGoldenLightEffect extends StatusEffect {
     }
 
     @Override
-    public void onApplied(LivingEntity entity, int amplifier) {
+    public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
         float contribution = effectContribution(amplifier);
         if (entity.getAbsorptionAmount() < contribution) {
             entity.setAbsorptionAmount(contribution);
@@ -30,11 +31,10 @@ public class HymnOfTheGoldenLightEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         float contribution = effectContribution(amplifier);
         if (entity.getAbsorptionAmount() < contribution) {
             entity.setAbsorptionAmount(contribution);
         }
-        return true;
     }
 }

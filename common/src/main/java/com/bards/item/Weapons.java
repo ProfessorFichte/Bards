@@ -62,7 +62,7 @@ public class Weapons {
 
 
     private static Supplier<Ingredient> ingredient(String idString, boolean requirement, Item fallback) {
-        var id = Identifier.of(idString);
+        var id = new Identifier(idString);
         if (requirement) {
             return () -> {
                 return Ingredient.ofItems(fallback);
@@ -179,8 +179,8 @@ public class Weapons {
     private static RangedWeapon.Entry harpCrossbow(String name, Equipment.Tier tier, Supplier<Ingredient> repairIngredientSupplier) {
         var entry = new RangedWeapon.Entry(Identifier.of(MOD_ID, name), tier, HarpCrossbowItem::new,
                 new RangedConfig(rangedDamage(tier.getNumber()), PULL_TIME_HARP_CROSSBOW, VELOCITY_HARP_CROSSBOW)
-                        .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, harpSpellPower(tier, true))
-                        .withAttribute(SpellSchools.HEALING.id, EntityAttributeModifier.Operation.ADD_VALUE, harpSpellPower(tier, false))
+                        .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADDITION, harpSpellPower(tier, true))
+                        .withAttribute(SpellSchools.HEALING.id, EntityAttributeModifier.Operation.ADDITION, harpSpellPower(tier, false))
 
                 , repairIngredientSupplier, Equipment.WeaponType.RAPID_CROSSBOW);
         rangedEntries.add(entry);
@@ -266,7 +266,7 @@ public class Weapons {
                     .rarity = Rarity.RARE;
             harpCrossbow("elder_guardian_harp_crossbow",Equipment.Tier.TIER_5,() -> Ingredient.ofItems(Items.PRISMARINE_SHARD))
                     .translatedName("Atlantis Harp Crossbow")
-                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(Identifier.of(MrpgLibSpells.reef_arrows.id().toString())));
+                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(new Identifier(MrpgLibSpells.reef_arrows.id().toString())));
 
         }
         if (BardsMod.tweaksConfig.value.ignore_items_required_mods || net.spell_engine.Platform.util().isModLoaded(ARSENAL) || net.spell_engine.Platform.util().isDevelopmentEnvironment()) {
@@ -306,11 +306,11 @@ public class Weapons {
             uniqueLyre1.rarity = Rarity.RARE;
             groupKey(harpCrossbow("unique_harp_crossbow_0",Equipment.Tier.TIER_5,() -> Ingredient.ofItems(Items.NETHERITE_INGOT))
                     .translatedName("Lightning Harp Crossbow")
-                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(Identifier.of(MrpgLibSpells.lightning_strike_ranged.id().toString()))), MRPGCItemGroups.ARSENAL_KEY);
+                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(new Identifier(MrpgLibSpells.lightning_strike_ranged.id().toString()))), MRPGCItemGroups.ARSENAL_KEY);
             groupKey(harpCrossbow("unique_harp_crossbow_1",Equipment.Tier.TIER_5,() -> Ingredient.ofItems(Items.NETHERITE_INGOT))
                     .translatedName("Starshot Harp Crossbow")
                     .loot(5, "divine")
-                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(Identifier.of(BardsSpells.starshots.id().toString()))), MRPGCItemGroups.ARSENAL_KEY);
+                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(new Identifier(BardsSpells.starshots.id().toString()))), MRPGCItemGroups.ARSENAL_KEY);
         }
 
         Weapon.register(meleeConfig, meleeEntries, Group.KEY);

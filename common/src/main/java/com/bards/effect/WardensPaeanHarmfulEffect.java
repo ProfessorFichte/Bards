@@ -1,6 +1,7 @@
 package com.bards.effect;
 
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -21,11 +22,11 @@ public class WardensPaeanHarmfulEffect extends StatusEffect {
     }
 
     @Override
-    public void onApplied(LivingEntity entity, int amplifier) {
+    public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
         if (entity.getWorld().isClient()) return;
         if (DECREMENTING.remove(entity.getUuid())) return;
         for (var instance : new ArrayList<>(entity.getStatusEffects())) {
-            if (instance.getEffectType().value().isBeneficial()) {
+            if (instance.getEffectType().isBeneficial()) {
                 entity.removeStatusEffect(instance.getEffectType());
                 if (amplifier == 0) {
                     PENDING_REMOVAL.add(entity.getUuid());
@@ -43,21 +44,20 @@ public class WardensPaeanHarmfulEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (PENDING_REMOVAL.remove(entity.getUuid())) {
-            entity.removeStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.entry);
+            entity.removeStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.effect);
         } else if (PENDING_DECREMENT.remove(entity.getUuid())) {
-            var current = entity.getStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.entry);
+            var current = entity.getStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.effect);
             if (current != null) {
                 DECREMENTING.add(entity.getUuid());
-                entity.removeStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.entry);
+                entity.removeStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.effect);
                 entity.addStatusEffect(new StatusEffectInstance(
-                    BardsEffects.HARMFUL_WARDENS_PAEAN.entry,
+                    BardsEffects.HARMFUL_WARDENS_PAEAN.effect,
                     current.getDuration(),
                     current.getAmplifier() - 1
                 ));
             }
         }
-        return true;
     }
 }

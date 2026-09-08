@@ -1,0 +1,47 @@
+package com.bards.forge.platform;
+
+import com.bards.platform.Platform;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.registry.RegistryKey;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
+
+public final class ForgePlatform implements Platform {
+    private static final Map<RegistryKey<ItemGroup>, List<Consumer<Entries>>> itemGroupModifiers = new HashMap<>();
+
+    @Override
+    public void onItemGroupModify(RegistryKey<ItemGroup> group, Consumer<Entries> modifier) {
+        itemGroupModifiers.computeIfAbsent(group, key -> new ArrayList<>()).add(modifier);
+    }
+
+    public static void dispatchItemGroup(BuildCreativeModeTabContentsEvent event) {
+        var modifiers = itemGroupModifiers.get(event.getTabKey());
+        if (modifiers == null) return;
+        var entries = new Entries() {
+            @Override
+            public void add(ItemStack stack) {
+                event.add(stack);
+            }
+
+            @Override
+            public void removeByItem(Item item) {
+                // Forge 47 has no `remove(stack, visibility)` / `getParentEntries()`; the backing
+                // `MutableHashedLinkedMap` is iterated instead (its iterator supports removal).
+                var iterator = event.getEntries().iterator();
+                while (iterator.hasNext()) {
+                    if (iterator.next().getKey().isOf(item)) {
+                        iterator.remove();
+                    }
+                }
+            }
+        };
+        for (var modifier : modifiers) modifier.accept(entries);
+    }
+}

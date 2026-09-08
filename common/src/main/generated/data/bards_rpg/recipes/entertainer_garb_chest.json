@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "minecraft:leather"
+    },
+    "B": {
+      "tag": "minecraft:wool"
+    },
+    "C": {
+      "item": "minecraft:purple_dye"
+    }
+  },
+  "pattern": [
+    "A A",
+    "BBB",
+    "CAC"
+  ],
+  "result": {
+    "item": "bards_rpg:entertainer_garb_chest"
+  },
+  "show_notification": true
+}

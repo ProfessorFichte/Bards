@@ -1,0 +1,29 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "betterend"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "R": {
+      "item": "minecraft:leather"
+    },
+    "W": {
+      "item": "minecraft:netherite_ingot"
+    }
+  },
+  "pattern": [
+    "  W",
+    " W ",
+    "RW "
+  ],
+  "result": {
+    "item": "bards_rpg:aeternium_rapier"
+  },
+  "show_notification": true
+}

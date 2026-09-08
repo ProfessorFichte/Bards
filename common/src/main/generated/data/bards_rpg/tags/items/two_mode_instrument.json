@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#bards_rpg:lutes",
+      "required": false
+    },
+    {
+      "id": "#bards_rpg:lyres",
+      "required": false
+    }
+  ]
+}

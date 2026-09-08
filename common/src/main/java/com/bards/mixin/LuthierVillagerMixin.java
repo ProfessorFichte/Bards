@@ -102,7 +102,7 @@ public abstract class LuthierVillagerMixin {
                 villager.getBrain().getOptionalRegisteredMemory(MemoryModuleType.JOB_SITE);
         if (jobSite.isEmpty()) return;
 
-        BlockPos standPos = jobSite.get().pos();
+        BlockPos standPos = jobSite.get().getPos();
 
         BlockState standState = serverWorld.getBlockState(standPos);
         Direction facing = standState.contains(Properties.HORIZONTAL_FACING)
@@ -155,9 +155,9 @@ public abstract class LuthierVillagerMixin {
 
         if (!bards_wasPlaying) {
             bards_wasPlaying = true;
-            var effectKey = song.effect().getKey();
-            if (effectKey.isPresent()) {
-                var popup = new PopupParticleEffect(MoreParticles.POPUP, effectKey.get().getValue(), false, villager.getId());
+            var effectId = net.minecraft.registry.Registries.STATUS_EFFECT.getId(song.effect());
+            if (effectId != null) {
+                var popup = new PopupParticleEffect(MoreParticles.POPUP, effectId, false, villager.getId());
                 serverWorld.spawnParticles(popup, villager.getX(), villager.getY(), villager.getZ(), 1, 0, 0, 0, 0);
             }
         }

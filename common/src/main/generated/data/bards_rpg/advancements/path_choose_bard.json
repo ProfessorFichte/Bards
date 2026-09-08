@@ -1,0 +1,27 @@
+{
+  "parent": "more_rpg_content:root",
+  "criteria": {
+    "book": {
+      "conditions": {
+        "spell_pool": "bards_rpg:spell_book/bard"
+      },
+      "trigger": "spell_engine:spell_book_creation"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.bards_rpg.path_choose_bard.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "spell_engine:spell_scroll",
+      "nbt": "{spell_engine:{item_model:\"bards_rpg:item/spell_scroll/bard\"}}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bards_rpg.path_choose_bard.title"
+    }
+  }
+}

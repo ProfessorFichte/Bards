@@ -1,9 +1,7 @@
 package com.bards.content;
 
 import com.bards.BardsMod;
-import com.mojang.serialization.MapCodec;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
+import com.mojang.serialization.Codec;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -15,14 +13,12 @@ public class BardParticles {
         SPELL_STOLEN_POPUP = Registry.register(
             Registries.PARTICLE_TYPE,
             BardsMod.id("spell_stolen_popup"),
-            new ParticleType<PopupParticleEffect>(false) {
+            // 1.20.1 particle types take the deserializer factory in the constructor and expose a
+            // plain `Codec` (no `PacketCodec`); `ParticleEffect` itself carries the buffer writer.
+            new ParticleType<PopupParticleEffect>(false, PopupParticleEffect.FACTORY) {
                 @Override
-                public MapCodec<PopupParticleEffect> getCodec() {
+                public Codec<PopupParticleEffect> getCodec() {
                     return PopupParticleEffect.createCodec(this);
-                }
-                @Override
-                public PacketCodec<? super RegistryByteBuf, PopupParticleEffect> getPacketCodec() {
-                    return PopupParticleEffect.createPacketCodec(this);
                 }
             }
         );

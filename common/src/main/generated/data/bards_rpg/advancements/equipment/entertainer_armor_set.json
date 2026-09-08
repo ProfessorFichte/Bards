@@ -1,0 +1,54 @@
+{
+  "parent": "more_rpg_content:root",
+  "criteria": {
+    "has_all_items": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "bards_rpg:entertainer_garb_head"
+            ]
+          },
+          {
+            "items": [
+              "bards_rpg:entertainer_garb_chest"
+            ]
+          },
+          {
+            "items": [
+              "bards_rpg:entertainer_garb_legs"
+            ]
+          },
+          {
+            "items": [
+              "bards_rpg:entertainer_garb_feet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.bards_rpg.equipment.entertainer_armor_set.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "bards_rpg:entertainer_garb_chest",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.bards_rpg.equipment.entertainer_armor_set.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_all_items"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
