@@ -11,6 +11,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static com.bards.BardsMod.MOD_ID;
 
@@ -54,11 +56,27 @@ public class MusicDiscs {
     public static final Entry SECRET_SONATA = entry("secret_sonata", BardsSounds.secret_sonata_full.soundEvent());
 
     public static void register() {
-        for (var e : all) {
-            Registry.register(Registries.ITEM, Identifier.of(MOD_ID, e.name()), e.item());
-        }
-        Platform.get().onItemGroupModify(ItemGroups.TOOLS, entries -> {
-            for (var e : all) entries.add(e.item());
-        });
+        itemsToRegister().forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
     }
+
+    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
+    /// instead of calling {@link #register}. The item-group contents callback is installed here, exactly
+    /// as {@link #register()} used to do it inline.
+    public static Map<Identifier, Item> itemsToRegister() {
+        var toRegister = new LinkedHashMap<Identifier, Item>();
+        for (var e : all) {
+            var id = Identifier.of(MOD_ID, e.name());
+            if (Registries.ITEM.containsId(id)) { continue; }
+            toRegister.put(id, e.item());
+        }
+        if (!itemGroupCallbackInstalled) {
+            itemGroupCallbackInstalled = true;
+            Platform.get().onItemGroupModify(ItemGroups.TOOLS, entries -> {
+                for (var e : all) entries.add(e.item());
+            });
+        }
+        return toRegister;
+    }
+
+    private static boolean itemGroupCallbackInstalled = false;
 }

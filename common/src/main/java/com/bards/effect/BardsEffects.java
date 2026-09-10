@@ -5,7 +5,9 @@ import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.spell_engine.rpg_series.config.AttributeModifier;
 import net.spell_engine.rpg_series.config.ConfigFile;
@@ -17,6 +19,7 @@ import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.bards.BardsMod.MOD_ID;
 
@@ -318,11 +321,20 @@ public class BardsEffects {
     ));
 
     public static void register(ConfigFile.Effects config) {
+        effectsToRegister(config).forEach((id, effect) ->
+                Registry.register(Registries.STATUS_EFFECT, id, effect));
+        Effects.linkEntries(entries);
+    }
+
+    /// Creation only - applies the behaviour configuration and returns every effect that still needs
+    /// registering, keyed by its registration id. Forge registers through the helper `RegisterEvent`
+    /// hands out, so it iterates this instead of calling {@link #register}, then calls
+    /// `Effects.linkEntries(entries)`.
+    public static Map<Identifier, StatusEffect> effectsToRegister(ConfigFile.Effects config) {
         for (var entry : entries) {
             Synchronized.configure(entry.effect, true);
         }
         ActionImpairing.configure(CRESCENDO.effect, EntityActionsAllowed.STUN);
-        Effects.register(entries, config.effects);
-
+        return Effects.effectsToRegister(entries, config.effects);
     }
 }

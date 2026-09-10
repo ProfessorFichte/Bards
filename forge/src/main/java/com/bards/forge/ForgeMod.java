@@ -1,12 +1,14 @@
 package com.bards.forge;
 
+import com.bards.block.BardBlocks;
+import com.bards.content.BardParticles;
+import com.bards.content.BardsSounds;
+import com.bards.effect.BardsEffects;
 import com.bards.forge.platform.ForgePlatform;
+import com.bards.item.Group;
 import com.bards.platform.Platform;
 import com.bards.worldgen.villages.BardVillagers;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.world.poi.PointOfInterestType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -16,6 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.RegisterEvent;
+import net.spell_engine.api.effect.Effects;
 
 import com.bards.BardsMod;
 
@@ -34,32 +37,55 @@ public final class ForgeMod {
         }
     }
 
-    /// One registry per `RegisterEvent` window - Forge keeps every other registry locked while a window is open.
+    /// Forge only clears the vanilla `NamespacedWrapper`'s lock from 47.4.0 onwards, so on Forge
+    /// 47.0-47.3 (and NeoForge 1.20.1) `Registry.register` throws "Can not register to a locked
+    /// registry" even inside the correct `RegisterEvent` window. Everything here therefore writes
+    /// through the `RegisterHelper` the event hands out.
+    ///
+    /// The loops below duplicate what `common` runs on Fabric, on purpose: the workaround stays inside
+    /// `forge/` and the Fabric path is untouched. Each block is declared unconditionally - Forge posts
+    /// one event per registry and `event.register` is a no-op unless its key matches.
     public static void register(RegisterEvent event) {
-        event.register(RegistryKeys.BLOCK, reg -> {
-            BardsMod.registerBlocks();
+        event.register(RegistryKeys.SOUND_EVENT, helper -> {
+            BardsSounds.soundsToRegister().forEach(helper::register);
+            // `LuthierSongs` reads `Entry#entry()`, which only the register-reference path fills in.
+            BardsSounds.linkEntries();
         });
-        event.register(RegistryKeys.SOUND_EVENT, reg -> {
-            BardsMod.registerSounds();
+
+        event.register(RegistryKeys.BLOCK, helper -> {
+            BardBlocks.blocksToRegister().forEach(helper::register);
         });
-        event.register(RegistryKeys.ITEM, reg -> {
-            BardsMod.registerItems();
+
+        event.register(RegistryKeys.STATUS_EFFECT, helper -> {
+            BardsMod.effectsToRegister().forEach(helper::register);
+            Effects.linkEntries(BardsEffects.entries);
+            BardsMod.effectsConfig.save();
         });
-        event.register(RegistryKeys.STATUS_EFFECT, reg -> {
-            BardsMod.registerEffects();
+
+        event.register(RegistryKeys.PARTICLE_TYPE, helper -> {
+            BardParticles.particlesToRegister().forEach(helper::register);
         });
-        event.register(RegistryKeys.PARTICLE_TYPE, reg -> {
-            BardsMod.registerParticles();
+
+        event.register(RegistryKeys.ITEM, helper -> {
+            BardsMod.itemsToRegister().forEach(helper::register);
+            BardsMod.itemConfig.save();
         });
-        event.register(RegistryKeys.POINT_OF_INTEREST_TYPE, reg -> {
-            try {
-                Registry.register(Registries.POINT_OF_INTEREST_TYPE, BardVillagers.PROFESSION_ID,
-                        new PointOfInterestType(BardVillagers.poiBlockStates(),
-                                BardVillagers.POI_TICKET_COUNT, BardVillagers.POI_SEARCH_DISTANCE));
-            } catch (Exception e) { }
+
+        // `creative_mode_tab` is `RegisterEvent` 65 while `item` is 7 - registering the group from the
+        // ITEM pass would write into a registry whose event has not fired yet.
+        event.register(RegistryKeys.ITEM_GROUP, helper -> {
+            BardsMod.createItemGroup();
+            helper.register(Group.ID, Group.BARDS);
         });
-        event.register(RegistryKeys.VILLAGER_PROFESSION, reg -> {
-            BardsMod.registerVillagers();
+
+        event.register(RegistryKeys.VILLAGER_PROFESSION, helper -> {
+            BardVillagers.professionsToRegister().forEach(helper::register);
+            // The `VillagerTradesEvent` listener below reads `BardVillagers.TRADES`.
+            BardVillagers.buildTrades();
+        });
+
+        event.register(RegistryKeys.POINT_OF_INTEREST_TYPE, helper -> {
+            helper.register(BardVillagers.PROFESSION_ID, BardVillagers.createPoi());
         });
     }
 

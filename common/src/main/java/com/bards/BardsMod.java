@@ -16,6 +16,8 @@ import com.bards.worldgen.villages.BardVillagers;
 import com.bards.item.Weapons;
 import net.fabric_extras.structure_pool.api.StructurePoolAPI;
 import net.fabric_extras.structure_pool.api.StructurePoolConfig;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -24,6 +26,9 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.spell_engine.rpg_series.config.ConfigFile;
 import net.tiny_config.ConfigManager;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static com.bards.compat.CompatLoadingCheck.armoryLoadCheck;
 
@@ -73,22 +78,48 @@ public final class BardsMod {
     }
 
     public static void registerItems() {
+        itemsToRegister().forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
+        registerItemGroup();
+        itemConfig.save();
+    }
+
+    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
+    /// from its own ITEM window. `config.save()` is a trailing side effect of the original
+    /// `registerItems()` and stays with whoever writes the registry.
+    public static Map<Identifier, Item> itemsToRegister() {
         if (itemConfig.value == null) itemConfig.value = new BardItemConfig();
-        BardBlocks.registerItems();
+        var items = new LinkedHashMap<Identifier, Item>();
+        items.putAll(BardBlocks.itemsToRegister());
+        items.putAll(Weapons.itemsToRegister(itemConfig.value.ranged_weapons, itemConfig.value.melee_weapons));
+        items.putAll(Armors.itemsToRegister(itemConfig.value.armor_sets));
+        items.putAll(MusicDiscs.itemsToRegister());
+        return items;
+    }
+
+    /// `creative_mode_tab` is `RegisterEvent` 65 while `item` is 7, so on Forge this gets its own window.
+    /// The icon supplier is lazy, so the group can be built after the items it points at.
+    public static void registerItemGroup() {
+        createItemGroup();
+        Registry.register(Registries.ITEM_GROUP, Group.KEY, Group.BARDS);
+    }
+
+    public static void createItemGroup() {
+        if (Group.BARDS != null) { return; }
         Group.BARDS = new ItemGroup.Builder(ItemGroup.Row.TOP, 0)
                 .icon(() -> new ItemStack(Armors.troubadourArmorSet.armorSet().head))
                 .displayName(Text.translatable("itemGroup.bards_rpg.general"))
                 .build();
-        Registry.register(Registries.ITEM_GROUP, Group.KEY, Group.BARDS);
-        Weapons.register(itemConfig.value.ranged_weapons,itemConfig.value.melee_weapons);
-        Armors.register(itemConfig.value.armor_sets);
-        MusicDiscs.register();
-        itemConfig.save();
     }
 
     public static void registerEffects() {
         BardsEffects.register(effectsConfig.value);
         effectsConfig.save();
+    }
+
+    /// Creation only - see {@link #itemsToRegister()}. `effectsConfig.save()` is the trailing side
+    /// effect of `registerEffects()` and stays with whoever writes the registry.
+    public static Map<Identifier, StatusEffect> effectsToRegister() {
+        return BardsEffects.effectsToRegister(effectsConfig.value);
     }
     public static Identifier id(String path) {
         return Identifier.of(MOD_ID, path);

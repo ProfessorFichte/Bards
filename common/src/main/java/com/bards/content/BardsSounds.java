@@ -4,6 +4,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -11,7 +13,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.bards.BardsMod.MOD_ID;
 
@@ -107,8 +111,33 @@ public class BardsSounds {
 
 
     public static void register() {
+        soundsToRegister().forEach((id, soundEvent) ->
+                Registry.register(Registries.SOUND_EVENT, id, soundEvent));
+        linkEntries();
+    }
+
+    /// Creation only - returns every sound that still needs registering, keyed by its registration id.
+    /// Forge registers through the helper `RegisterEvent` hands out, so it iterates this instead of
+    /// calling {@link #register}. Follow it with {@link #linkEntries}.
+    public static Map<Identifier, SoundEvent> soundsToRegister() {
+        var toRegister = new LinkedHashMap<Identifier, SoundEvent>();
         for (var entry: entries) {
-            entry.entry = Registry.registerReference(Registries.SOUND_EVENT, entry.id(), entry.soundEvent());
+            if (entry.entry != null || Registries.SOUND_EVENT.containsId(entry.id())) { continue; }
+            toRegister.put(entry.id(), entry.soundEvent());
+        }
+        return toRegister;
+    }
+
+    /// Populates every `Entry#entry` from the registry. `Registry.registerReference` returns the
+    /// `RegistryEntry` on the vanilla path, but Forge's `RegisterHelper#register` returns void - and
+    /// `LuthierSongs` reads `Entry#entry()` at class-init.
+    public static void linkEntries() {
+        for (var entry: entries) {
+            if (entry.entry != null) { continue; }
+            entry.entry = Registries.SOUND_EVENT
+                    .getEntry(RegistryKey.of(RegistryKeys.SOUND_EVENT, entry.id()))
+                    .orElseThrow(() -> new IllegalStateException(
+                            "Sound event " + entry.id() + " is not in the registry - register it first"));
         }
     }
 

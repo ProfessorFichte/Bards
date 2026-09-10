@@ -14,6 +14,8 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.function.BiConsumer;
 
 import static com.bards.BardsMod.MOD_ID;
@@ -47,19 +49,44 @@ public class BardBlocks {
     /// keeps every other registry locked while a window is open - registering the `BlockItem`s from the
     /// BLOCK window throws "Can not register to a locked registry".
     public static void register() {
-        for (var e : all) {
-            Registry.register(Registries.BLOCK, Identifier.of(MOD_ID, e.name()), e.block());
-        }
+        blocksToRegister().forEach((id, block) -> Registry.register(Registries.BLOCK, id, block));
     }
 
     public static void registerItems() {
-        for (var e : all) {
-            Registry.register(Registries.ITEM, Identifier.of(MOD_ID, e.name()), e.item());
-        }
-        Platform.get().onItemGroupModify(com.bards.item.Group.KEY, entries -> {
-            for (var e : all) entries.add(e.item());
-        });
+        itemsToRegister().forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
     }
+
+    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
+    /// instead of calling {@link #register}.
+    public static Map<Identifier, Block> blocksToRegister() {
+        var toRegister = new LinkedHashMap<Identifier, Block>();
+        for (var e : all) {
+            var id = Identifier.of(MOD_ID, e.name());
+            if (Registries.BLOCK.containsId(id)) { continue; }
+            toRegister.put(id, e.block());
+        }
+        return toRegister;
+    }
+
+    /// Creation only - the item-group contents callback is installed here, exactly as
+    /// {@link #registerItems()} used to do it inline.
+    public static Map<Identifier, Item> itemsToRegister() {
+        var toRegister = new LinkedHashMap<Identifier, Item>();
+        for (var e : all) {
+            var id = Identifier.of(MOD_ID, e.name());
+            if (Registries.ITEM.containsId(id)) { continue; }
+            toRegister.put(id, e.item());
+        }
+        if (!itemGroupCallbackInstalled) {
+            itemGroupCallbackInstalled = true;
+            Platform.get().onItemGroupModify(com.bards.item.Group.KEY, entries -> {
+                for (var e : all) entries.add(e.item());
+            });
+        }
+        return toRegister;
+    }
+
+    private static boolean itemGroupCallbackInstalled = false;
 
     public static BiConsumer<Block, RenderLayer> cutoutRenderLayerRegistrar;
 

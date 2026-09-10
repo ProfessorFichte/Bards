@@ -5,6 +5,7 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
@@ -210,6 +211,21 @@ public class Armors {
     public static Identifier storyteller_passive = Identifier.of(MOD_ID, "storyteller");
 
     public static void register(Map<String, ArmorSetConfig> configs) {
+        itemsToRegister(configs).forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
+    }
+
+    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
+    /// instead of calling {@link #register}.
+    ///
+    /// The Armory-gated storyteller set is appended to `entries` *before* the Spell Engine helper runs,
+    /// so calling `Armor.itemsToRegister` directly from Forge would silently drop it. The trailing
+    /// item-group override callbacks are installed here too, exactly as `register()` used to.
+    public static Map<Identifier, Item> itemsToRegister(Map<String, ArmorSetConfig> configs) {
+        if (conditionalEntriesCreated) {
+            // Re-running the gated block would append a duplicate entry.
+            return Armor.itemsToRegister(configs, entries, Group.KEY);
+        }
+        conditionalEntriesCreated = true;
         if (armoryLoadCheck()) {
             storytellerArmorSet = groupKey(create(
                     storytellers_garb,
@@ -238,7 +254,7 @@ public class Armors {
                     commonSettings(storyteller_passive))
                     .translatedName("Storyteller Hat", "Storyteller Tunic", "Storyteller Trousers", "Storyteller Boots"), MRPGCItemGroups.ARMORY_KEY);
         }
-        Armor.register(configs, entries, Group.KEY);
+        var items = Armor.itemsToRegister(configs, entries, Group.KEY);
         for (var override : groupOverrides.entrySet()) {
             var entry = override.getKey();
             var key = override.getValue();
@@ -252,5 +268,8 @@ public class Armors {
                 }
             });
         }
+        return items;
     }
+
+    private static boolean conditionalEntriesCreated = false;
 }

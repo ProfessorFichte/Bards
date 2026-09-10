@@ -11,6 +11,7 @@ import net.minecraft.item.ToolMaterials;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -28,6 +29,7 @@ import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -203,6 +205,26 @@ public class Weapons {
     private static final float lute_t5_attack_damage = 10;
     public static Weapon.Entry uniqueRapier0;
     public static void register(Map<String, RangedConfig> rangedConfig, Map<String, WeaponConfig> meleeConfig) {
+        itemsToRegister(rangedConfig, meleeConfig)
+                .forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
+    }
+
+    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
+    /// instead of calling {@link #register}.
+    ///
+    /// The conditional blocks below append entries to `meleeEntries` / `rangedEntries` *before* the
+    /// Spell Engine helper runs, so calling `Weapon.itemsToRegister` / `RangedWeapon.itemsToRegister`
+    /// directly from Forge would silently drop every mod-gated weapon. The trailing item-group override
+    /// callbacks are part of the contract too and are installed here, exactly as `register()` used to.
+    public static Map<Identifier, Item> itemsToRegister(Map<String, RangedConfig> rangedConfig, Map<String, WeaponConfig> meleeConfig) {
+        if (conditionalEntriesCreated) {
+            // Re-running the gated blocks would append duplicate entries.
+            var items = new LinkedHashMap<Identifier, Item>();
+            items.putAll(Weapon.itemsToRegister(meleeConfig, meleeEntries, Group.KEY));
+            items.putAll(RangedWeapon.itemsToRegister(rangedConfig, rangedEntries, Group.KEY));
+            return items;
+        }
+        conditionalEntriesCreated = true;
         if (BardsMod.tweaksConfig.value.ignore_items_required_mods || net.spell_engine.Platform.util().isModLoaded(BETTER_NETHER)) {
             var repair = ingredient("betternether:nether_ruby", net.spell_engine.Platform.util().isModLoaded(BETTER_NETHER), Items.NETHERITE_INGOT);
             rapier("ruby_rapier", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, repair), rapier_t5_attack_damage)
@@ -313,8 +335,9 @@ public class Weapons {
                     .spellContainer(SpellContainers.forRangedWeapon().withSpellId(new Identifier(BardsSpells.starshots.id().toString()))), MRPGCItemGroups.ARSENAL_KEY);
         }
 
-        Weapon.register(meleeConfig, meleeEntries, Group.KEY);
-        RangedWeapon.register(rangedConfig, rangedEntries, Group.KEY);
+        var items = new LinkedHashMap<Identifier, Item>();
+        items.putAll(Weapon.itemsToRegister(meleeConfig, meleeEntries, Group.KEY));
+        items.putAll(RangedWeapon.itemsToRegister(rangedConfig, rangedEntries, Group.KEY));
 
         for (var override : groupOverrides.entrySet()) {
             var entry = override.getKey();
@@ -328,5 +351,8 @@ public class Weapons {
             Platform.get().onItemGroupModify(Group.KEY, tabEntries -> tabEntries.removeByItem(entry.item()));
             Platform.get().onItemGroupModify(key, tabEntries -> tabEntries.add(entry.item()));
         }
+        return items;
     }
+
+    private static boolean conditionalEntriesCreated = false;
 }
