@@ -1,12 +1,4 @@
 {
-  "fabric:load_conditions": [
-    {
-      "condition": "fabric:all_mods_loaded",
-      "values": [
-        "armory_rpgs"
-      ]
-    }
-  ],
   "bonuses": [
     {
       "attributes": {
@@ -45,11 +37,5 @@
     "bards_rpg:storyteller_garb_legs",
     "bards_rpg:storyteller_garb_feet"
   ],
-  "name": "storyteller",
-  "forge:conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "armory_rpgs"
-    }
-  ]
+  "name": "storyteller"
 }

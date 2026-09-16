@@ -30,7 +30,6 @@ import net.tiny_config.ConfigManager;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static com.bards.compat.CompatLoadingCheck.armoryLoadCheck;
 
 public final class BardsMod {
     public static final String MOD_ID = "bards_rpg";
