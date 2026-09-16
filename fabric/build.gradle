@@ -52,8 +52,6 @@ repositories {
         name = "Ladysnake Libs"
         url = 'https://maven.ladysnake.org/releases'
     }
-
-    mavenLocal()
 }
 
 dependencies {
@@ -70,9 +68,8 @@ dependencies {
     modImplementation("maven.modrinth:structure-pool-api:${project.structure_pool_api_version}-${platform}") { transitive = false }
     modImplementation("maven.modrinth:spell-power:${project.spell_power_version}-${platform}") { transitive = false }
     modImplementation("maven.modrinth:spell-engine:${project.spell_engine_version}-${platform}") { transitive = false }
-    // More-RPG-Library is still on mavenLocal: Fichte's Modrinth project has no 1.20.1 build of
-    // this port yet. It becomes maven.modrinth:more-rpg-library:${version}-${platform} once published.
-    modImplementation("net.more_rpg_classes:more_rpg_library-${platform}:${project.more_rpg_library_version}") { transitive = false }
+    // More RPG Library: resolves from the Modrinth maven once Fichte's release tier 1 publishes it.
+    modImplementation("maven.modrinth:more-rpg-library:${project.more_rpg_library_version}-${platform}") { transitive = false }
     modImplementation("maven.modrinth:ranged-weapon-api:${project.ranged_weapon_api_version}-${platform}") { transitive = false }
 
     // Trinkets (pulled in by SpellEngine) JiJs Cardinal Components; Loom does not load nested jars
