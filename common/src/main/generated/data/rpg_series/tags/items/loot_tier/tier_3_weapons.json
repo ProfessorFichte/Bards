@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "bards_rpg:netherite_rapier",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:netherite_lute",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:netherite_lyre",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:netherite_harp_crossbow",
+      "required": false
+    }
+  ]
+}

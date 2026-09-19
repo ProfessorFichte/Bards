@@ -22,7 +22,7 @@ public class ArmiesPaeonImpact implements SpellHandlers.CustomImpact {
             SpellExecution.ImpactContext context
     ) {
         double highestDamageAttribute = CustomMethods.getHighestDamageAttribute(caster);
-        int effectAmplifier = caster.getStatusEffect(BardsEffects.ARMYS_PAEON.entry).getAmplifier() +1;
+        int effectAmplifier = caster.getStatusEffect(BardsEffects.ARMYS_PAEON.effect).getAmplifier() +1;
         float damageMultiplier = BardsMod.tweaksConfig.value.armies_paeon_impact_multiplier * effectAmplifier;
 
         target.timeUntilRegen = 0;

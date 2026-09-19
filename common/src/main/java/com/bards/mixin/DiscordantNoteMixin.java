@@ -19,7 +19,7 @@ public abstract class DiscordantNoteMixin {
         if (!(attacker instanceof LivingEntity livingAttacker)) return;
         if (livingAttacker.getWorld().isClient()) return;
 
-        var effectInstance = livingAttacker.getStatusEffect(BardsEffects.DISCORDANT_NOTE.entry);
+        var effectInstance = livingAttacker.getStatusEffect(BardsEffects.DISCORDANT_NOTE.effect);
         if (effectInstance == null) return;
 
         int amplifier = effectInstance.getAmplifier();

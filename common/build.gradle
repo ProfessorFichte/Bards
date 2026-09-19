@@ -6,12 +6,7 @@ architectury {
 def platform = "fabric";
 
 repositories {
-    maven { url 'https://maven.kosmx.dev/' }
     maven { url 'https://maven.shedaniel.me/' }
-    maven {
-        name = "TerraformersMC"
-        url = "https://maven.terraformersmc.com/"
-    }
     maven {
         name = 'Modrinth'
         url = 'https://api.modrinth.com/maven'
@@ -19,17 +14,7 @@ repositories {
             includeGroup 'maven.modrinth'
         }
     }
-    maven {
-        name = "Ladysnake Libs"
-        url = 'https://maven.ladysnake.org/releases'
-    }
-
-    // For Accessories:
-    maven { url 'https://maven.wispforest.io/releases' }
-    maven { url 'https://maven.su5ed.dev/releases' }
     maven { url 'https://maven.fabricmc.net' }
-
-    mavenLocal()
 }
 
 dependencies {
@@ -37,21 +22,19 @@ dependencies {
     // which get remapped to the correct annotations on each platform.
     // Do NOT use other classes from Fabric Loader.
     modImplementation "net.fabricmc:fabric-loader:$project.fabric_loader_version"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:$project.fabric_api_version"
+    // There is no Forgified Fabric API on the 1.20.1 line: common/ must stay Fabric-API-free.
+    // Fabric-API-shaped call sites (datagen especially) live in the platform modules instead.
 
-    modImplementation("dev.kosmx.player-anim:player-animation-lib-${platform}:${project.player_anim_version}")
     modImplementation("me.shedaniel.cloth:cloth-config-${platform}:${project.cloth_config_version}")
-    modImplementation("maven.modrinth:armor-model-api:${project.armor_model_api_version}-${platform}")
-    modImplementation("maven.modrinth:tiny-config:${project.tiny_config_version}-${platform}")
+    // Ecosystem libraries: all resolved from the Modrinth maven. Modrinth serves only the per-loader
+    // jars, so `common` keeps compiling against the `-fabric` flavour (this module's dummy platform).
+    modImplementation("maven.modrinth:tiny-config:${project.tiny_config_version}-${platform}") { transitive = false }
+    modImplementation("maven.modrinth:armor-model-api:${project.armor_model_api_version}-${platform}") { transitive = false }
 
-    modImplementation("maven.modrinth:structure-pool-api:${project.structure_pool_api_version}-${platform}")
-    modImplementation("maven.modrinth:spell-power:${project.spell_power_version}-${platform}")
-    modImplementation("maven.modrinth:spell-engine:${project.spell_engine_version}-${platform}")
-    modImplementation("maven.modrinth:more-rpg-library:${project.more_rpg_library_version}-${platform}")
-    modCompileOnly("maven.modrinth:ranged-weapon-api:${project.ranged_weapon_api_version}-${platform}")
-
-    // Compatibility
-    // Fabric specific
-    modCompileOnly "io.wispforest:owo-lib:${project.owo_version}" // Accessories needs this
-    modImplementation("io.wispforest:accessories-common:${project.accessories_version}")
+    modImplementation("maven.modrinth:structure-pool-api:${project.structure_pool_api_version}-${platform}") { transitive = false }
+    modImplementation("maven.modrinth:spell-power:${project.spell_power_version}-${platform}") { transitive = false }
+    modImplementation("maven.modrinth:spell-engine:${project.spell_engine_version}-${platform}") { transitive = false }
+    // More RPG Library: resolves from the Modrinth maven once Fichte's release tier 1 publishes it.
+    modImplementation("maven.modrinth:more-rpg-library:${project.more_rpg_library_version}-${platform}") { transitive = false }
+    modCompileOnly("maven.modrinth:ranged-weapon-api:${project.ranged_weapon_api_version}-${platform}") { transitive = false }
 }

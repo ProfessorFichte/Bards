@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "bards_rpg:diamond_rapier",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:diamond_lute",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:diamond_lyre",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:diamond_harp_crossbow",
+      "required": false
+    }
+  ]
+}

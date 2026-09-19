@@ -11,6 +11,7 @@ import net.minecraft.item.ToolMaterials;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -28,6 +29,7 @@ import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -62,7 +64,7 @@ public class Weapons {
 
 
     private static Supplier<Ingredient> ingredient(String idString, boolean requirement, Item fallback) {
-        var id = Identifier.of(idString);
+        var id = new Identifier(idString);
         if (requirement) {
             return () -> {
                 return Ingredient.ofItems(fallback);
@@ -179,8 +181,8 @@ public class Weapons {
     private static RangedWeapon.Entry harpCrossbow(String name, Equipment.Tier tier, Supplier<Ingredient> repairIngredientSupplier) {
         var entry = new RangedWeapon.Entry(Identifier.of(MOD_ID, name), tier, HarpCrossbowItem::new,
                 new RangedConfig(rangedDamage(tier.getNumber()), PULL_TIME_HARP_CROSSBOW, VELOCITY_HARP_CROSSBOW)
-                        .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADD_VALUE, harpSpellPower(tier, true))
-                        .withAttribute(SpellSchools.HEALING.id, EntityAttributeModifier.Operation.ADD_VALUE, harpSpellPower(tier, false))
+                        .withAttribute(SpellSchools.ARCANE.id, EntityAttributeModifier.Operation.ADDITION, harpSpellPower(tier, true))
+                        .withAttribute(SpellSchools.HEALING.id, EntityAttributeModifier.Operation.ADDITION, harpSpellPower(tier, false))
 
                 , repairIngredientSupplier, Equipment.WeaponType.RAPID_CROSSBOW);
         rangedEntries.add(entry);
@@ -203,6 +205,26 @@ public class Weapons {
     private static final float lute_t5_attack_damage = 10;
     public static Weapon.Entry uniqueRapier0;
     public static void register(Map<String, RangedConfig> rangedConfig, Map<String, WeaponConfig> meleeConfig) {
+        itemsToRegister(rangedConfig, meleeConfig)
+                .forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
+    }
+
+    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
+    /// instead of calling {@link #register}.
+    ///
+    /// The conditional blocks below append entries to `meleeEntries` / `rangedEntries` *before* the
+    /// Spell Engine helper runs, so calling `Weapon.itemsToRegister` / `RangedWeapon.itemsToRegister`
+    /// directly from Forge would silently drop every mod-gated weapon. The trailing item-group override
+    /// callbacks are part of the contract too and are installed here, exactly as `register()` used to.
+    public static Map<Identifier, Item> itemsToRegister(Map<String, RangedConfig> rangedConfig, Map<String, WeaponConfig> meleeConfig) {
+        if (conditionalEntriesCreated) {
+            // Re-running the gated blocks would append duplicate entries.
+            var items = new LinkedHashMap<Identifier, Item>();
+            items.putAll(Weapon.itemsToRegister(meleeConfig, meleeEntries, Group.KEY));
+            items.putAll(RangedWeapon.itemsToRegister(rangedConfig, rangedEntries, Group.KEY));
+            return items;
+        }
+        conditionalEntriesCreated = true;
         if (BardsMod.tweaksConfig.value.ignore_items_required_mods || net.spell_engine.Platform.util().isModLoaded(BETTER_NETHER)) {
             var repair = ingredient("betternether:nether_ruby", net.spell_engine.Platform.util().isModLoaded(BETTER_NETHER), Items.NETHERITE_INGOT);
             rapier("ruby_rapier", Weapon.CustomMaterial.matching(ToolMaterials.NETHERITE, repair), rapier_t5_attack_damage)
@@ -266,7 +288,7 @@ public class Weapons {
                     .rarity = Rarity.RARE;
             harpCrossbow("elder_guardian_harp_crossbow",Equipment.Tier.TIER_5,() -> Ingredient.ofItems(Items.PRISMARINE_SHARD))
                     .translatedName("Atlantis Harp Crossbow")
-                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(Identifier.of(MrpgLibSpells.reef_arrows.id().toString())));
+                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(new Identifier(MrpgLibSpells.reef_arrows.id().toString())));
 
         }
         if (BardsMod.tweaksConfig.value.ignore_items_required_mods || net.spell_engine.Platform.util().isModLoaded(ARSENAL) || net.spell_engine.Platform.util().isDevelopmentEnvironment()) {
@@ -306,15 +328,16 @@ public class Weapons {
             uniqueLyre1.rarity = Rarity.RARE;
             groupKey(harpCrossbow("unique_harp_crossbow_0",Equipment.Tier.TIER_5,() -> Ingredient.ofItems(Items.NETHERITE_INGOT))
                     .translatedName("Lightning Harp Crossbow")
-                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(Identifier.of(MrpgLibSpells.lightning_strike_ranged.id().toString()))), MRPGCItemGroups.ARSENAL_KEY);
+                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(new Identifier(MrpgLibSpells.lightning_strike_ranged.id().toString()))), MRPGCItemGroups.ARSENAL_KEY);
             groupKey(harpCrossbow("unique_harp_crossbow_1",Equipment.Tier.TIER_5,() -> Ingredient.ofItems(Items.NETHERITE_INGOT))
                     .translatedName("Starshot Harp Crossbow")
                     .loot(5, "divine")
-                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(Identifier.of(BardsSpells.starshots.id().toString()))), MRPGCItemGroups.ARSENAL_KEY);
+                    .spellContainer(SpellContainers.forRangedWeapon().withSpellId(new Identifier(BardsSpells.starshots.id().toString()))), MRPGCItemGroups.ARSENAL_KEY);
         }
 
-        Weapon.register(meleeConfig, meleeEntries, Group.KEY);
-        RangedWeapon.register(rangedConfig, rangedEntries, Group.KEY);
+        var items = new LinkedHashMap<Identifier, Item>();
+        items.putAll(Weapon.itemsToRegister(meleeConfig, meleeEntries, Group.KEY));
+        items.putAll(RangedWeapon.itemsToRegister(rangedConfig, rangedEntries, Group.KEY));
 
         for (var override : groupOverrides.entrySet()) {
             var entry = override.getKey();
@@ -328,5 +351,8 @@ public class Weapons {
             Platform.get().onItemGroupModify(Group.KEY, tabEntries -> tabEntries.removeByItem(entry.item()));
             Platform.get().onItemGroupModify(key, tabEntries -> tabEntries.add(entry.item()));
         }
+        return items;
     }
+
+    private static boolean conditionalEntriesCreated = false;
 }

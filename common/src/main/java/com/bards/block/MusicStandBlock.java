@@ -1,6 +1,5 @@
 package com.bards.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -18,16 +17,11 @@ import java.util.Map;
 
 public class MusicStandBlock extends HorizontalFacingBlock {
 
-    public static final MapCodec<MusicStandBlock> CODEC = createCodec(MusicStandBlock::new);
+    // 1.20.1 blocks carry no `MapCodec` (block codecs arrived in 1.20.3).
 
     public MusicStandBlock(AbstractBlock.Settings settings) {
         super(settings);
         setDefaultState(getStateManager().getDefaultState().with(FACING, Direction.NORTH));
-    }
-
-    @Override
-    public MapCodec<MusicStandBlock> getCodec() {
-        return CODEC;
     }
 
     @Override
@@ -57,7 +51,7 @@ public class MusicStandBlock extends HorizontalFacingBlock {
     }
 
     @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, net.minecraft.util.math.BlockPos pos, ShapeContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, net.minecraft.util.math.BlockPos pos, ShapeContext context) {
         return SHAPES.get(state.get(FACING));
     }
 

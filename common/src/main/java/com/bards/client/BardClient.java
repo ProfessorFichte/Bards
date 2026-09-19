@@ -8,7 +8,6 @@ import com.bards.client.effect.WardensPaeanEffectRenderer;
 import com.bards.content.BardsSpells;
 import com.bards.effect.BardsEffects;
 import com.bards.item.Armors;
-import net.spell_engine.Platform;
 import net.rpg_foundation.armor_api.client.ArmorRenderers;
 import net.rpg_foundation.armor_api.client.GeoArmorRenderer;
 import net.more_rpg_classes.custom.SpellBuilderHelper;
@@ -36,9 +35,7 @@ public class BardClient {
         registerArmorRenderer(Armors.entertainerArmorSet.armorSet(), CustomArmorRenderer::entertainer_armor);
         registerArmorRenderer(Armors.troubadourArmorSet.armorSet(), CustomArmorRenderer::troubadour_armor);
         registerArmorRenderer(Armors.netheriteTroubadourArmorSet.armorSet(), CustomArmorRenderer::netherite_troubadour_armor);
-        if (Platform.util().isModLoaded("armory_rpgs") || BardsMod.tweaksConfig.value.ignore_items_required_mods) {
-            registerArmorRenderer(Armors.storytellerArmorSet.armorSet(), CustomArmorRenderer::storyteller_armor);
-        }
+        registerArmorRenderer(Armors.storytellerArmorSet.armorSet(), CustomArmorRenderer::storyteller_armor);
 
         registerEffectParticles();
         CustomModelStatusEffect.register(BardsEffects.ARMYS_PAEON_STASH.effect, new ArmysPaeonCircleRenderer());

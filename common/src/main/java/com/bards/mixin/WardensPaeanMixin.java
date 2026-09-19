@@ -19,35 +19,35 @@ public abstract class WardensPaeanMixin {
         LivingEntity entity = (LivingEntity)(Object)this;
         if (entity.getWorld().isClient()) return;
 
-        if (effect.getEffectType().value().isBeneficial() && entity.hasStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.entry)) {
-            var current = entity.getStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.entry);
+        if (effect.getEffectType().isBeneficial() && entity.hasStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.effect)) {
+            var current = entity.getStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.effect);
             if (current != null && current.getAmplifier() > 0) {
                 WardensPaeanHarmfulEffect.DECREMENTING.add(entity.getUuid());
-                entity.removeStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.entry);
+                entity.removeStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.effect);
                 entity.addStatusEffect(new StatusEffectInstance(
-                    BardsEffects.HARMFUL_WARDENS_PAEAN.entry,
+                    BardsEffects.HARMFUL_WARDENS_PAEAN.effect,
                     current.getDuration(),
                     current.getAmplifier() - 1
                 ));
             } else {
-                entity.removeStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.entry);
+                entity.removeStatusEffect(BardsEffects.HARMFUL_WARDENS_PAEAN.effect);
             }
             cir.setReturnValue(false);
             return;
         }
 
-        if (!effect.getEffectType().value().isBeneficial() && entity.hasStatusEffect(BardsEffects.BENEFICIAL_WARDENS_PAEAN.entry)) {
-            var current = entity.getStatusEffect(BardsEffects.BENEFICIAL_WARDENS_PAEAN.entry);
+        if (!effect.getEffectType().isBeneficial() && entity.hasStatusEffect(BardsEffects.BENEFICIAL_WARDENS_PAEAN.effect)) {
+            var current = entity.getStatusEffect(BardsEffects.BENEFICIAL_WARDENS_PAEAN.effect);
             if (current != null && current.getAmplifier() > 0) {
                 WardensPaeanBeneficialEffect.DECREMENTING.add(entity.getUuid());
-                entity.removeStatusEffect(BardsEffects.BENEFICIAL_WARDENS_PAEAN.entry);
+                entity.removeStatusEffect(BardsEffects.BENEFICIAL_WARDENS_PAEAN.effect);
                 entity.addStatusEffect(new StatusEffectInstance(
-                    BardsEffects.BENEFICIAL_WARDENS_PAEAN.entry,
+                    BardsEffects.BENEFICIAL_WARDENS_PAEAN.effect,
                     current.getDuration(),
                     current.getAmplifier() - 1
                 ));
             } else {
-                entity.removeStatusEffect(BardsEffects.BENEFICIAL_WARDENS_PAEAN.entry);
+                entity.removeStatusEffect(BardsEffects.BENEFICIAL_WARDENS_PAEAN.effect);
             }
             cir.setReturnValue(false);
         }

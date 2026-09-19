@@ -1,0 +1,63 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+#issueTrackerURL = ""
+license = "ARR"
+
+[[mods]]
+modId = "bards_rpg"
+version = "${version}"
+displayName = "Bards (RPG Series Plus)"
+authors = "Fichte"
+description = '''
+Motivate and strengthen the party with awesome song's and ballads!
+'''
+logoFile = "icon.png"
+
+[[dependencies.bards_rpg]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.bards_rpg]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.bards_rpg]]
+modId = "armor_model_api"
+mandatory = true
+versionRange = "[1.0.0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.bards_rpg]]
+modId = "spell_engine"
+mandatory = true
+versionRange = "[1.10.5,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.bards_rpg]]
+modId = "structure_pool_api"
+mandatory = true
+versionRange = "[1.2.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.bards_rpg]]
+modId = "ranged_weapon_api"
+mandatory = true
+versionRange = "[2.3.4,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.bards_rpg]]
+modId = "more_rpg_classes"
+mandatory = true
+versionRange = "[2.7.2,)"
+ordering = "AFTER"
+side = "BOTH"

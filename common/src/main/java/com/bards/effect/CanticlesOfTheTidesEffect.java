@@ -6,6 +6,7 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.spell.Spell;
+import net.minecraft.registry.RegistryKey;
 import net.spell_engine.api.spell.registry.SpellRegistry;
 import net.spell_engine.fx.ReleaseFx;
 import net.spell_engine.internals.SpellExecution;
@@ -24,15 +25,15 @@ public class CanticlesOfTheTidesEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        if (entity.getWorld().isClient()) return true;
+    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+        if (entity.getWorld().isClient()) return;
 
         var registry = SpellRegistry.from(entity.getWorld());
-        var spellEntry = registry.getEntry(HEAL_IMPACT_ID).orElse(null);
-        if (spellEntry == null) return true;
+        var spellEntry = registry.getEntry(RegistryKey.of(SpellRegistry.KEY, HEAL_IMPACT_ID)).orElse(null);
+        if (spellEntry == null) return;
 
         Spell spell = spellEntry.value();
-        if (spell.impacts == null || spell.impacts.isEmpty()) return true;
+        if (spell.impacts == null || spell.impacts.isEmpty()) return;
 
         SpellPower.Result power = SpellPower.getSpellPower(spell.school, entity);
         SpellExecution.ImpactContext ctx = new SpellExecution.ImpactContext()
@@ -52,8 +53,6 @@ public class CanticlesOfTheTidesEffect extends StatusEffect {
         for (Entity target : TargetHelper.targetsFromArea(entity, range, spell.target != null ? spell.target.area : null, e -> e != entity)) {
             SpellImpacts.performImpacts(entity.getWorld(), entity, target, entity, spellEntry, spell.impacts, ctx, false, null);
         }
-
-        return true;
     }
 
     @Override
