@@ -116,9 +116,6 @@ public class BardsSounds {
         linkEntries();
     }
 
-    /// Creation only - returns every sound that still needs registering, keyed by its registration id.
-    /// Forge registers through the helper `RegisterEvent` hands out, so it iterates this instead of
-    /// calling {@link #register}. Follow it with {@link #linkEntries}.
     public static Map<Identifier, SoundEvent> soundsToRegister() {
         var toRegister = new LinkedHashMap<Identifier, SoundEvent>();
         for (var entry: entries) {
@@ -128,9 +125,6 @@ public class BardsSounds {
         return toRegister;
     }
 
-    /// Populates every `Entry#entry` from the registry. `Registry.registerReference` returns the
-    /// `RegistryEntry` on the vanilla path, but Forge's `RegisterHelper#register` returns void - and
-    /// `LuthierSongs` reads `Entry#entry()` at class-init.
     public static void linkEntries() {
         for (var entry: entries) {
             if (entry.entry != null) { continue; }

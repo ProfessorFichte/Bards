@@ -50,7 +50,6 @@ public class BardsSpells {
         }
     }
 
-    /// 1.20.1 `EntityAttribute` is a raw object with no id accessor (`getIdAsString()` is 1.21-only).
     private static String attributeId(EntityAttribute attribute) {
         return net.minecraft.registry.Registries.ATTRIBUTE.getId(attribute).toString();
     }

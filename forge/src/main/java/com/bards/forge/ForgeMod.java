@@ -37,18 +37,10 @@ public final class ForgeMod {
         }
     }
 
-    /// Forge only clears the vanilla `NamespacedWrapper`'s lock from 47.4.0 onwards, so on Forge
-    /// 47.0-47.3 (and NeoForge 1.20.1) `Registry.register` throws "Can not register to a locked
-    /// registry" even inside the correct `RegisterEvent` window. Everything here therefore writes
-    /// through the `RegisterHelper` the event hands out.
-    ///
-    /// The loops below duplicate what `common` runs on Fabric, on purpose: the workaround stays inside
-    /// `forge/` and the Fabric path is untouched. Each block is declared unconditionally - Forge posts
-    /// one event per registry and `event.register` is a no-op unless its key matches.
+    // Goes through the helper on purpose, on Forge 47.0-47.3 a plain Registry.register throws "Can not register to a locked registry".
     public static void register(RegisterEvent event) {
         event.register(RegistryKeys.SOUND_EVENT, helper -> {
             BardsSounds.soundsToRegister().forEach(helper::register);
-            // `LuthierSongs` reads `Entry#entry()`, which only the register-reference path fills in.
             BardsSounds.linkEntries();
         });
 
@@ -71,8 +63,6 @@ public final class ForgeMod {
             BardsMod.itemConfig.save();
         });
 
-        // `creative_mode_tab` is `RegisterEvent` 65 while `item` is 7 - registering the group from the
-        // ITEM pass would write into a registry whose event has not fired yet.
         event.register(RegistryKeys.ITEM_GROUP, helper -> {
             BardsMod.createItemGroup();
             helper.register(Group.ID, Group.BARDS);
@@ -80,7 +70,6 @@ public final class ForgeMod {
 
         event.register(RegistryKeys.VILLAGER_PROFESSION, helper -> {
             BardVillagers.professionsToRegister().forEach(helper::register);
-            // The `VillagerTradesEvent` listener below reads `BardVillagers.TRADES`.
             BardVillagers.buildTrades();
         });
 

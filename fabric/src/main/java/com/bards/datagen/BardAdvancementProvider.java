@@ -134,9 +134,6 @@ public class BardAdvancementProvider implements DataProvider {
         JsonObject display = new JsonObject();
         JsonObject icon = new JsonObject();
         String iconName = entry.iconItemName().contains(":") ? entry.iconItemName() : MOD_ID + ":" + entry.iconItemName();
-        // 1.20.1 advancement icons are `{"item": <id>, "nbt": "<snbt>"}`; data components do not exist, so the
-        // spell-book/scroll model selector rides SpellEngine's `SpellItemData` NBT facade instead
-        // (`{spell_engine:{item_model:"..."}}`), which is exactly what the item reads at runtime.
         if (iconName.contains("item/spell_book/")) {
             icon.addProperty("item", "spell_engine:spell_book");
             icon.addProperty("nbt", itemModelNbt(iconName));

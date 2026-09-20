@@ -10,8 +10,6 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-/// Forge 47 has no `@EventBusSubscriber(value = Dist.CLIENT)` equivalent that is safe to classload on a
-/// dedicated server, so the listeners are attached explicitly from `ForgeMod` behind a `Dist.CLIENT` check.
 public class ForgeClient {
     public static void register(IEventBus modBus) {
         modBus.addListener(EventPriority.NORMAL, false, FMLClientSetupEvent.class, ForgeClient::onClientSetup);

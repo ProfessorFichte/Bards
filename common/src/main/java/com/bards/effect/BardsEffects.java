@@ -24,7 +24,6 @@ import java.util.Map;
 import static com.bards.BardsMod.MOD_ID;
 
 public class BardsEffects {
-    /// 1.20.1 `EntityAttribute` is a raw object with no id accessor (`getIdAsString()` is 1.21-only).
     private static String attributeId(EntityAttribute attribute) {
         return Registries.ATTRIBUTE.getId(attribute).toString();
     }
@@ -230,9 +229,6 @@ public class BardsEffects {
             "Hymn of the Golden Light",
             "Refreshes the absorption hearts granted by this effect every 2 seconds.",
             new HymnOfTheGoldenLightEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff, 2.0F),
-            // 1.20.1 has no `generic.max_absorption` attribute (1.20.5+) - absorption is an uncapped float on
-            // LivingEntity. The +2/level headroom modifier is dropped; `HymnOfTheGoldenLightEffect` already
-            // sets the absorption amount itself, which is what the player actually sees.
             new EffectConfig(List.of())
     ));
     public static Effects.Entry SONG_OF_THE_TURNING_SKY = add(new Effects.Entry(Identifier.of(MOD_ID, "song_of_the_turning_sky"),
@@ -326,10 +322,6 @@ public class BardsEffects {
         Effects.linkEntries(entries);
     }
 
-    /// Creation only - applies the behaviour configuration and returns every effect that still needs
-    /// registering, keyed by its registration id. Forge registers through the helper `RegisterEvent`
-    /// hands out, so it iterates this instead of calling {@link #register}, then calls
-    /// `Effects.linkEntries(entries)`.
     public static Map<Identifier, StatusEffect> effectsToRegister(ConfigFile.Effects config) {
         for (var entry : entries) {
             Synchronized.configure(entry.effect, true);

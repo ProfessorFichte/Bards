@@ -17,8 +17,6 @@ import java.util.Map;
 
 public class MusicStandBlock extends HorizontalFacingBlock {
 
-    // 1.20.1 blocks carry no `MapCodec` (block codecs arrived in 1.20.3).
-
     public MusicStandBlock(AbstractBlock.Settings settings) {
         super(settings);
         setDefaultState(getStateManager().getDefaultState().with(FACING, Direction.NORTH));

@@ -57,8 +57,6 @@ public class Armors {
         return entry;
     }
 
-    /// 1.20.1 armor materials are a plain interface: no `ARMOR_MATERIAL` registry, no layer list.
-    /// SpellEngine's `Armor.material` builds the equivalent `CustomMaterial`, where `id` doubles as the layer id.
     public static ArmorMaterial material(
             String name, int protectionHead, int protectionChest, int protectionLegs, int protectionFeet,
             int enchantability, SoundEvent equipSound, Supplier<Ingredient> repairIngredient) {
@@ -213,15 +211,8 @@ public class Armors {
         itemsToRegister(configs).forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
     }
 
-    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
-    /// instead of calling {@link #register}.
-    ///
-    /// The Armory-flavoured storyteller set is appended to `entries` *before* the Spell Engine helper runs,
-    /// so calling `Armor.itemsToRegister` directly from Forge would silently drop it. The trailing
-    /// item-group override callbacks are installed here too, exactly as `register()` used to.
     public static Map<Identifier, Item> itemsToRegister(Map<String, ArmorSetConfig> configs) {
         if (conditionalEntriesCreated) {
-            // Re-running the storyteller block would append a duplicate entry.
             return Armor.itemsToRegister(configs, entries, Group.KEY);
         }
         conditionalEntriesCreated = true;

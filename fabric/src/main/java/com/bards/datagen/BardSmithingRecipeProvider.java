@@ -239,8 +239,8 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
                 createSmithingTransformRecipe(
                         "ender_dragon_rapier",
                         Weapons.netherite_rapier.item(),
-                        Identifier.of("loot_n_explore", "dragonslayer_upgrade_smithing_template"),
-                        Identifier.of("loot_n_explore", "ender_dragon_scale"),
+                        Identifier.of("loot_n_explore", "dragon_upgrade_smithing_template"),
+                        Identifier.of("loot_n_explore", "ender_dragon_scales"),
                         enderDragonrapier,
                         "loot_n_explore"
                 );
@@ -253,8 +253,8 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
                 createSmithingTransformRecipe(
                         "ender_dragon_lute",
                         Weapons.netherite_lute.item(),
-                        Identifier.of("loot_n_explore", "dragonslayer_upgrade_smithing_template"),
-                        Identifier.of("loot_n_explore", "ender_dragon_scale"),
+                        Identifier.of("loot_n_explore", "dragon_upgrade_smithing_template"),
+                        Identifier.of("loot_n_explore", "ender_dragon_scales"),
                         enderDragonrapier,
                         "loot_n_explore"
                 );
@@ -314,10 +314,6 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
 
     }
 
-    /// More-RPG-Library's `SmithingRecipeGenerator` still emits the 1.21 shape: it resolves into
-    /// `data/<ns>/recipe/`, writes `neoforge:conditions` and writes the result as `{"id": …}`.
-    /// None of those load on 1.20.1 + Forge 47, and Bards is the first consumer of that generator on this
-    /// line, so the emitted files are corrected here on the way out (see bards-port-notes.md).
     @Override
     public CompletableFuture<?> run(DataWriter writer) {
         return super.run((path, data, hashCode) -> {
@@ -328,7 +324,6 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
         });
     }
 
-    /// `data/<ns>/recipe/x.json` -> `data/<ns>/recipes/x.json` (1.20.1 datapack directory name).
     private static Path fixRecipePath(Path path) {
         var parent = path.getParent();
         if (parent != null && "recipe".equals(parent.getFileName().toString())) {
@@ -338,7 +333,6 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
     }
 
     private static void fixRecipeJson(JsonObject recipe) {
-        // Forge 47 reads a plain top-level `conditions` array with `forge:` types; `neoforge:` is unknown to it.
         if (recipe.has("neoforge:conditions")) {
             var conditions = recipe.remove("neoforge:conditions").getAsJsonArray();
             for (var element : conditions) {
@@ -359,7 +353,6 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
             }
             recipe.add("conditions", conditions);
         }
-        // 1.20.1 recipe results are `{"item": …}`; `{"id": …}` arrived with 1.20.5 item stack codecs.
         if (recipe.has("result")) {
             var result = recipe.getAsJsonObject("result");
             if (result.has("id")) {
@@ -368,8 +361,6 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
         }
     }
 
-    /// Same serialization `DataProvider.writeToPath` uses (sorted keys, 2-space indent), so the cache hash
-    /// matches the bytes actually written and datagen stays reproducible.
     private static void writeSorted(DataWriter writer, JsonElement json, Path path) throws IOException {
         var bytes = new ByteArrayOutputStream();
         try (var jsonWriter = new JsonWriter(new OutputStreamWriter(bytes, StandardCharsets.UTF_8))) {

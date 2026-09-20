@@ -82,9 +82,6 @@ public final class BardsMod {
         itemConfig.save();
     }
 
-    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
-    /// from its own ITEM window. `config.save()` is a trailing side effect of the original
-    /// `registerItems()` and stays with whoever writes the registry.
     public static Map<Identifier, Item> itemsToRegister() {
         if (itemConfig.value == null) itemConfig.value = new BardItemConfig();
         var items = new LinkedHashMap<Identifier, Item>();
@@ -95,8 +92,6 @@ public final class BardsMod {
         return items;
     }
 
-    /// `creative_mode_tab` is `RegisterEvent` 65 while `item` is 7, so on Forge this gets its own window.
-    /// The icon supplier is lazy, so the group can be built after the items it points at.
     public static void registerItemGroup() {
         createItemGroup();
         Registry.register(Registries.ITEM_GROUP, Group.KEY, Group.BARDS);
@@ -115,8 +110,6 @@ public final class BardsMod {
         effectsConfig.save();
     }
 
-    /// Creation only - see {@link #itemsToRegister()}. `effectsConfig.save()` is the trailing side
-    /// effect of `registerEffects()` and stays with whoever writes the registry.
     public static Map<Identifier, StatusEffect> effectsToRegister() {
         return BardsEffects.effectsToRegister(effectsConfig.value);
     }

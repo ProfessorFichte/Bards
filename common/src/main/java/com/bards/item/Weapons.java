@@ -209,16 +209,8 @@ public class Weapons {
                 .forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
     }
 
-    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
-    /// instead of calling {@link #register}.
-    ///
-    /// The conditional blocks below append entries to `meleeEntries` / `rangedEntries` *before* the
-    /// Spell Engine helper runs, so calling `Weapon.itemsToRegister` / `RangedWeapon.itemsToRegister`
-    /// directly from Forge would silently drop every mod-gated weapon. The trailing item-group override
-    /// callbacks are part of the contract too and are installed here, exactly as `register()` used to.
     public static Map<Identifier, Item> itemsToRegister(Map<String, RangedConfig> rangedConfig, Map<String, WeaponConfig> meleeConfig) {
         if (conditionalEntriesCreated) {
-            // Re-running the gated blocks would append duplicate entries.
             var items = new LinkedHashMap<Identifier, Item>();
             items.putAll(Weapon.itemsToRegister(meleeConfig, meleeEntries, Group.KEY));
             items.putAll(RangedWeapon.itemsToRegister(rangedConfig, rangedEntries, Group.KEY));

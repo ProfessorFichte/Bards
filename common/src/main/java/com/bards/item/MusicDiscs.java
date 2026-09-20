@@ -21,8 +21,6 @@ public class MusicDiscs {
 
     public static final ArrayList<Entry> all = new ArrayList<>();
 
-    // Values carried over verbatim from the 1.21 `data/bards_rpg/jukebox_song/*.json` files,
-    // which were identical for every disc.
     private static final int COMPARATOR_OUTPUT = 12;
     private static final int LENGTH_IN_SECONDS = 180;
 
@@ -59,9 +57,6 @@ public class MusicDiscs {
         itemsToRegister().forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
     }
 
-    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
-    /// instead of calling {@link #register}. The item-group contents callback is installed here, exactly
-    /// as {@link #register()} used to do it inline.
     public static Map<Identifier, Item> itemsToRegister() {
         var toRegister = new LinkedHashMap<Identifier, Item>();
         for (var e : all) {

@@ -42,9 +42,6 @@ public class HarpCrossbowItem extends CustomCrossbow {
         tooltip.add(Text.translatable(TOOLTIP_KEY));
     }
 
-    /// 1.20.1's `CrossbowItem.shootAll` is `public static` (it only became an overridable instance method in
-    /// 1.21), so the extra volley is hung off `use` instead — the one call site that fires a charged crossbow
-    /// for a player. Consequence: a mob `CrossbowUser` firing this weapon shoots the vanilla single bolt.
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
@@ -54,7 +51,6 @@ public class HarpCrossbowItem extends CustomCrossbow {
 
         ItemStack fireworkStack = chargedFirework(stack);
         boolean isFirework = !fireworkStack.isEmpty();
-        // Same speed vanilla's `use` passes to `shootAll` (`CrossbowItem.getSpeed`, which is private).
         float speed = isFirework ? 1.6F : 3.15F;
 
         var result = super.use(world, user, hand);

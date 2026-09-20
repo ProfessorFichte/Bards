@@ -17,12 +17,8 @@ public class BardParticles {
         particlesToRegister().forEach((id, type) -> Registry.register(Registries.PARTICLE_TYPE, id, type));
     }
 
-    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
-    /// instead of calling {@link #register}.
     public static Map<Identifier, ParticleType<?>> particlesToRegister() {
         if (SPELL_STOLEN_POPUP == null) {
-            // 1.20.1 particle types take the deserializer factory in the constructor and expose a
-            // plain `Codec` (no `PacketCodec`); `ParticleEffect` itself carries the buffer writer.
             SPELL_STOLEN_POPUP = new ParticleType<PopupParticleEffect>(false, PopupParticleEffect.FACTORY) {
                 @Override
                 public Codec<PopupParticleEffect> getCodec() {

@@ -89,9 +89,6 @@ public class BardVanillaAdvancementProvider extends FabricAdvancementProvider {
         }
     }
 
-    /// `Advancement.Builder#build` resolves the parent through `findParent(id -> null)` and throws
-    /// "Tried to build incomplete advancement!" when the parent lives in another mod, so cross-mod parents
-    /// are fed a stub whose only meaningful field is its id (which is all `createTask()` serialises).
     private static Advancement parentStub(Identifier parentId) {
         return new Advancement(parentId, null, null, AdvancementRewards.NONE, Map.of(), new String[0][], false);
     }

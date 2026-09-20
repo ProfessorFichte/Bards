@@ -62,10 +62,6 @@ public class BardVillagers {
         );
     }
 
-    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
-    /// instead of calling {@link #registerVillagers}. Follow it with {@link #buildTrades()}: the Forge
-    /// `VillagerTradesEvent` listener reads {@link #TRADES}, which `registerVillagers()` used to fill in
-    /// right after registering the profession.
     public static Map<Identifier, VillagerProfession> professionsToRegister() {
         PROFESSION = createProfession(
                 LUTHIER,
@@ -77,7 +73,6 @@ public class BardVillagers {
         return toRegister;
     }
 
-    /// Creation only - see {@link #professionsToRegister()}.
     public static PointOfInterestType createPoi() {
         return new PointOfInterestType(poiBlockStates(), POI_TICKET_COUNT, POI_SEARCH_DISTANCE);
     }
@@ -117,18 +112,11 @@ public class BardVillagers {
                 sellEnchanted(Weapons.diamond_harp_crossbow.item(), 40, 3, 30, 0F)
         ));
     }
-    /// 1.20.1 has no `TradeOffers.BuyItemFactory` (it only ships `BuyForOneEmeraldFactory`), so the
-    /// 1.21 offer is rebuilt on the raw `TradeOffer` constructor with the same 0.05 price multiplier.
     private static TradeOffers.Factory buyForEmeralds(net.minecraft.item.Item item, int count, int maxUses, int experience, int price) {
         return (entity, random) -> new TradeOffer(
                 new ItemStack(item, count), new ItemStack(Items.EMERALD, price), maxUses, experience, 0.05F);
     }
 
-    /// `TradeOffers.SellItemFactory` and `TradeOffers.SellEnchantedToolFactory` are **package-private** in
-    /// vanilla 1.20.1 and stay so after Forge's access transformer. They compile here only because a mod on
-    /// `common`'s classpath contributes an access widener the production runtime lacks - at runtime Forge
-    /// throws `IllegalAccessError`. Both are rebuilt on the raw `TradeOffer` constructor, reproducing
-    /// vanilla's argument order, price cap and multipliers exactly.
     private static TradeOffers.Factory sell(net.minecraft.item.Item item, int price, int count, int maxUses, int experience) {
         return sell(new ItemStack(item), price, count, maxUses, experience, 0.05F);
     }

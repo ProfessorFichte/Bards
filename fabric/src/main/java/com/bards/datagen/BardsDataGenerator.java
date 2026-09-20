@@ -62,9 +62,6 @@ public class BardsDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(UnsmeltGenerator::new);
     }
 
-    /// 1.20.1 / Fabric API 0.92: the datagen `WrapperLookup` is assembled from `BuiltinRegistries.REGISTRY_BUILDER`
-    /// plus whatever each entrypoint contributes here - Fabric's `DynamicRegistries.registerSynced` only feeds the
-    /// *runtime* `RegistryLoader`. Without this, `FabricTagProvider<Spell>` dies with "Registry spell_engine:spell not found".
     @Override
     public void buildRegistry(RegistryBuilder registryBuilder) {
         RPGSeriesDataGen.buildRegistry(registryBuilder);
@@ -87,8 +84,6 @@ public class BardsDataGenerator implements DataGeneratorEntrypoint {
         }
 
         @Override
-        /// 1.20.1 / Fabric API 0.92: `FabricLanguageProvider` is registry-independent - the callback takes
-        /// only the translation builder.
         public void generateTranslations(FabricLanguageProvider.TranslationBuilder translationBuilder) {
             translationBuilder.add(Group.translationKey, "Bards");
             BardBlocks.all.forEach(entry ->
@@ -155,10 +150,6 @@ public class BardsDataGenerator implements DataGeneratorEntrypoint {
         public ItemTagGenerator(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
             super(dataOutput, registryLookup);
         }
-        /// The 1.21 branch carried a hand-inlined copy of `generateArmorTags` that differed from the library
-        /// method only by skipping the loot-tier tags - which `ArmorOptions(false, true)` expresses - and by
-        /// writing the vanilla `#minecraft:{head,chest,leg,foot}_armor` tags, which do not exist before 1.21
-        /// (SpellEngine's 1.20.1 generator emits `#minecraft:trimmable_armor` in their place).
         public void armoryTags(List<Armor.Entry> armors, RPGSeriesItemTags.ArmorMetaType metaType) {
             generateArmorTags(armors, metaType, new ArmorOptions(false, true));
         }
@@ -242,8 +233,6 @@ public class BardsDataGenerator implements DataGeneratorEntrypoint {
             spellPowerTag.addOptionalTag(BardTags.LUTES);
             spellPowerTag.addOptionalTag(BardTags.LYRES);
             spellPowerTag.addOptionalTag(BardTags.HARP_CROSSBOWS);
-            // 1.20.1 has no `#minecraft:enchantable/durability` tag (enchantment targets are hard-coded in
-            // `EnchantmentTarget.BREAKABLE`, which already covers every damageable item), so nothing to add.
         }
     }
 

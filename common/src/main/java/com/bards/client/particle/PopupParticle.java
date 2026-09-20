@@ -42,7 +42,6 @@ public class PopupParticle extends BillboardParticle {
             this.textureId = new Identifier(effect.iconId.getNamespace(), "textures/spell/" + effect.iconId.getPath() + ".png");
         } else {
             this.textureId = new Identifier("textures/atlas/mob_effects.png");
-            // 1.20.1: status effects are plain objects, and the sprite manager is keyed by them.
             var statusEffect = world.getRegistryManager()
                 .get(RegistryKeys.STATUS_EFFECT)
                 .get(effect.iconId);
@@ -90,7 +89,6 @@ public class PopupParticle extends BillboardParticle {
         RenderSystem.defaultBlendFunc();
         RenderSystem.setShaderTexture(0, textureId);
 
-        // 1.20.1 draws through the shared Tessellator buffer; every vertex is closed with next().
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder builder = tessellator.getBuffer();
         RenderSystem.setShader(GameRenderer::getParticleProgram);

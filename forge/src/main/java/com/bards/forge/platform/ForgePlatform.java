@@ -32,8 +32,6 @@ public final class ForgePlatform implements Platform {
 
             @Override
             public void removeByItem(Item item) {
-                // Forge 47 has no `remove(stack, visibility)` / `getParentEntries()`; the backing
-                // `MutableHashedLinkedMap` is iterated instead (its iterator supports removal).
                 var iterator = event.getEntries().iterator();
                 while (iterator.hasNext()) {
                     if (iterator.next().getKey().isOf(item)) {

@@ -12,9 +12,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-/// 1.20.1 has no `jukebox_song` data registry: the song is baked into the item itself
-/// (`MusicDiscItem(comparatorOutput, sound, settings, lengthInSeconds)`), which is what the
-/// `data/bards_rpg/jukebox_song/*.json` files carried on 1.21.
 public class BardMusicDiscItem extends MusicDiscItem {
     public static final String ARTIST = "KaktusDoesMusic";
 
@@ -28,9 +25,6 @@ public class BardMusicDiscItem extends MusicDiscItem {
         this.descriptionKey = descriptionKey;
     }
 
-    /// Keeps the shipped `jukebox_song.bards_rpg.<name>` translation keys in use: on 1.20.1 the jukebox
-    /// "Now playing" overlay renders `getDescription()`, and vanilla's default would look for
-    /// `item.bards_rpg.<name>.desc`, which this mod never had.
     @Override
     public MutableText getDescription() {
         return Text.translatable(descriptionKey);

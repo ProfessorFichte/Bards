@@ -45,9 +45,6 @@ public class BardBlocks {
                     .nonOpaque()),
             "Music note Stand");
 
-    /// Split from {@link #registerItems()} because Forge opens one `RegisterEvent` window per registry and
-    /// keeps every other registry locked while a window is open - registering the `BlockItem`s from the
-    /// BLOCK window throws "Can not register to a locked registry".
     public static void register() {
         blocksToRegister().forEach((id, block) -> Registry.register(Registries.BLOCK, id, block));
     }
@@ -56,8 +53,6 @@ public class BardBlocks {
         itemsToRegister().forEach((id, item) -> Registry.register(Registries.ITEM, id, item));
     }
 
-    /// Creation only - Forge registers through the helper `RegisterEvent` hands out and iterates this
-    /// instead of calling {@link #register}.
     public static Map<Identifier, Block> blocksToRegister() {
         var toRegister = new LinkedHashMap<Identifier, Block>();
         for (var e : all) {
@@ -68,8 +63,6 @@ public class BardBlocks {
         return toRegister;
     }
 
-    /// Creation only - the item-group contents callback is installed here, exactly as
-    /// {@link #registerItems()} used to do it inline.
     public static Map<Identifier, Item> itemsToRegister() {
         var toRegister = new LinkedHashMap<Identifier, Item>();
         for (var e : all) {
