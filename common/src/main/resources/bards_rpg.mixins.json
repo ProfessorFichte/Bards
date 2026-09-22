@@ -6,8 +6,7 @@
   "client": [
     "BardSpellAnimationMixin",
     "ItemRendererAccessor",
-    "ItemRendererMixin",
-    "ModelLoaderMixin"
+    "ItemRendererMixin"
   ],
   "mixins": [
     "DiscordantNoteMixin",

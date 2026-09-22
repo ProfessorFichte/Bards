@@ -8,12 +8,17 @@ import com.bards.client.effect.WardensPaeanEffectRenderer;
 import com.bards.content.BardsSpells;
 import com.bards.effect.BardsEffects;
 import com.bards.item.Armors;
+import com.bards.item.Weapons;
 import net.rpg_foundation.armor_api.client.ArmorRenderers;
 import net.rpg_foundation.armor_api.client.GeoArmorRenderer;
 import net.more_rpg_classes.custom.SpellBuilderHelper;
+import net.minecraft.client.util.ModelIdentifier;
+import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
 import net.spell_engine.api.effect.CustomModelStatusEffect;
 import net.spell_engine.api.effect.CustomParticleStatusEffect;
 import net.spell_engine.api.render.BuffParticleSpawner;
+import net.spell_engine.api.render.CustomModels;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.render.StunParticleSpawner;
 import net.spell_engine.client.util.Color;
@@ -21,6 +26,8 @@ import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.rpg_series.item.Armor;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class BardClient {
@@ -41,6 +48,21 @@ public class BardClient {
         CustomModelStatusEffect.register(BardsEffects.ARMYS_PAEON_STASH.effect, new ArmysPaeonCircleRenderer());
         CustomModelStatusEffect.register(BardsEffects.BENEFICIAL_WARDENS_PAEAN.effect, new WardensPaeanEffectRenderer(wardensPaeanHelpfulModelId, false));
         CustomModelStatusEffect.register(BardsEffects.HARMFUL_WARDENS_PAEAN.effect, new WardensPaeanEffectRenderer(wardensPaeanHarmfulModelId, true));
+        CustomModels.registerModelIds(instrumentEquipModelIds());
+    }
+
+    private static List<Identifier> instrumentEquipModelIds() {
+        List<Identifier> ids = new ArrayList<>();
+        for (var entry : Weapons.meleeEntries) {
+            Item item = entry.item();
+            if (item == null) continue;
+            Identifier itemId = Registries.ITEM.getId(item);
+            String name = itemId.getPath();
+            if (name.contains("lute") || name.contains("lyre")) {
+                ids.add(new ModelIdentifier(itemId.getNamespace(), name + "_model", "inventory"));
+            }
+        }
+        return ids;
     }
     private static void registerArmorRenderer(Armor.Set set, Supplier<GeoArmorRenderer> armorRendererSupplier) {
         ArmorRenderers.register(armorRendererSupplier.get(), set.head, set.chest, set.legs, set.feet);
