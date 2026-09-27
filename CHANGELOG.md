@@ -1,3 +1,6 @@
+# 3.0.2+1.20.1
+- Fixed wrong Better Combat weapon attributes data format for Lutes, Lyres & Rapiers
+
 # 3.0.1+1.20.1
 - Fixed Better Combat Animations being in the wrong folder path
 - Fixed the wrong registration for the Lute & Lyre 3D Models
