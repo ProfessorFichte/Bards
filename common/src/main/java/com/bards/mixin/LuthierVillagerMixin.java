@@ -27,8 +27,9 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.registry.Registries;
 import net.minecraft.village.VillagerData;
-import net.more_rpg_classes.client.particle.MoreParticles;
-import net.more_rpg_classes.client.particle.PopupParticleEffect;
+import com.mrpg_lib.client.particle.MoreParticles;
+import com.mrpg_lib.compat.spell_engine.particle.MoreSpellParticles;
+import com.mrpg_lib.client.particle.PopupParticleEffect;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.client.util.Color;
@@ -164,7 +165,7 @@ public abstract class LuthierVillagerMixin {
 
         if (bards_tickCounter++ % 20 != 0) return;
         Color color = song.noteColor();
-        var musicNoteBatch = ParticleGroupBuilder.of(MoreParticles.MUSIC_NOTE)
+        var musicNoteBatch = ParticleGroupBuilder.of(MoreSpellParticles.MUSIC_NOTE)
                 .color(color)
                 .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
                         .count(5).speed(0.1F, 0.2F)
@@ -242,7 +243,7 @@ public abstract class LuthierVillagerMixin {
             if (bards_reactionTickCount % 30 == 0) {
                 LuthierSongs.Song song = getDailySong(luthier, serverWorld);
                 Color color = song.noteColor();
-                var noteBatch = ParticleGroupBuilder.of(MoreParticles.MUSIC_NOTE)
+                var noteBatch = ParticleGroupBuilder.of(MoreSpellParticles.MUSIC_NOTE)
                         .color(color)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(2).speed(0.05F, 0.2F));

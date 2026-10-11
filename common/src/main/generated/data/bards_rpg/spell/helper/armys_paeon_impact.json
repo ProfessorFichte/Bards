@@ -52,7 +52,7 @@
             }
           },
           {
-            "id": "more_rpg_classes:music_note",
+            "id": "mrpg_lib:music_note",
             "appearance": {
               "color": 4292280575
             },

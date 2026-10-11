@@ -1,6 +1,6 @@
 package com.bards.content;
 
-import net.more_rpg_classes.custom.SpellBuilderHelper;
+import com.mrpg_lib.compat.spell_engine.SpellBuilderHelper;
 import net.spell_engine.client.util.Color;
 
 public class BardSkillColors {

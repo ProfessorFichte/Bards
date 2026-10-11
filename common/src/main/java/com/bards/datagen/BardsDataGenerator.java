@@ -21,6 +21,7 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
@@ -227,9 +228,12 @@ public class BardsDataGenerator implements DataGeneratorEntrypoint {
                     RPGSeriesItemTags.ArmorMetaType.MAGIC,
                     armorTagOptions2
             );
-            generateWeaponTags(Weapons.meleeEntries.stream()
+            var rapierEntries = Weapons.meleeEntries.stream()
                     .filter(entry -> entry.name().toLowerCase().contains("rapier"))
-                    .toList());
+                    .toList();
+            generateWeaponTags(rapierEntries);
+            var rapierTag = getOrCreateTagBuilder(BardTags.RAPIERS);
+            rapierEntries.forEach(entry -> rapierTag.addOptional(entry.id()));
             generateBardWeaponTags(
                     Weapons.meleeEntries.stream()
                             .filter(entry -> entry.name().toLowerCase().contains("lute"))
@@ -277,6 +281,18 @@ public class BardsDataGenerator implements DataGeneratorEntrypoint {
             var unbreakingTag = getOrCreateTagBuilder(ItemTags.DURABILITY_ENCHANTABLE);
             unbreakingTag.addOptionalTag(BardTags.LUTES);
             unbreakingTag.addOptionalTag(BardTags.LYRES);
+
+            var bardArmorTag = TagKey.of(RegistryKeys.ITEM, Identifier.of(MOD_ID, "armor_type/bard"));
+            var bardArmorTagBuilder = getOrCreateTagBuilder(bardArmorTag);
+            List.of(Armors.entertainerArmorSet, Armors.troubadourArmorSet, Armors.netheriteTroubadourArmorSet)
+                    .forEach(entry -> entry.armorSet().pieceIds().forEach(id -> bardArmorTagBuilder.addOptional((Identifier) id)));
+
+            var bardBook = Identifier.of(MOD_ID, "spell_book/bard");
+            var bardLootAffiliationTag = getOrCreateTagBuilder(RPGSeriesItemTags.LootAffiliation.get(bardBook));
+            bardLootAffiliationTag.addOptionalTag(BardTags.LUTES);
+            bardLootAffiliationTag.addOptionalTag(BardTags.LYRES);
+            bardLootAffiliationTag.addOptionalTag(BardTags.RAPIERS);
+            bardLootAffiliationTag.addTag(bardArmorTag);
         }
     }
 

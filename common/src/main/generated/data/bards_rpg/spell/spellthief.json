@@ -54,7 +54,7 @@
         "type": "CUSTOM",
         "custom": {
           "intent": "HARMFUL",
-          "handler": "more_rpg_classes:spellthief_impact"
+          "handler": "mrpg_lib:spellthief_impact"
         }
       }
     },
@@ -62,7 +62,7 @@
       "action": {
         "type": "CUSTOM",
         "custom": {
-          "handler": "more_rpg_classes:spellthief_impact"
+          "handler": "mrpg_lib:spellthief_impact"
         }
       }
     }

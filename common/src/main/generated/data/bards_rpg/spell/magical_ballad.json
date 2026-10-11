@@ -44,7 +44,7 @@
       },
       "particles": [
         {
-          "id": "more_rpg_classes:music_note",
+          "id": "mrpg_lib:music_note",
           "appearance": {
             "color": 4284940287
           },
@@ -103,7 +103,7 @@
               }
             },
             {
-              "id": "more_rpg_classes:music_note",
+              "id": "mrpg_lib:music_note",
               "appearance": {
                 "color": 4284940287
               },
@@ -119,7 +119,7 @@
               }
             },
             {
-              "id": "more_rpg_classes:music_note",
+              "id": "mrpg_lib:music_note",
               "appearance": {
                 "color": 4284940287
               },
@@ -174,7 +174,7 @@
             }
           },
           {
-            "id": "more_rpg_classes:music_note",
+            "id": "mrpg_lib:music_note",
             "appearance": {
               "color": 4284940287
             },
@@ -225,7 +225,7 @@
             }
           },
           {
-            "id": "more_rpg_classes:music_note",
+            "id": "mrpg_lib:music_note",
             "appearance": {
               "color": 4284940287
             },

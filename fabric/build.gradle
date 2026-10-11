@@ -14,6 +14,7 @@ architectury {
 fabricApi {
     configureDataGeneration() {
         client = true
+        modId = "bards_rpg"
         outputDirectory = project(':common').file('src/main/generated')
     }
 }
@@ -57,7 +58,9 @@ repositories {
     }
     maven { url 'https://maven.wispforest.io/releases' }
 
-    mavenLocal()
+    mavenLocal {
+        content { excludeModule('maven.modrinth', 'more-rpg-library') }
+    }
 }
 
 dependencies {

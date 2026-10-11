@@ -5,7 +5,7 @@ import com.bards.effect.BardsEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.more_rpg_classes.util.CustomMethods;
+import com.mrpg_lib.util.CustomMethods;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.event.SpellHandlers;
 import net.spell_engine.internals.SpellExecution;

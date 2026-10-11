@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
-import net.more_rpg_classes.datagen.SmithingRecipeGenerator;
+import com.mrpg_lib.datagen.SmithingRecipeGenerator;
 
 import static com.bards.BardsMod.MOD_ID;
 
@@ -119,7 +119,7 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
 
         if (Armors.storytellerArmorSet != null) {
             // From Netherite Troubadour to Storyteller
-            Identifier upgradeCrystal = Identifier.of("more_rpg_classes", "virtuoso_upgrade_crystal");
+            Identifier upgradeCrystal = Identifier.of("mrpg_lib", "virtuoso_upgrade_crystal");
             createSmithingTransformRecipe(
                     "smithing_storyteller_head_netherite_troubadour_head",
                     (Item) Armors.netheriteTroubadourArmorSet.armorSet().head,

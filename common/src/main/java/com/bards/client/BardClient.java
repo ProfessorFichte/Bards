@@ -11,7 +11,7 @@ import com.bards.item.Armors;
 import net.spell_engine.Platform;
 import net.rpg_foundation.armor_api.client.ArmorRenderers;
 import net.rpg_foundation.armor_api.client.GeoArmorRenderer;
-import net.more_rpg_classes.custom.SpellBuilderHelper;
+import com.mrpg_lib.compat.spell_engine.SpellBuilderHelper;
 import net.spell_engine.api.effect.CustomModelStatusEffect;
 import net.spell_engine.api.effect.CustomParticleStatusEffect;
 import net.spell_engine.api.render.BuffParticleSpawner;

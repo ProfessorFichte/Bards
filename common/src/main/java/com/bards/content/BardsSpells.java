@@ -5,13 +5,13 @@ import com.bards.tags.BardTags;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
-import net.more_rpg_classes.custom.SpellBuilderHelper;
+import com.mrpg_lib.compat.spell_engine.SpellBuilderHelper;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.PlayerAnimation;
-import net.more_rpg_classes.client.particle.MoreParticles;
+import com.mrpg_lib.compat.spell_engine.particle.MoreSpellParticles;
 import net.spell_engine.api.spell.fx.Fx;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
@@ -142,7 +142,7 @@ public class BardsSpells {
     }
 
     private static ParticleGroup musicParticles(float particleCount, long color, float extent) {
-        return ParticleGroupBuilder.of(MoreParticles.MUSIC_NOTE)
+        return ParticleGroupBuilder.of(MoreSpellParticles.MUSIC_NOTE)
                 .color(color)
                 .batch(b -> {
                     b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
@@ -153,7 +153,7 @@ public class BardsSpells {
                 });
     }
     private static ParticleGroup musicImpactParticles(float particleCount, long color, float extent) {
-        return ParticleGroupBuilder.of(MoreParticles.MUSIC_NOTE)
+        return ParticleGroupBuilder.of(MoreSpellParticles.MUSIC_NOTE)
                 .color(color)
                 .batch(b -> {
                     b.shape(ParticleGroup.Shape.CIRCLE)
@@ -305,7 +305,7 @@ public class BardsSpells {
         spell.active.cast.animation = bardCastAnimation();
         spell.active.cast.sound =  new Sound(bardSong);
         spell.active.cast.particles = List.of(
-                ParticleGroupBuilder.of("more_rpg_classes:rainbow_music_note")
+                ParticleGroupBuilder.of("mrpg_lib:rainbow_music_note")
                         .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
                                 .verticalOrigin(0.1F)
                                 .count(0.5F).speed(0.4F, 0.5F)));
@@ -551,13 +551,13 @@ public class BardsSpells {
                                 .alignment(ParticleGroup.Alignment.LOOK)
                                 .count(5).speed(0.14F, 0.15F)
                                 .extent(1.5F).roll(18F)),
-                ParticleGroupBuilder.of(MoreParticles.MUSIC_NOTE)
+                ParticleGroupBuilder.of(MoreSpellParticles.MUSIC_NOTE)
                         .color(spellColor)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .alignment(ParticleGroup.Alignment.LOOK)
                                 .count(2).speed(0.14F, 0.15F)
                                 .extent(1.5F).rollOffset(180F)),
-                ParticleGroupBuilder.of(MoreParticles.MUSIC_NOTE)
+                ParticleGroupBuilder.of(MoreSpellParticles.MUSIC_NOTE)
                         .color(spellColor)
                         .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
                                 .alignment(ParticleGroup.Alignment.LOOK)
@@ -632,7 +632,7 @@ public class BardsSpells {
         var damage = SpellBuilder.Impacts.damage(0.75F, 0);
         damage.visuals = Fx.Visuals.of(
                 musicImpactParticles(0.5F, spellColor, 0.5F),
-                ParticleGroupBuilder.of(MoreParticles.RAGE_PAR)
+                ParticleGroupBuilder.of(MoreSpellParticles.RAGE_PAR)
                         .color(spellColor)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(10).speed(0.5F, 0.8F)
@@ -848,13 +848,13 @@ public class BardsSpells {
                                 .alignment(ParticleGroup.Alignment.LOOK)
                                 .count(5).speed(0.14F, 0.15F)
                                 .extent(1.5F).roll(18F)),
-                ParticleGroupBuilder.of(MoreParticles.MUSIC_NOTE)
+                ParticleGroupBuilder.of(MoreSpellParticles.MUSIC_NOTE)
                         .color(spellColor)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .alignment(ParticleGroup.Alignment.LOOK)
                                 .count(2).speed(0.14F, 0.15F)
                                 .extent(1.5F).rollOffset(180F)),
-                ParticleGroupBuilder.of(MoreParticles.MUSIC_NOTE)
+                ParticleGroupBuilder.of(MoreSpellParticles.MUSIC_NOTE)
                         .color(spellColor)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .alignment(ParticleGroup.Alignment.LOOK)
@@ -1049,13 +1049,13 @@ public class BardsSpells {
         spellTheftHarmful.action.custom = new Spell.Impact.Action.Custom();
         spellTheftHarmful.action.type = Spell.Impact.Action.Type.CUSTOM;
         spellTheftHarmful.action.custom.intent = SpellTarget.Intent.HARMFUL;
-        spellTheftHarmful.action.custom.handler = "more_rpg_classes:spellthief_impact";
+        spellTheftHarmful.action.custom.handler = "mrpg_lib:spellthief_impact";
 
         var spellTheftHelpful = new Spell.Impact();
         spellTheftHelpful.action = new Spell.Impact.Action();
         spellTheftHelpful.action.custom = new Spell.Impact.Action.Custom();
         spellTheftHelpful.action.type = Spell.Impact.Action.Type.CUSTOM;
-        spellTheftHelpful.action.custom.handler = "more_rpg_classes:spellthief_impact";
+        spellTheftHelpful.action.custom.handler = "mrpg_lib:spellthief_impact";
         spell.impacts = List.of(spellTheftHarmful, spellTheftHelpful);
 
         SpellBuilder.Cost.cooldown(spell,5.0F);
@@ -1205,14 +1205,14 @@ public class BardsSpells {
                                 .anchor(ParticleGroup.Anchor.LAUNCH_POINT)
                                 .alignment(ParticleGroup.Alignment.LOOK)
                                 .count(50).speed(0.18F, 0.2F)),
-                ParticleGroupBuilder.of(MoreParticles.STAR)
+                ParticleGroupBuilder.of(MoreSpellParticles.STAR)
                         .color(STARSHOT_COLOR).scale(0.3F)
                         .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
                                 .anchor(ParticleGroup.Anchor.LAUNCH_POINT)
                                 .alignment(ParticleGroup.Alignment.LOOK)
                                 .count(1).chance(0.2F)));
         spell.arrow_perks.travel_particles = List.of(
-                ParticleGroupBuilder.of(MoreParticles.STAR)
+                ParticleGroupBuilder.of(MoreSpellParticles.STAR)
                         .color(STARSHOT_COLOR).scale(0.3F)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
@@ -1222,7 +1222,7 @@ public class BardsSpells {
         var impact = SpellBuilder.Impacts.damage(0.5F, 0);
         impact.school = SpellSchools.ARCANE;
         impact.visuals = Fx.Visuals.of(
-                ParticleGroupBuilder.of(MoreParticles.STAR)
+                ParticleGroupBuilder.of(MoreSpellParticles.STAR)
                         .color(STARSHOT_COLOR).scale(0.3F)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(5).speed(0.4F, 0.5F)),

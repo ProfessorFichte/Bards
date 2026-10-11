@@ -77,7 +77,7 @@
     "visuals": {
       "particles": [
         {
-          "id": "more_rpg_classes:music_note",
+          "id": "mrpg_lib:music_note",
           "appearance": {
             "color": 16777215
           },
@@ -127,7 +127,7 @@
             }
           },
           {
-            "id": "more_rpg_classes:music_note",
+            "id": "mrpg_lib:music_note",
             "appearance": {
               "color": 16777215
             },
@@ -159,7 +159,7 @@
       "visuals": {
         "particles": [
           {
-            "id": "more_rpg_classes:music_note",
+            "id": "mrpg_lib:music_note",
             "appearance": {
               "color": 16777215
             },

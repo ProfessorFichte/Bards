@@ -44,7 +44,7 @@
       },
       "particles": [
         {
-          "id": "more_rpg_classes:music_note",
+          "id": "mrpg_lib:music_note",
           "appearance": {
             "color": 3208659199
           },
@@ -81,7 +81,7 @@
       "visuals": {
         "particles": [
           {
-            "id": "more_rpg_classes:music_note",
+            "id": "mrpg_lib:music_note",
             "appearance": {
               "color": 3208659199
             },
@@ -96,7 +96,7 @@
             }
           },
           {
-            "id": "more_rpg_classes:rage_particle",
+            "id": "mrpg_lib:rage_particle",
             "appearance": {
               "color": 3208659199
             },

@@ -13,8 +13,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
-import net.more_rpg_classes.custom.MoreSpellSchools;
-import net.more_rpg_classes.entity.ISpellCasterEntity;
+import com.mrpg_lib.compat.spell_power.MoreSpellSchools;
+import com.mrpg_lib.entity.ISpellCasterEntity;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.event.SpellHandlers;
@@ -88,7 +88,7 @@ public class SpellthiefImpact implements SpellHandlers.CustomImpact {
             if (caster instanceof ServerPlayerEntity serverPlayer) {
                 for (StatusEffectInstance effect : beneficialEffects) {
                     serverPlayer.sendMessage(
-                        Text.translatable("message.more_rpg_classes.spellthief.effect_stolen",
+                        Text.translatable("message.mrpg_lib.spellthief.effect_stolen",
                             Text.translatable(effect.getEffectType().value().getTranslationKey()),
                             livingTarget.getDisplayName()),
                         true
@@ -136,7 +136,7 @@ public class SpellthiefImpact implements SpellHandlers.CustomImpact {
             Text spellText = Text.translatable("spell." + spellId.getNamespace() + "." + spellId.getPath() + ".name")
                 .styled(s -> s.withBold(true).withColor(color));
             serverPlayer.sendMessage(
-                Text.translatable("message.more_rpg_classes.spellthief.spell_stolen", spellText, livingTarget.getDisplayName()),
+                Text.translatable("message.mrpg_lib.spellthief.spell_stolen", spellText, livingTarget.getDisplayName()),
                 true
             );
         }

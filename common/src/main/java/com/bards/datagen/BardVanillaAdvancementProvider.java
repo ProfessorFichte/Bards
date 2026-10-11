@@ -64,7 +64,7 @@ public class BardVanillaAdvancementProvider extends FabricAdvancementProvider {
                 id("equipment/entertainer_armor_set"),
                 "Master of Entertainment.",
                 "Obtain the full Entertainer's Garb!",
-                Identifier.of("more_rpg_content", "root"),
+                Identifier.of("mrpg_lib", "root"),
                 (Item) entertainer.chest,
                 AdvancementFrame.GOAL,
                 true, true, false, null,
