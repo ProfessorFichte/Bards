@@ -1,0 +1,17 @@
+{
+  "values": [
+    {
+      "id": "#bards_rpg:lutes",
+      "required": false
+    },
+    {
+      "id": "#bards_rpg:lyres",
+      "required": false
+    },
+    {
+      "id": "#bards_rpg:rapiers",
+      "required": false
+    },
+    "#bards_rpg:armor_type/bard"
+  ]
+}
