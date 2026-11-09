@@ -22,7 +22,7 @@
   ],
   "result": {
     "count": 1,
-    "id": "bards_rpg:elder_guardian_rapier"
+    "id": "bards_rpg:elder_guardian_lyre"
   },
   "template": {
     "item": "loot_n_explore:guardian_upgrade_smithing_template"

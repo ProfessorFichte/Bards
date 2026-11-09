@@ -196,7 +196,7 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
                         Weapons.netherite_lyre.item(),
                         Identifier.of("loot_n_explore", "guardian_upgrade_smithing_template"),
                         Identifier.of("loot_n_explore", "elder_guardian_eye"),
-                        elderGuardianrapier,
+                        elderGuardianLyre,
                         "loot_n_explore"
                 );
             }
@@ -224,8 +224,8 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
                 createSmithingTransformRecipe(
                         "ender_dragon_rapier",
                         Weapons.netherite_rapier.item(),
-                        Identifier.of("loot_n_explore", "dragonslayer_upgrade_smithing_template"),
-                        Identifier.of("loot_n_explore", "ender_dragon_scale"),
+                        Identifier.of("loot_n_explore", "dragon_upgrade_smithing_template"),
+                        Identifier.of("loot_n_explore", "ender_dragon_scales"),
                         enderDragonrapier,
                         "loot_n_explore"
                 );
@@ -238,9 +238,9 @@ public class BardSmithingRecipeProvider extends SmithingRecipeGenerator {
                 createSmithingTransformRecipe(
                         "ender_dragon_lute",
                         Weapons.netherite_lute.item(),
-                        Identifier.of("loot_n_explore", "dragonslayer_upgrade_smithing_template"),
-                        Identifier.of("loot_n_explore", "ender_dragon_scale"),
-                        enderDragonrapier,
+                        Identifier.of("loot_n_explore", "dragon_upgrade_smithing_template"),
+                        Identifier.of("loot_n_explore", "ender_dragon_scales"),
+                        enderDragonLute,
                         "loot_n_explore"
                 );
             }

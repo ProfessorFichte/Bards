@@ -9,7 +9,7 @@
   ],
   "type": "minecraft:smithing_transform",
   "addition": {
-    "item": "loot_n_explore:ender_dragon_scale"
+    "item": "loot_n_explore:ender_dragon_scales"
   },
   "base": {
     "item": "bards_rpg:netherite_lute"
@@ -22,9 +22,9 @@
   ],
   "result": {
     "count": 1,
-    "id": "bards_rpg:ender_dragon_rapier"
+    "id": "bards_rpg:ender_dragon_lute"
   },
   "template": {
-    "item": "loot_n_explore:dragonslayer_upgrade_smithing_template"
+    "item": "loot_n_explore:dragon_upgrade_smithing_template"
   }
 }
