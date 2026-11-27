@@ -2,13 +2,15 @@
   "schemaVersion": 1,
   "id": "bards_rpg",
   "version": "${version}",
-  "name": "Bards (RPG Series Plus)",
-  "description": "Motivate and strengthen the party with awesome song's and ballads!",
+  "name": "Bard",
+  "description": "Motivate and strengthen the party with awesome songs and ballads!",
   "authors": [
     "Fichte"
   ],
   "contact": {
-    "sources": "https://github.com/ProfessorFichte"
+    "homepage": "https://modrinth.com/mod/bard-more-rpg-classes",
+    "sources": "https://github.com/ProfessorFichte/Bards",
+    "issues": "https://github.com/ProfessorFichte/Bards/issues"
   },
   "license": "ARR",
   "icon": "assets/bards_rpg/icon.png",
@@ -40,12 +42,18 @@
     "ranged_weapon_api": ">=${ranged_weapon_api_version}"
   },
   "suggests": {
-    "another-mod": "*"
+    "armory_rpgs": "*",
+    "arsenal": "*",
+    "mrpgc_skill_tree": "*"
   },
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.discord": "https://discord.gg/AShKd5XrTu"
+        "modmenu.discord": "https://discord.gg/AShKd5XrTu",
+        "modmenu.kofi": "https://ko-fi.com/fichteee",
+        "modmenu.wiki": "https://github.com/ProfessorFichte/Bards/wiki",
+        "modmenu.modrinth": "https://modrinth.com/mod/bard-more-rpg-classes",
+        "modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/bard-more-rpg-classes"
       }
     }
   }

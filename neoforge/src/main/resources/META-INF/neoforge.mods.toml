@@ -1,17 +1,18 @@
 modLoader = "javafml"
 loaderVersion = "[4,)"
-#issueTrackerURL = ""
+issueTrackerURL = "https://github.com/ProfessorFichte/Bards/issues"
 license = "ARR"
 
 [[mods]]
 modId = "bards_rpg"
 version = "${version}"
-displayName = "Bards (RPG Series Plus)"
+displayName = "Bard"
+displayURL = "https://modrinth.com/mod/bard-more-rpg-classes"
 authors = "Fichte"
 description = '''
-Motivate and strengthen the party with awesome song's and ballads!
+Motivate and strengthen the party with awesome songs and ballads!
 '''
-logoFile = "icon.png"
+logoFile = "assets/bards_rpg/icon.png"
 
 [[dependencies.bards_rpg]]
 modId = "neoforge"
@@ -60,6 +61,34 @@ modId = "mrpg_lib"
 type = "required"
 versionRange = "[${more_rpg_library_version},)"
 ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.bards_rpg]]
+modId = "spell_power"
+type = "required"
+versionRange = "[${spell_power_version},)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.bards_rpg]]
+modId = "armory_rpgs"
+type = "optional"
+versionRange = "[0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.bards_rpg]]
+modId = "arsenal"
+type = "optional"
+versionRange = "[0,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.bards_rpg]]
+modId = "mrpgc_skill_tree"
+type = "optional"
+versionRange = "[0,)"
+ordering = "NONE"
 side = "BOTH"
 
 [[mixins]]
