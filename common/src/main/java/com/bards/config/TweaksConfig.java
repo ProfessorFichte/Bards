@@ -6,4 +6,5 @@ public class TweaksConfig {
     public float discordant_selfdamage_chance_per_stack = 0.02F;
     public float discordant_selfdamage_multiplier_per_stack= 0.1F;
     public float luthier_song_volume = 1.0F;
+    public boolean luthier_song_animation = true;
 }

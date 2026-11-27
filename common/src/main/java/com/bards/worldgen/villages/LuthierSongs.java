@@ -1,17 +1,25 @@
 package com.bards.worldgen.villages;
 
+import com.bards.BardsMod;
 import com.bards.content.BardSkillColors;
 import com.bards.content.BardsSounds;
 import com.bards.effect.BardsEffects;
 import com.bards.item.Weapons;
+import com.bards.tags.BardTags;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class LuthierSongs {
+
+    public static final Identifier LUTE_ANIMATION = BardsMod.id("lute_channel");
+    public static final Identifier LYRE_ANIMATION = BardsMod.id("lyre_channel");
 
     public record Song(
             String name,
@@ -21,7 +29,15 @@ public class LuthierSongs {
             int effectAmplifier,
             RegistryEntry<SoundEvent> sound,
             int soundDurationTicks
-    ) {}
+    ) {
+        @Nullable
+        public Identifier playAnimation() {
+            ItemStack stack = new ItemStack(heldInstrument);
+            if (stack.isIn(BardTags.LYRES)) return LYRE_ANIMATION;
+            if (stack.isIn(BardTags.LUTES)) return LUTE_ANIMATION;
+            return null;
+        }
+    }
 
     public static final List<Song> SONGS = List.of(
             new Song(BardsEffects.TROUBADOURS_MINUET.title, Weapons.wooden_lute.item(), BardSkillColors.troubadours_minuet, BardsEffects.TROUBADOURS_MINUET.entry, 0, BardsSounds.troubadours_minuet_full.entry(), 520),

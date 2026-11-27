@@ -11,6 +11,8 @@ import com.bards.item.Armors;
 import net.spell_engine.Platform;
 import net.rpg_foundation.armor_api.client.ArmorRenderers;
 import net.rpg_foundation.armor_api.client.GeoArmorRenderer;
+import com.mrpg_lib.compat.player_animator.api.MobAnimations;
+import com.mrpg_lib.compat.player_animator.client.MobModelAdapters;
 import com.mrpg_lib.compat.spell_engine.SpellBuilderHelper;
 import net.spell_engine.api.effect.CustomModelStatusEffect;
 import net.spell_engine.api.effect.CustomParticleStatusEffect;
@@ -44,6 +46,10 @@ public class BardClient {
         CustomModelStatusEffect.register(BardsEffects.ARMYS_PAEON_STASH.effect, new ArmysPaeonCircleRenderer());
         CustomModelStatusEffect.register(BardsEffects.BENEFICIAL_WARDENS_PAEAN.effect, new WardensPaeanEffectRenderer(wardensPaeanHelpfulModelId, false));
         CustomModelStatusEffect.register(BardsEffects.HARMFUL_WARDENS_PAEAN.effect, new WardensPaeanEffectRenderer(wardensPaeanHarmfulModelId, true));
+
+        if (MobAnimations.isAvailable()) {
+            MobModelAdapters.register(new LuthierArmsAdapter());
+        }
     }
     private static void registerArmorRenderer(Armor.Set set, Supplier<GeoArmorRenderer> armorRendererSupplier) {
         ArmorRenderers.register(armorRendererSupplier.get(), set.head, set.chest, set.legs, set.feet);

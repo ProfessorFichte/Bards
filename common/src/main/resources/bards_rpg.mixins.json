@@ -7,7 +7,9 @@
     "BardSpellAnimationMixin",
     "ItemRendererAccessor",
     "ItemRendererMixin",
-    "ModelLoaderMixin"
+    "ModelLoaderMixin",
+    "VillagerHeldItemFeatureRendererMixin",
+    "VillagerResemblingModelMixin"
   ],
   "mixins": [
     "DiscordantNoteMixin",
