@@ -15,7 +15,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - Fix the Luthier Villager not performing its songs
 - Fix the smelting and blasting recipes that melt down Bard gear never unlocking in the recipe book
-
 - Sound effects are now mono and 48 kHz, so they come from the right direction and get quieter with distance like vanilla sounds. This includes the songs, which are now heard from the bard's position
 
 ## [1.2.1+1.21.1]
