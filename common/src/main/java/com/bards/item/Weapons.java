@@ -266,6 +266,7 @@ public class Weapons {
                     .rarity = Rarity.RARE;
             harpCrossbow("elder_guardian_harp_crossbow",Equipment.Tier.TIER_5,() -> Ingredient.ofItems(Items.PRISMARINE_SHARD))
                     .translatedName("Atlantis Harp Crossbow")
+                    .loot(-1, null)
                     .spellContainer(SpellContainers.forRangedWeapon().withSpellId(Identifier.of(MrpgLibSpells.reef_arrows.id().toString())));
 
         }

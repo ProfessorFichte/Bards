@@ -29,10 +29,6 @@
       "required": false
     },
     {
-      "id": "bards_rpg:elder_guardian_harp_crossbow",
-      "required": false
-    },
-    {
       "id": "bards_rpg:unique_harp_crossbow_1",
       "required": false
     }
