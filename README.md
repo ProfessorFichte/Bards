@@ -1,46 +1,42 @@
-<center>
-
-![Bards – More RPG Classes](https://raw.githubusercontent.com/ProfessorFichte/Bards/1.21.1/.media/bard_banner.png)
-
-# 🎶 Motivate and strengthen the party with awesome songs and ballads!
-
-</center>
-
-<center>
-
-[![CurseForge](https://img.shields.io/badge/curseforge-black?style=for-the-badge&logo=curseforge&labelColor=black&color=grey)](https://www.curseforge.com/minecraft/mc-mods/bard-more-rpg-classes) [![Modrinth](https://img.shields.io/badge/modrinth-black?style=for-the-badge&logo=modrinth&labelColor=black&color=grey)](https://modrinth.com/mod/bard-more-rpg-classes) [![Discord](https://img.shields.io/discord/1209063880790376468?style=for-the-badge&logo=discord&label=discord&labelColor=black&color=grey)](https://discord.com/invite/AShKd5XrTu) [![Ko-fi](https://img.shields.io/badge/donations-black?style=for-the-badge&logo=kofi&labelColor=black&color=grey)](https://ko-fi.com/fichteee) [![GitHub](https://img.shields.io/badge/github-black?style=for-the-badge&logo=github&labelColor=black&color=grey)](https://github.com/ProfessorFichte/Bards)
-
-</center>
+<div align="center" style="text-align:center">
+<img src="https://raw.githubusercontent.com/ProfessorFichte/Bards/1.21.1/.media/images/bard_banner.png" alt="Bards – More RPG Classes">
+<h1>Motivate and strengthen the party with awesome songs and ballads!</h1>
+<a href="https://www.curseforge.com/minecraft/mc-mods/bard-more-rpg-classes"><img src="https://img.shields.io/badge/curseforge-black?style=for-the-badge&amp;logo=curseforge&amp;labelColor=black&amp;color=grey" alt="CurseForge"></a> <a href="https://modrinth.com/mod/bard-more-rpg-classes"><img src="https://img.shields.io/badge/modrinth-black?style=for-the-badge&amp;logo=modrinth&amp;labelColor=black&amp;color=grey" alt="Modrinth"></a> <a href="https://discord.com/invite/AShKd5XrTu"><img src="https://img.shields.io/discord/1209063880790376468?style=for-the-badge&amp;logo=discord&amp;label=discord&amp;labelColor=black&amp;color=grey" alt="Discord"></a> <a href="https://ko-fi.com/fichteee"><img src="https://img.shields.io/badge/donations-black?style=for-the-badge&amp;logo=kofi&amp;labelColor=black&amp;color=grey" alt="Ko-fi"></a> <a href="https://github.com/ProfessorFichte/Bards"><img src="https://img.shields.io/badge/github-black?style=for-the-badge&amp;logo=github&amp;labelColor=black&amp;color=grey" alt="GitHub"></a>
+</div>
 
 ---
 
 ## 📂 Installation
 
-### 🚨 Required Mods
+### Required Mods
 
-| Mod | Download |
-|:----|:---------|
-| **Spell Engine** | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/spell-engine) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/spell-engine) |
-| **More RPG Library** | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/more-rpg-classes) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/more-rpg-library) |
-| **Armor Model API** | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/armor-model-api) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/armor-model-api) |
-| **Structure Pool API** | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/structure-pool-api) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/structure-pool-api) |
-| **Ranged Weapon API** | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/ranged-weapon-api) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/ranged-weapon-api) |
+<table>
+<thead><tr><th>Mod</th><th>Download</th></tr></thead>
+<tbody>
+<tr><td><b>Spell Engine</b></td><td><a href="https://www.curseforge.com/minecraft/mc-mods/spell-engine"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/spell-engine"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+<tr><td><b>More RPG Library</b></td><td><a href="https://www.curseforge.com/minecraft/mc-mods/more-rpg-library"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/more-rpg-library"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+<tr><td><b>Armor Model API</b></td><td><a href="https://www.curseforge.com/minecraft/mc-mods/armor-model-api"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/armor-model-api"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+<tr><td><b>Structure Pool API</b></td><td><a href="https://www.curseforge.com/minecraft/mc-mods/structure-pool-api"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/structure-pool-api"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+<tr><td><b>Ranged Weapon API</b></td><td><a href="https://www.curseforge.com/minecraft/mc-mods/ranged-weapon-api"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/ranged-weapon-api"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+</tbody></table>
 
-### 👍 Highly Recommended / Compatibility Mods
+### Highly Recommended / Compatibility Mods
 
 <details>
-<summary><b>Show recommended & compatible mods</b></summary>
+<summary><b>Show recommended &amp; compatible mods</b></summary>
 
-| Mod | Compatibility Info | Download |
-|:----|:-------------------|:---------|
-| **Better Combat** | Built in weapon animations and compat for all weapons | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/better-combat-by-daedelus) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/better-combat) |
-| **BetterEnd** | Adds higher tier weapons with materials from the End or boss loot | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/betterend) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/betterend) |
-| **BetterNether** | Adds higher tier weapons with materials from the Nether or boss loot | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/betternether) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/betternether) |
-| **The Aether** | Adds higher tier weapons with materials from the Aether or boss loot | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/aether) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/aether) |
-| **Armory (RPG Series)** | Adds tier 5 weapons | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/armory-rpg-series) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/armory-rpg-series) |
-| **Arsenal (RPG Series)** | Adds higher tier weapons with strong passives | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/arsenal-rpg-series) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/arsenal-rpg-series) |
-| **Loot & Explore** | Adds higher tier weapons with strong passives | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/loot-n-explore) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/loot-n-explore) |
-| **MRPGC Skill Tree Add-On** | Adds a fully functional skill tree for the Bard | [![CurseForge](https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/mrpgc-skill-tree) [![Modrinth](https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white)](https://modrinth.com/mod/3OYmNUDq) |
+<table>
+<thead><tr><th>Mod</th><th>Compatibility Info</th><th>Download</th></tr></thead>
+<tbody>
+<tr><td><b>Better Combat</b></td><td>Built in weapon animations and compat for all weapons</td><td><a href="https://www.curseforge.com/minecraft/mc-mods/better-combat-by-daedelus"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/better-combat"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+<tr><td><b>BetterEnd</b></td><td>Adds higher tier weapons with materials from the End or boss loot</td><td><a href="https://www.curseforge.com/minecraft/mc-mods/betterend"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/betterend"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+<tr><td><b>BetterNether</b></td><td>Adds higher tier weapons with materials from the Nether or boss loot</td><td><a href="https://www.curseforge.com/minecraft/mc-mods/betternether"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/betternether"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+<tr><td><b>The Aether</b></td><td>Adds higher tier weapons with materials from the Aether or boss loot</td><td><a href="https://www.curseforge.com/minecraft/mc-mods/aether"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/aether"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+<tr><td><b>Armory (RPG Series)</b></td><td>Adds tier 5 Armor Sets for the Bard</td><td><a href="https://www.curseforge.com/minecraft/mc-mods/armory-rpg-series"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/armory-rpg-series"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+<tr><td><b>Arsenal (RPG Series)</b></td><td>Adds higher tier weapons with strong passives</td><td><a href="https://www.curseforge.com/minecraft/mc-mods/arsenal-rpg-series"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/arsenal-rpg-series"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+<tr><td><b>Loot &amp; Explore</b></td><td>Adds higher tier weapons with strong passives</td><td><a href="https://www.curseforge.com/minecraft/mc-mods/loot-n-explore"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/loot-n-explore"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+<tr><td><b>MRPGC Skill Tree Add-On</b></td><td>Adds a fully functional skill tree for the Bard</td><td><a href="https://www.curseforge.com/minecraft/mc-mods/mrpgc-skill-tree"><img src="https://img.shields.io/badge/-CurseForge-F16436?style=flat-square&logo=curseforge&logoColor=white" alt="CurseForge"></a> <a href="https://modrinth.com/mod/3OYmNUDq"><img src="https://img.shields.io/badge/-Modrinth-00AF5C?style=flat-square&logo=modrinth&logoColor=white" alt="Modrinth"></a></td></tr>
+</tbody></table>
 
 </details>
 
@@ -50,13 +46,11 @@
 
 The Bard is a supporting and enhancing class that brings the other party members and himself to a whole other level by buffing and enhancing their stats.
 
-<center>
+<div align="center" style="text-align:center">
+<img src="https://raw.githubusercontent.com/ProfessorFichte/Bards/1.21.1/.media/images/bard_showcase.png" alt="Bard Showcase">
+</div>
 
-![Bard Showcase](https://raw.githubusercontent.com/ProfessorFichte/Bards/1.21.1/.media/bard_showcase.png)
-
-</center>
-
-### ✨ Spells
+### Spells
 
 Make use of the new Bard spells to make fighting and combat more fun: equip a Spell Book and unlock all of its powerful spells!
 
@@ -64,33 +58,27 @@ To get one, find a Spell Binding Table in village [Gazebos](https://curseforge.c
 
 To use a spell book, equip it and hold a weapon (vanilla or from third-party mods).
 
-<center>
+<div align="center" style="text-align:center">
+<img src="https://raw.githubusercontent.com/ProfessorFichte/Bards/1.21.1/.media/images/bard_spellbinding.png" alt="Bard Spells">
+</div>
 
-![Bard Spells](https://raw.githubusercontent.com/ProfessorFichte/Bards/1.21.1/.media/bard_spellbinding.png)
-
-</center>
-
-**📖 Bard's Stories**
+**Bard's Stories**
 
 This spell book offers supporting spells, enhancing buffs and minor heals, making the Bard a welcome ally in your party.
 
-<center>
+<div align="center" style="text-align:center">
+<img src="https://raw.githubusercontent.com/ProfessorFichte/Bards/1.21.1/.media/images/bard_combat.png" alt="Bard Combat">
+</div>
 
-![Bard Combat](https://raw.githubusercontent.com/ProfessorFichte/Bards/1.21.1/.media/bard_combat.png)
-
-</center>
-
-### 🤺 Combat & Equipment
+### Combat & Equipment
 
 - Craft new instruments to play songs & ballads
 - Craft new, fast-attacking rapiers
 - Wear the Bard's garb to move faster and stay close to your allies
 
-<center>
-
-![Bard Equipment](https://raw.githubusercontent.com/ProfessorFichte/Bards/1.21.1/.media/bard_equipment.png)
-
-</center>
+<div align="center" style="text-align:center">
+<img src="https://raw.githubusercontent.com/ProfessorFichte/Bards/1.21.1/.media/images/bard_equipment.png" alt="Bard Equipment">
+</div>
 
 ---
 
@@ -99,11 +87,13 @@ This spell book offers supporting spells, enhancing buffs and minor heals, makin
 <details>
 <summary><b>Show config files</b></summary>
 
-| Setting | File |
-|:--------|:-----|
-| Armor & weapon bonuses | `config/bards_rpg/items.json` |
-| Tweaks | `config/bards_rpg/tweaks.json` |
-| Status effects | `config/bards_rpg/effects.json` |
+<table>
+<thead><tr><th>Setting</th><th>File</th></tr></thead>
+<tbody>
+<tr><td>Armor &amp; weapon bonuses</td><td><code>config/bards_rpg/items.json</code></td></tr>
+<tr><td>Tweaks</td><td><code>config/bards_rpg/tweaks.json</code></td></tr>
+<tr><td>Status effects</td><td><code>config/bards_rpg/effects.json</code></td></tr>
+</tbody></table>
 
 </details>
 
@@ -114,15 +104,11 @@ This spell book offers supporting spells, enhancing buffs and minor heals, makin
 <details>
 <summary><b>Show video</b></summary>
 
-<center>
-
-[![Bard (RPG Series Plus) – Minecraft Mod Showcase](https://img.youtube.com/vi/WCuJHIoJDWg/maxresdefault.jpg)](https://www.youtube.com/watch?v=WCuJHIoJDWg)
-
-▶️ **Bard (RPG Series Plus) (Minecraft Mod Showcase) | A Class with Songs & Buffs | 1.21.1 & 1.20.1**
-
-</center>
-
-Thanks to all content creators for showcasing my mod 😊
+<div align="center" style="text-align:center">
+<a href="https://www.youtube.com/watch?v=WCuJHIoJDWg"><img src="https://img.youtube.com/vi/WCuJHIoJDWg/maxresdefault.jpg" alt="Bard (RPG Series Plus) – Minecraft Mod Showcase"></a>
+<p><b>Bard (RPG Series Plus) (Minecraft Mod Showcase) | A Class with Songs &amp; Buffs | 1.21.1 &amp; 1.20.1</b></p>
+</div>
+<p>Thanks to all content creators for showcasing my mod</p>
 
 </details>
 
@@ -133,46 +119,62 @@ Thanks to all content creators for showcasing my mod 😊
 <details>
 <summary><b>Show credits</b></summary>
 
-| Who | Contribution |
-|:----|:-------------|
-| Daedelus | Created the amazing Spell Engine API |
-| [Slepykat](https://slepykat.carrd.co/) | Created all effect visual models and the music stand block |
-| Damienbrittan | Created the awesome mod banner |
-| [SirGaith](https://sirghaith.artstation.com/) | Created the weapon & armor assets |
-| [Emil](https://emil.art/) | Created some of the spell icons |
-| [Laysquared Crafts](https://markkelly875.wixsite.com/laysquared) | Created some of the spell icons |
-| [KaktusDoesMusic](https://www.youtube.com/@KaktusDoesMusic) | Created all the custom music & sound effects |
-| Florian | Built the Bard's villager structures and created the Luthier texture |
+<table>
+<thead><tr><th>Who</th><th>Contribution</th></tr></thead>
+<tbody>
+<tr><td>Daedelus</td><td>Created the amazing Spell Engine API</td></tr>
+<tr><td><a href="https://slepykat.carrd.co/">Slepykat</a></td><td>Created all effect visual models and the music stand block</td></tr>
+<tr><td>Damienbrittan</td><td>Created the awesome mod banner</td></tr>
+<tr><td><a href="https://sirghaith.artstation.com/">SirGaith</a></td><td>Created the weapon &amp; armor assets</td></tr>
+<tr><td><a href="https://emil.art/">Emil</a></td><td>Created some of the spell icons</td></tr>
+<tr><td><a href="https://markkelly875.wixsite.com/laysquared">Laysquared Crafts</a></td><td>Created some of the spell icons</td></tr>
+<tr><td><a href="https://www.youtube.com/@KaktusDoesMusic">KaktusDoesMusic</a></td><td>Created all the custom music &amp; sound effects</td></tr>
+<tr><td>Florian</td><td>Built the Bard's villager structures and created the Luthier texture</td></tr>
+</tbody></table>
 
 </details>
 
 ---
 
-<center>
+<div align="center" style="text-align:center">
+<h3>Check out my other RPG-themed mods!</h3>
+<!-- BANNERS:own -->
+<table>
+<tbody>
+<tr><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/additional-rpg-jewelry"><img src="https://raw.githubusercontent.com/ProfessorFichte/More-RPG-Library/1.21.1/.media/small_banners/additional_jewelry_banner_275x220.png" alt="Additional RPG Jewelry"></a></td><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/archers-expansion"><img src="https://raw.githubusercontent.com/ProfessorFichte/More-RPG-Library/1.21.1/.media/small_banners/archers_expansion_banner_275x220.png" alt="Archers Expansion"></a></td><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/berserker-rpg-class"><img src="https://raw.githubusercontent.com/ProfessorFichte/More-RPG-Library/1.21.1/.media/small_banners/berserker_banner_275x220.png" alt="Berserker"></a></td></tr>
+<tr><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/elemental-wizards-rpg"><img src="https://raw.githubusercontent.com/ProfessorFichte/More-RPG-Library/1.21.1/.media/small_banners/elemental_wizards_banner_275x220.png" alt="Elemental Wizards"></a></td><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/forcemaster-rpg-class"><img src="https://raw.githubusercontent.com/ProfessorFichte/More-RPG-Library/1.21.1/.media/small_banners/forcemaster_banner_275x220.png" alt="Forcemaster"></a></td><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/loot-n-explore"><img src="https://raw.githubusercontent.com/ProfessorFichte/More-RPG-Library/1.21.1/.media/small_banners/loot_n_explore_banner_275x220.png" alt="Loot &amp; Explore"></a></td></tr>
+<tr><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/witcher-rpg-class"><img src="https://raw.githubusercontent.com/ProfessorFichte/More-RPG-Library/1.21.1/.media/small_banners/witcher_banner_275x220.png" alt="Witcher"></a></td></tr>
+</tbody>
+</table>
+<!-- /BANNERS:own -->
+</div>
 
-### 🧙‍♂️ Check out my other RPG-themed mods!
+<div align="center" style="text-align:center">
+<h3>Discover more of the RPG Series by Daedelus</h3>
+<!-- BANNERS:series -->
+<table>
+<tbody>
+<tr><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/archers"><img src="https://media.forgecdn.net/attachments/755/169/archers_full_275.png" alt="Archers"></a></td><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/paladins-and-priests"><img src="https://media.forgecdn.net/attachments/755/170/paladins_full_275.png" alt="Paladins"></a></td><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/wizards"><img src="https://media.forgecdn.net/attachments/755/171/wizards_full_275.png" alt="Wizards"></a></td></tr>
+<tr><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/rogues-and-warriors"><img src="https://media.forgecdn.net/attachments/899/332/rogues_full_bg_275.png" alt="Rogues"></a></td><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/jewelry"><img src="https://media.forgecdn.net/attachments/760/387/jewelry_full_275.png" alt="Jewelry"></a></td><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/relics-rpg"><img src="https://media.forgecdn.net/attachments/1103/296/relics_275-png.png" alt="Relics"></a></td></tr>
+<tr><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/arsenal-rpg-series"><img src="https://media.forgecdn.net/attachments/1103/295/arsenal_full_275-png.png" alt="Arsenal"></a></td><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/armory-rpg-series"><img src="https://media.forgecdn.net/attachments/1311/866/armory_275-png.png" alt="Armory"></a></td><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/skill-tree"><img src="https://media.forgecdn.net/attachments/1311/865/skilltree_275-png.png" alt="Skill Tree"></a></td></tr>
+</tbody>
+</table>
+<!-- /BANNERS:series -->
+</div>
 
-| [![Archers Expansion](https://media.forgecdn.net/attachments/1370/709/archers_expansion_275-png-png.png)](https://www.curseforge.com/minecraft/mc-mods/archers-expansion) | [![Berserker](https://media.forgecdn.net/attachments/1370/710/berserker_mod_275-png-png.png)](https://www.curseforge.com/minecraft/mc-mods/berserker-rpg-class) | [![Elemental Wizards](https://media.forgecdn.net/attachments/1370/711/elemental_wizards_275-png-png.png)](https://www.curseforge.com/minecraft/mc-mods/elemental-wizards-rpg-class) | [![Witcher](https://media.forgecdn.net/attachments/1370/713/witcher_mod_275-png-png.png)](https://www.curseforge.com/minecraft/mc-mods/witcher-rpg-class) |
-|:-:|:-:|:-:|:-:|
-
-### ✨ Discover more of the RPG Series by Daedelus
-
-| [![Archers](https://media.forgecdn.net/attachments/755/169/archers_full_275.png)](https://curseforge.com/minecraft/mc-mods/archers) | [![Paladins](https://media.forgecdn.net/attachments/755/170/paladins_full_275.png)](https://curseforge.com/minecraft/mc-mods/paladins-and-priests) | [![Wizards](https://media.forgecdn.net/attachments/755/171/wizards_full_275.png)](https://curseforge.com/minecraft/mc-mods/wizards) |
-|:-:|:-:|:-:|
-| [![Rogues](https://media.forgecdn.net/attachments/899/332/rogues_full_bg_275.png)](https://curseforge.com/minecraft/mc-mods/rogues-and-warriors) | [![Jewelry](https://media.forgecdn.net/attachments/760/387/jewelry_full_275.png)](https://www.curseforge.com/minecraft/mc-mods/jewelry) | [![Relics](https://media.forgecdn.net/attachments/1103/296/relics_275-png.png)](https://www.curseforge.com/minecraft/mc-mods/relics-rpg) |
-| [![Arsenal](https://media.forgecdn.net/attachments/1103/295/arsenal_full_275-png.png)](https://curseforge.com/minecraft/mc-mods/arsenal-rpg-series) | [![Armory](https://media.forgecdn.net/attachments/1311/866/armory_275-png.png)](https://www.curseforge.com/minecraft/mc-mods/armory-rpg-series) | [![Skill Tree](https://media.forgecdn.net/attachments/1311/865/skilltree_275-png.png)](https://www.curseforge.com/minecraft/mc-mods/skill-tree) |
-
-### 🌟 More RPG content by other Spell Engine devs
-
-| [![Anarchy](https://media.forgecdn.net/attachments/1358/177/anarchy-png.png)](https://www.curseforge.com/minecraft/mc-mods/rpg-minibosses-forsaken-adventurers) | [![Mercenaries and Artificers](https://media.forgecdn.net/attachments/1346/857/merc_275-png.png)](https://www.curseforge.com/minecraft/mc-mods/mercenaries-and-artificers) | [![Death Knights](https://media.forgecdn.net/attachments/953/998/death_knights_275_2.png)](https://www.curseforge.com/minecraft/mc-mods/death-knights) |
-|:-:|:-:|:-:|
-
-</center>
+<div align="center" style="text-align:center">
+<h3>More RPG content by other Spell Engine devs</h3>
+<!-- BANNERS:others -->
+<table>
+<tbody>
+<tr><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/anarchy-rpg"><img src="https://media.forgecdn.net/attachments/1358/177/anarchy-png.png" alt="Anarchy"></a></td><td align="center" style="text-align:center"><a href="https://www.curseforge.com/minecraft/mc-mods/mercenaries-and-artificers"><img src="https://media.forgecdn.net/attachments/1346/857/merc_275-png.png" alt="Mercenaries and Artificers"></a></td><td align="center" style="text-align:center"><a href="https://modrinth.com/mod/death-knights"><img src="https://media.forgecdn.net/attachments/953/998/death_knights_275_2.png" alt="Death Knights"></a></td></tr>
+</tbody>
+</table>
+<!-- /BANNERS:others -->
+</div>
 
 ---
 
-<center>
-
-Questions, bugs or ideas? Join the [Discord](https://discord.com/invite/AShKd5XrTu) or open an issue on [GitHub](https://github.com/ProfessorFichte/Bards/issues).
-
-</center>
+<div align="center" style="text-align:center">
+<p>Questions, bugs or ideas? Join the <a href="https://discord.com/invite/AShKd5XrTu">Discord</a> or open an issue on <a href="https://github.com/ProfessorFichte/Bards/issues">GitHub</a>.</p>
+</div>
