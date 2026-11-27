@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "bards_rpg:elder_guardian_rapier",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:elder_guardian_lyre",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:elder_guardian_harp_crossbow",
+      "required": false
+    }
+  ]
+}

@@ -15,10 +15,12 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.data.server.recipe.CookingRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.RegistryKeys;
@@ -215,8 +217,23 @@ public class BardsDataGenerator implements DataGeneratorEntrypoint {
         }
 
         List<String> armoryKeywords = List.of("storyteller");
+        private void lneWeaponThemeTags() {
+            var enderDragon = getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of("loot_n_explore", "weapon_themes/ender_dragon")));
+            enderDragon.addOptional(Identifier.of("bards_rpg:ender_dragon_rapier"));
+            enderDragon.addOptional(Identifier.of("bards_rpg:ender_dragon_lute"));
+            var wither = getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of("loot_n_explore", "weapon_themes/wither")));
+            wither.addOptional(Identifier.of("bards_rpg:wither_rapier"));
+            var glacial = getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of("loot_n_explore", "weapon_themes/glacial")));
+            glacial.addOptional(Identifier.of("bards_rpg:glacial_rapier"));
+            var elderGuardian = getOrCreateTagBuilder(TagKey.of(RegistryKeys.ITEM, Identifier.of("loot_n_explore", "weapon_themes/elder_guardian")));
+            elderGuardian.addOptional(Identifier.of("bards_rpg:elder_guardian_rapier"));
+            elderGuardian.addOptional(Identifier.of("bards_rpg:elder_guardian_lyre"));
+            elderGuardian.addOptional(Identifier.of("bards_rpg:elder_guardian_harp_crossbow"));
+        }
+
         @Override
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+            lneWeaponThemeTags();
             var armorTagOptions1 = new ArmorOptions(false, true);
             var armorTagOptions2 = new ArmorOptions(true, true);
             armoryTags(
@@ -429,41 +446,20 @@ public class BardsDataGenerator implements DataGeneratorEntrypoint {
         }
 
         private static void disassembleArmor(RecipeExporter exporter, Armor.Set armorSet, Item output) {
-            FabricRecipeProvider.offerSmelting(exporter,
-                    armorSet.pieces(),
-                    RecipeCategory.MISC,
-                    output,
-                    0.1f,
-                    UNSMELT_TIME,
-                    "disassemble"
-            );
-            FabricRecipeProvider.offerBlasting(exporter,
-                    armorSet.pieces(),
-                    RecipeCategory.MISC,
-                    output,
-                    0.1f,
-                    UNSMELT_TIME / 2,
-                    "disassemble"
-            );
+            disassemble(exporter, armorSet.pieces(), output);
         }
 
         private static void disassemble(RecipeExporter exporter, List<ItemConvertible> items, Item output) {
-            FabricRecipeProvider.offerSmelting(exporter,
-                    items,
-                    RecipeCategory.MISC,
-                    output,
-                    0.1f,
-                    UNSMELT_TIME,
-                    "disassemble"
-            );
-            FabricRecipeProvider.offerBlasting(exporter,
-                    items,
-                    RecipeCategory.MISC,
-                    output,
-                    0.1f,
-                    UNSMELT_TIME / 2,
-                    "disassemble"
-            );
+            for (ItemConvertible input : items) {
+                CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(input), RecipeCategory.MISC, output, 0.1f, UNSMELT_TIME)
+                        .group("disassemble")
+                        .criterion(hasItem(input), conditionsFromItem(input))
+                        .offerTo(exporter, Identifier.of(MOD_ID, getItemPath(output) + "_from_smelting_" + getItemPath(input)));
+                CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(input), RecipeCategory.MISC, output, 0.1f, UNSMELT_TIME / 2)
+                        .group("disassemble")
+                        .criterion(hasItem(input), conditionsFromItem(input))
+                        .offerTo(exporter, Identifier.of(MOD_ID, getItemPath(output) + "_from_blasting_" + getItemPath(input)));
+            }
         }
     }
 }

@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "bards_rpg:ender_dragon_rapier",
+      "required": false
+    },
+    {
+      "id": "bards_rpg:ender_dragon_lute",
+      "required": false
+    }
+  ]
+}
