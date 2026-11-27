@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:gold_nugget_from_smelting_troubadour_garb_head"
+        "recipe": "bards_rpg:gold_nugget_from_smelting_troubadour_garb_head"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:gold_nugget_from_smelting_troubadour_garb_head"
+      "bards_rpg:gold_nugget_from_smelting_troubadour_garb_head"
     ]
   }
 }

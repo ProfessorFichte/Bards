@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:gold_nugget_from_blasting_troubadour_garb_legs"
+        "recipe": "bards_rpg:gold_nugget_from_blasting_troubadour_garb_legs"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:gold_nugget_from_blasting_troubadour_garb_legs"
+      "bards_rpg:gold_nugget_from_blasting_troubadour_garb_legs"
     ]
   }
 }
